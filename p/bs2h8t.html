@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>«Басарабия» — банкетный зал в Химках</title>
+<meta name="description" content="«Басарабия» в Химках: залы, банкетное меню, новогодние корпоративы. Демо-версия сайта.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Golos+Text:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../vhnzzk/style.css">
+<style>
+/* Заголовок первого экрана спрятан до запуска анимации — иначе он мелькает, пока грузится GSAP */
+.js-anim:not(.no-motion) .cine .l1 { opacity: 0; }
+.js-anim:not(.no-motion) .cine .l2 { clip-path: inset(0 100% 0 0); }
+</style>
+<script>
+(function () {
+  var r = document.documentElement;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  r.classList.add('js-anim');
+  // Если анимация не загрузилась за 3 с — показать заголовок как есть
+  setTimeout(function () { if (!r.classList.contains('cine-live')) r.classList.add('no-motion'); }, 3000);
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="../vhnzzk/script.js" defer></script>
+</head>
+<body>
+
+<header class="top wrap">
+  <a class="brand" href="#top" id="top">
+    <span class="brand-name">Басарабия</span>
+    <span class="brand-note">банкетный зал в Химках</span>
+  </a>
+  <nav class="nav" aria-label="Разделы">
+    <a href="#zaly">Залы</a>
+    <a href="#menu">Меню</a>
+    <a href="#korporativy">Корпоративы</a>
+    <a href="#voprosy">Вопросы</a>
+    <a href="#kontakty">Контакты</a>
+  </nav>
+  <a class="top-phone" href="tel:+79032042414"><span class="top-phone-num">+7 (903) 204-24-14</span><span class="top-phone-short">Позвонить</span></a>
+</header>
+
+<main>
+
+<!-- Первый экран: заголовок → фото зала раскрывается на весь экран → кнопки -->
+<section class="cine" aria-labelledby="hero-title">
+  <div class="cine-title">
+    <h1 id="hero-title"><span class="l1">Банкетный зал</span> <span class="l2">в Химках</span></h1>
+    <p class="cine-sub">Свадьбы, юбилеи, дни рождения и корпоративы</p>
+    <div class="actions hero-actions">
+      <a class="btn btn-gold" href="tel:+79032042414">Позвонить</a>
+      <a class="btn btn-line" href="https://wa.me/79032042414"><span class="wide-only">Написать в&nbsp;</span>WhatsApp</a>
+    </div>
+  </div>
+
+  <div class="cine-card">
+    <img class="cine-photo" src="https://avatars.mds.yandex.net/get-altay/16243748/2a000001971112f73f5f4ce19251e19e7fa4/XXXL" alt="Фото «Басарабия» с Яндекс Карт" referrerpolicy="no-referrer">
+    <div class="cine-shade" aria-hidden="true"></div>
+    <div class="cine-card-text">
+      <h2>Два зала: до&nbsp;<span class="z">___</span> и до&nbsp;<span class="z">___</span> гостей</h2>
+      <p>Банкетное меню — от&nbsp;<span class="z">___</span>&nbsp;₽ на&nbsp;гостя. Администратор подберёт зал под число гостей и пришлёт меню.</p>
+    </div>
+    <p class="cine-card-brand" aria-hidden="true">Басарабия</p>
+  </div>
+
+  <div class="cine-cta">
+    <div class="cta-inner">
+      <div class="cta-text">
+        <h2>Свободна ли ваша дата?</h2>
+        <p>Позвоните или напишите. Администратор проверит дату и пришлёт банкетное меню.</p>
+        <div class="actions cta-actions">
+          <a class="btn btn-gold" href="tel:+79032042414">Позвонить</a>
+          <a class="btn btn-line" href="https://wa.me/79032042414"><span class="wide-only">Написать в&nbsp;</span>WhatsApp</a>
+        </div>
+      </div>
+      <img class="cta-photo" src="https://avatars.mds.yandex.net/get-altay/918124/2a00000186784e52b3f18b6fce53603a4c04/XXL" alt="Фото «Басарабия» с Яндекс Карт" referrerpolicy="no-referrer">
+    </div>
+  </div>
+</section>
+
+<section class="sec halls-sec" id="zaly" aria-labelledby="zaly-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="zaly-title">Залы</h2>
+      <p>Выберите зал по числу гостей. Зал закрывается под ваш праздник, поэтому посторонних гостей в нём не будет.</p>
+    </div>
+    <!-- Залы: один <article class="hall"> на зал. Сетка сама встаёт в 1, 2 или 3 колонки. -->
+    <div class="halls">
+      <article class="hall">
+        <div class="hall-photos">
+          <img class="hall-main" src="https://avatars.mds.yandex.net/get-altay/4475806/2a000001780117a4ba3a639a0143d00f9ef7/XXL" alt="Фото «Басарабия» с Яндекс Карт" referrerpolicy="no-referrer" loading="lazy">
+          <img class="hall-extra" src="https://avatars.mds.yandex.net/get-altay/2813737/2a000001705d529255c0c0898e7cc34aa37d/XL" alt="Фото «Басарабия» с Яндекс Карт" referrerpolicy="no-referrer" loading="lazy">
+        </div>
+        <div class="hall-text">
+          <h3>Большой зал</h3>
+          <p class="cap">до <span class="z">___</span> гостей</p>
+          <p>Для свадьбы, юбилея и корпоратива всем коллективом. Столы ставят одной линией или отдельно, по&nbsp;<span class="z">___</span> человек за столом.</p>
+        </div>
+      </article>
+      <article class="hall">
+        <div class="hall-photos">
+          <img class="hall-main" src="https://avatars.mds.yandex.net/get-altay/5257938/2a000001821ca74fdf1c3ec9b01f66685d9f/XXL" alt="Фото «Басарабия» с Яндекс Карт" referrerpolicy="no-referrer" loading="lazy">
+          <img class="hall-extra" src="https://avatars.mds.yandex.net/get-altay/5517598/2a0000017cf52b91fe01c141ca42c1192a5c/XL" alt="Фото «Басарабия» с Яндекс Карт" referrerpolicy="no-referrer" loading="lazy">
+        </div>
+        <div class="hall-text">
+          <h3>Малый зал</h3>
+          <p class="cap">до <span class="z">___</span> гостей</p>
+          <p>Для дня рождения, семейного праздника или вечера отдела. За соседними столами не будет чужих людей.</p>
+        </div>
+      </article>
+    </div>
+    <h3 class="gallery-title">Сервировка и праздники</h3>
+  </div>
+
+  <div class="gallery" aria-label="Фото сервировки и праздников">
+    <div class="gallery-tilt">
+      <div class="lane">
+        <div class="lane-group">
+          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/11396712/2a0000018ba59488d5bb674e532e5be2f439/XL" alt="Фото «Басарабия» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Здание</figcaption></figure>
+          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/1363018/2a00000163422e69e33607e886b5dd489617/XL" alt="Фото «Басарабия» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Здание</figcaption></figure>
+          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/1909414/2a0000016a2ac648aad52b08e25bfe76a125/XL" alt="Фото «Басарабия» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Блюда</figcaption></figure>
+          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/2057543/2a0000016cde5922d7386e3609a71c021965/XL" alt="Фото «Басарабия» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Блюда</figcaption></figure>
+          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/1583511/2a0000016d39788e0a44ba854f2403b24ad4/XL" alt="Фото «Басарабия» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Праздник</figcaption></figure>
+          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/21991621/2a000001a158e8ab1dd6827a65ee05101a15/XL" alt="Фото «Басарабия» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Территория</figcaption></figure>
+        </div>
+      </div>
+      <div class="lane">
+        <div class="lane-group">
+          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/18101536/2a0000019b0d980c8f99624859c7dd50e137/XL" alt="Фото «Басарабия» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Территория</figcaption></figure>
+          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/18005133/2a0000019c203db23f70d2146b249781df1d/XL" alt="Фото «Басарабия» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Блюда</figcaption></figure>
+          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/6529816/2a0000018ba59529e8bf5a1b27b2899c18f2/XL" alt="Фото «Басарабия» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Блюда</figcaption></figure>
+          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/10092863/2a0000018ba594ddc8355b25dd8014de7517/XL" alt="Фото «Басарабия» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Блюда</figcaption></figure>
+          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/5587131/2a0000017dcb77e087c43cb3f4a7083b8c4f/XL" alt="Фото «Басарабия» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Блюда</figcaption></figure>
+          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/1524599/2a0000016a2ac654ad32596e74f891c01e05/XL" alt="Фото «Басарабия» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Блюда</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap gallery-foot">
+    <p>Фото — с вашей карточки на Яндекс Картах. На сайт можно поставить любые ваши фото.</p>
+    <button class="motion-toggle" type="button" aria-pressed="false">Пауза</button>
+  </div>
+</section>
+
+<section class="sec sec-line" id="menu" aria-labelledby="menu-title">
+  <div class="wrap split">
+    <div class="sec-head">
+      <h2 id="menu-title">Банкетное меню</h2>
+      <p>Цена зависит от блюд и числа гостей. Администратор пришлёт полное меню в WhatsApp, а блюда вы выберете сами.</p>
+    </div>
+    <div class="cta-cell"><a class="btn btn-line" href="https://wa.me/79032042414">Попросить меню в WhatsApp</a></div>
+    <dl class="prices">
+      <div class="price-row">
+        <dt>Банкет</dt>
+        <dd>от <span class="z">___</span>&nbsp;₽ на&nbsp;гостя</dd>
+      </div>
+      <div class="price-row">
+        <dt>Фуршет</dt>
+        <dd>от <span class="z">___</span>&nbsp;₽ на&nbsp;гостя</dd>
+      </div>
+      <div class="price-row">
+        <dt>Детское меню</dt>
+        <dd>от <span class="z">___</span>&nbsp;₽ на&nbsp;ребёнка</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<section class="sec sec-photo" id="korporativy" aria-labelledby="korp-title">
+  <img class="sec-photo-bg" src="https://avatars.mds.yandex.net/get-altay/14020851/2a0000019499e0d2a8a3ef6a7489357d2bfb/XXXL" alt="Фото «Басарабия» с Яндекс Карт" referrerpolicy="no-referrer" loading="lazy">
+  <div class="wrap split">
+    <div class="sec-head">
+      <h2 id="korp-title">Новогодние корпоративы</h2>
+      <p>Корпоратив можно провести в любом из залов. Напишите, сколько будет гостей, и администратор пришлёт свободные даты и новогоднее меню.</p>
+    </div>
+    <div class="cta-cell"><a class="btn btn-gold" href="https://wa.me/79032042414">Спросить даты в WhatsApp</a></div>
+    <dl class="facts">
+      <div><dt>Даты</dt><dd>с <span class="z">___</span> по <span class="z">___</span> декабря</dd></div>
+      <div><dt>Компания</dt><dd>от <span class="z">___</span> до <span class="z">___</span> гостей</dd></div>
+      <div><dt>Новогоднее меню</dt><dd>от <span class="z">___</span>&nbsp;₽ на&nbsp;гостя</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="sec" id="bron" aria-labelledby="bron-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="bron-title">Как забронировать зал</h2>
+    </div>
+    <ol class="steps">
+      <li>
+        <h3>Позвоните или напишите</h3>
+        <p>Назовите дату, повод и примерное число гостей.</p>
+      </li>
+      <li>
+        <h3>Выберите зал и меню</h3>
+        <p>Администратор пришлёт меню и посчитает сумму на всех гостей.</p>
+      </li>
+      <li>
+        <h3>Внесите предоплату</h3>
+        <p>Предоплата <span class="z">___</span>&nbsp;% закрепляет за вами дату и зал.</p>
+      </li>
+      <li>
+        <h3>Приходите на праздник</h3>
+        <p>К назначенному времени зал будет накрыт.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec sec-line" id="voprosy" aria-labelledby="voprosy-title">
+  <div class="wrap split">
+    <div class="sec-head">
+      <h2 id="voprosy-title">Частые вопросы</h2>
+      <p>Если вашего вопроса здесь нет, задайте его администратору по телефону.</p>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Можно принести свой алкоголь?</summary>
+        <p>Уточните у администратора: он расскажет условия для вашей даты и зала.</p>
+      </details>
+      <details>
+        <summary>Можно заказать торт у своего кондитера?</summary>
+        <p>Уточните у администратора, можно ли принести торт и как его подадут гостям.</p>
+      </details>
+      <details>
+        <summary>Можно пригласить своего ведущего и музыкантов?</summary>
+        <p>Уточните у администратора, что есть в зале для ведущего и музыки: колонки, микрофон, место для танцев.</p>
+      </details>
+      <details>
+        <summary>Где оставить машину?</summary>
+        <p>Уточните у администратора, есть ли парковка рядом с рестораном и сколько в ней мест.</p>
+      </details>
+      <details>
+        <summary>До какого часа можно отмечать?</summary>
+        <p>Банкет можно продлить до <span class="z">___</span>:00. Точное время уточните у администратора.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-line" id="kontakty" aria-labelledby="kontakty-title">
+  <div class="wrap split">
+    <div class="sec-head">
+      <h2 id="kontakty-title">Адрес и телефон</h2>
+      <dl class="contacts">
+        <div><dt>Адрес</dt><dd>городской округ Химки, деревня Чёрная Грязь, с18М</dd></div>
+        <div><dt>Часы работы</dt><dd>ежедневно с <span class="z">___</span> до <span class="z">___</span></dd></div>
+        <div><dt>Телефон</dt><dd><a href="tel:+79032042414">+7 (903) 204-24-14</a></dd></div>
+      </dl>
+      <div class="buttons">
+        <a class="btn btn-gold" href="tel:+79032042414">Позвонить</a>
+        <a class="btn btn-line" href="https://wa.me/79032042414">WhatsApp</a>
+      </div>
+    </div>
+    <div class="map-slot" role="img" aria-label="Место для карты"><span>Здесь будет карта с адресом ресторана</span></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot wrap">
+  <p>«Басарабия», Химки</p>
+  <p>Демо-версия сайта для «Басарабия». Не официальный сайт.</p>
+</footer>
+
+<!-- Телефон: после первого экрана кнопки связи всегда под пальцем (в блоке контактов прячутся) -->
+<div class="callbar">
+  <a class="btn btn-gold" href="tel:+79032042414">Позвонить</a>
+  <a class="btn btn-line" href="https://wa.me/79032042414">WhatsApp</a>
+</div>
+
+</body>
+</html>
