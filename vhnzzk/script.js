@@ -113,7 +113,7 @@
     tl.to(card, { width: cardW, height: cardH, borderRadius: radius, duration: 0.8, ease: 'power2.inOut' }, 3.0)
       .to(card, { y: function () { return -window.innerHeight * 1.1; }, duration: 1, ease: 'power2.in' }, 3.6);
     // На телефоне заголовок не размывается, поэтому прячем его, чтобы он не просвечивал под кнопками
-    if (!blur || light) tl.to(title, { autoAlpha: 0, duration: 0.4 }, 3.6);
+    if (!blur && !light) tl.to(title, { autoAlpha: 0, duration: 0.4 }, 3.6);
     tl.to(cta, { autoAlpha: 1, scale: 1, filter: blur ? 'blur(0px)' : 'none', duration: 1, ease: 'power2.out' }, 3.9);
   })();
 
