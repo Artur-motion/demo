@@ -614,3 +614,9 @@ img { display: block; max-width: 100%; }
 
   .foot { flex-direction: column; gap: 4px; }
 }
+
+/* Фото залов не вылезают из рамки и не закрывают текст: у всех залов одна высота фото (20.11) */
+.hall-photos { grid-template-rows: minmax(0, 1fr); overflow: hidden; }
+.hall-photos img { min-height: 0; }
+/* Заголовок ленты — под тем же наклоном, что и ряды фото (20.11) */
+.gallery-title { rotate: 2deg; transform-origin: left center; }
