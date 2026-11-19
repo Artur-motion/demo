@@ -622,3 +622,5 @@ img { display: block; max-width: 100%; }
 .gallery-title { rotate: 2deg; transform-origin: left center; }
 /* Подписи на фото в ленте не показываем (Артур 20.11) */
 .ph figcaption { display: none !important; }
+/* На телефоне кнопка «Позвонить» в шапке дублирует кнопки первого экрана — убираем (Артур 20.11) */
+@media (max-width: 760px) { .top-phone { display: none !important; } }
