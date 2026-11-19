@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>«Клуб Дольче» — банкетный зал в Балашихе</title>
+<meta name="description" content="«Клуб Дольче» в Балашихе: залы, банкетное меню, новогодние корпоративы. Демо-версия сайта.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Golos+Text:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://images.unsplash.com">
+<link rel="stylesheet" href="../vhnzzk/style.css">
+<style>
+/* Заголовок первого экрана спрятан до запуска анимации — иначе он мелькает, пока грузится GSAP */
+.js-anim:not(.no-motion) .cine .l1 { opacity: 0; }
+.js-anim:not(.no-motion) .cine .l2 { clip-path: inset(0 100% 0 0); }
+</style>
+<script>
+(function () {
+  var r = document.documentElement;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  r.classList.add('js-anim');
+  // Если анимация не загрузилась за 3 с — показать заголовок как есть
+  setTimeout(function () { if (!r.classList.contains('cine-live')) r.classList.add('no-motion'); }, 3000);
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="../vhnzzk/script.js" defer></script>
+</head>
+<body>
+
+<header class="top wrap">
+  <a class="brand" href="#top" id="top">
+    <span class="brand-name">Клуб Дольче</span>
+    <span class="brand-note">банкетный зал в Балашихе</span>
+  </a>
+  <nav class="nav" aria-label="Разделы">
+    <a href="#zaly">Залы</a>
+    <a href="#menu">Меню</a>
+    <a href="#korporativy">Корпоративы</a>
+    <a href="#voprosy">Вопросы</a>
+    <a href="#kontakty">Контакты</a>
+  </nav>
+  <a class="top-phone" href="tel:+79269041101"><span class="top-phone-num">+7 (926) 904-11-01</span><span class="top-phone-short">Позвонить</span></a>
+</header>
+
+<main>
+
+<!-- Первый экран: заголовок → фото зала раскрывается на весь экран → кнопки -->
+<section class="cine" aria-labelledby="hero-title">
+  <div class="cine-title">
+    <h1 id="hero-title"><span class="l1">Банкетный зал</span> <span class="l2">в Балашихе</span></h1>
+    <p class="cine-sub">Свадьбы, юбилеи, дни рождения и корпоративы</p>
+    <div class="actions hero-actions">
+      <a class="btn btn-gold" href="tel:+79269041101">Позвонить</a>
+      <a class="btn btn-line" href="https://wa.me/79269041101"><span class="wide-only">Написать в&nbsp;</span>WhatsApp</a>
+    </div>
+  </div>
+
+  <div class="cine-card">
+    <img class="cine-photo" src="https://avatars.mds.yandex.net/get-altay/20387359/2a0000019ed788a503379ee513752a24fb1f/XXXL" alt="Фото «Клуб Дольче» с Яндекс Карт" referrerpolicy="no-referrer">
+    <div class="cine-shade" aria-hidden="true"></div>
+    <div class="cine-card-text">
+      <h2>Два зала: до&nbsp;<span class="z">___</span> и до&nbsp;<span class="z">___</span> гостей</h2>
+      <p>Банкетное меню — от&nbsp;<span class="z">___</span>&nbsp;₽ на&nbsp;гостя. Администратор подберёт зал под число гостей и пришлёт меню.</p>
+    </div>
+    <p class="cine-card-brand" aria-hidden="true">Клуб Дольче</p>
+  </div>
+
+  <div class="cine-cta">
+    <div class="cta-inner">
+      <div class="cta-text">
+        <h2>Свободна ли ваша дата?</h2>
+        <p>Позвоните или напишите. Администратор проверит дату и пришлёт банкетное меню.</p>
+        <div class="actions cta-actions">
+          <a class="btn btn-gold" href="tel:+79269041101">Позвонить</a>
+          <a class="btn btn-line" href="https://wa.me/79269041101"><span class="wide-only">Написать в&nbsp;</span>WhatsApp</a>
+        </div>
+      </div>
+      <img class="cta-photo" src="https://avatars.mds.yandex.net/get-altay/20456665/2a0000019ffa9a0961bb84ce7dca8cbd0453/XXL" alt="Фото «Клуб Дольче» с Яндекс Карт" referrerpolicy="no-referrer">
+    </div>
+  </div>
+</section>
+
+<section class="sec halls-sec" id="zaly" aria-labelledby="zaly-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="zaly-title">Залы</h2>
+      <p>Выберите зал по числу гостей. Зал закрывается под ваш праздник, поэтому посторонних гостей в нём не будет.</p>
+    </div>
+    <!-- Залы: один <article class="hall"> на зал. Сетка сама встаёт в 1, 2 или 3 колонки. -->
+    <div class="halls">
+      <article class="hall">
+        <div class="hall-photos">
+          <img class="hall-main" src="https://avatars.mds.yandex.net/get-altay/21009421/2a0000019ed788ae641aacc50f40908a1524/XXL" alt="Фото «Клуб Дольче» с Яндекс Карт" referrerpolicy="no-referrer" loading="lazy">
+          <img class="hall-extra" src="https://avatars.mds.yandex.net/get-altay/18804755/2a0000019ed788ae5d2a0c8679cc34f38c98/XL" alt="Фото «Клуб Дольче» с Яндекс Карт" referrerpolicy="no-referrer" loading="lazy">
+        </div>
+        <div class="hall-text">
+          <h3>Большой зал</h3>
+          <p class="cap">до <span class="z">___</span> гостей</p>
+          <p>Для свадьбы, юбилея и корпоратива всем коллективом. Столы ставят одной линией или отдельно, по&nbsp;<span class="z">___</span> человек за столом.</p>
+        </div>
+      </article>
+      <article class="hall">
+        <div class="hall-photos">
+          <img class="hall-main" src="https://avatars.mds.yandex.net/get-altay/18735233/2a000001a0aa068b519ea2e5cc8237e2f62d/XXL" alt="Фото «Клуб Дольче» с Яндекс Карт" referrerpolicy="no-referrer" loading="lazy">
+          <img class="hall-extra" src="https://avatars.mds.yandex.net/get-altay/20427853/2a000001a07adeecc123598ccda6ba21a45b/XL" alt="Фото «Клуб Дольче» с Яндекс Карт" referrerpolicy="no-referrer" loading="lazy">
+        </div>
+        <div class="hall-text">
+          <h3>Малый зал</h3>
+          <p class="cap">до <span class="z">___</span> гостей</p>
+          <p>Для дня рождения, семейного праздника или вечера отдела. За соседними столами не будет чужих людей.</p>
+        </div>
+      </article>
+    </div>
+    <h3 class="gallery-title">Сервировка и праздники</h3>
+  </div>
+
+  <div class="gallery" aria-label="Фото сервировки и праздников">
+    <div class="gallery-tilt">
+      <div class="lane">
+        <div class="lane-group">
+          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/374295/2a0000015b174c98c30de97cdc3aaef617de/XL" alt="Фото «Клуб Дольче» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Здание</figcaption></figure>
+          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/20105000/2a0000019ed788b0041021376f5b5fb84a51/XL" alt="Фото «Клуб Дольче» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Декор</figcaption></figure>
+          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/18173477/2a0000019ed788a51e764d1f32f250310ae8/XL" alt="Фото «Клуб Дольче» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Территория</figcaption></figure>
+          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/18748915/2a0000019ef6a9c5c830ab6fae92ce746d5e/XL" alt="Фото «Клуб Дольче» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Территория</figcaption></figure>
+          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/16420800/2a0000019ef076ebd68e5de20089823205b7/XL" alt="Фото «Клуб Дольче» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Территория</figcaption></figure>
+          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/20410725/2a0000019ef6a9d1cda542bc7f0b8a903c18/XL" alt="Фото «Клуб Дольче» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Декор</figcaption></figure>
+        </div>
+      </div>
+      <div class="lane">
+        <div class="lane-group">
+          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/19579876/2a0000019e8ee53ebc9747a6194c980ea32d/XL" alt="Фото «Клуб Дольче» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Здание</figcaption></figure>
+          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/2366463/2a000001709a6387e5ff2634fa08679e0584/XL" alt="Фото «Клуб Дольче» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Зал</figcaption></figure>
+          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/1018548/2a0000018694629477089d60cdabab4dc281/XL" alt="Фото «Клуб Дольче» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Блюда</figcaption></figure>
+          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/19353126/2a000001a0e341fa650ad4943d9ea1160714/XL" alt="Фото «Клуб Дольче» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Блюда</figcaption></figure>
+          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/18069142/2a000001a0e341f1a176103b6c9f7a83bc5d/XL" alt="Фото «Клуб Дольче» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Блюда</figcaption></figure>
+          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/223006/2a0000015b17ba47072a397c5ee922fa8f27/XL" alt="Фото «Клуб Дольче» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Зал</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap gallery-foot">
+    <p>Фото — с вашей карточки на Яндекс Картах. На сайт можно поставить любые ваши фото.</p>
+    <button class="motion-toggle" type="button" aria-pressed="false">Пауза</button>
+  </div>
+</section>
+
+<section class="sec sec-line" id="menu" aria-labelledby="menu-title">
+  <div class="wrap split">
+    <div class="sec-head">
+      <h2 id="menu-title">Банкетное меню</h2>
+      <p>Цена зависит от блюд и числа гостей. Администратор пришлёт полное меню в WhatsApp, а блюда вы выберете сами.</p>
+    </div>
+    <div class="cta-cell"><a class="btn btn-line" href="https://wa.me/79269041101">Попросить меню в WhatsApp</a></div>
+    <dl class="prices">
+      <div class="price-row">
+        <dt>Банкет</dt>
+        <dd>от <span class="z">___</span>&nbsp;₽ на&nbsp;гостя</dd>
+      </div>
+      <div class="price-row">
+        <dt>Фуршет</dt>
+        <dd>от <span class="z">___</span>&nbsp;₽ на&nbsp;гостя</dd>
+      </div>
+      <div class="price-row">
+        <dt>Детское меню</dt>
+        <dd>от <span class="z">___</span>&nbsp;₽ на&nbsp;ребёнка</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<section class="sec sec-photo" id="korporativy" aria-labelledby="korp-title">
+  <img class="sec-photo-bg" src="https://images.unsplash.com/photo-1763463608071-1d02213619e7?auto=format&fit=crop&w=2000&q=80" alt="" loading="lazy">
+  <div class="wrap split">
+    <div class="sec-head">
+      <h2 id="korp-title">Новогодние корпоративы</h2>
+      <p>Корпоратив можно провести в любом из залов. Напишите, сколько будет гостей, и администратор пришлёт свободные даты и новогоднее меню.</p>
+    </div>
+    <div class="cta-cell"><a class="btn btn-gold" href="https://wa.me/79269041101">Спросить даты в WhatsApp</a></div>
+    <dl class="facts">
+      <div><dt>Даты</dt><dd>с <span class="z">___</span> по <span class="z">___</span> декабря</dd></div>
+      <div><dt>Компания</dt><dd>от <span class="z">___</span> до <span class="z">___</span> гостей</dd></div>
+      <div><dt>Новогоднее меню</dt><dd>от <span class="z">___</span>&nbsp;₽ на&nbsp;гостя</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="sec" id="bron" aria-labelledby="bron-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="bron-title">Как забронировать зал</h2>
+    </div>
+    <ol class="steps">
+      <li>
+        <h3>Позвоните или напишите</h3>
+        <p>Назовите дату, повод и примерное число гостей.</p>
+      </li>
+      <li>
+        <h3>Выберите зал и меню</h3>
+        <p>Администратор пришлёт меню и посчитает сумму на всех гостей.</p>
+      </li>
+      <li>
+        <h3>Внесите предоплату</h3>
+        <p>Предоплата <span class="z">___</span>&nbsp;% закрепляет за вами дату и зал.</p>
+      </li>
+      <li>
+        <h3>Приходите на праздник</h3>
+        <p>К назначенному времени зал будет накрыт.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec sec-line" id="voprosy" aria-labelledby="voprosy-title">
+  <div class="wrap split">
+    <div class="sec-head">
+      <h2 id="voprosy-title">Частые вопросы</h2>
+      <p>Если вашего вопроса здесь нет, задайте его администратору по телефону.</p>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Можно принести свой алкоголь?</summary>
+        <p>Уточните у администратора: он расскажет условия для вашей даты и зала.</p>
+      </details>
+      <details>
+        <summary>Можно заказать торт у своего кондитера?</summary>
+        <p>Уточните у администратора, можно ли принести торт и как его подадут гостям.</p>
+      </details>
+      <details>
+        <summary>Можно пригласить своего ведущего и музыкантов?</summary>
+        <p>Уточните у администратора, что есть в зале для ведущего и музыки: колонки, микрофон, место для танцев.</p>
+      </details>
+      <details>
+        <summary>Где оставить машину?</summary>
+        <p>Уточните у администратора, есть ли парковка рядом с рестораном и сколько в ней мест.</p>
+      </details>
+      <details>
+        <summary>До какого часа можно отмечать?</summary>
+        <p>Банкет можно продлить до <span class="z">___</span>:00. Точное время уточните у администратора.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-line" id="kontakty" aria-labelledby="kontakty-title">
+  <div class="wrap split">
+    <div class="sec-head">
+      <h2 id="kontakty-title">Адрес и телефон</h2>
+      <dl class="contacts">
+        <div><dt>Адрес</dt><dd>Балашиха, микрорайон Салтыковка, улица Радио, 26А</dd></div>
+        <div><dt>Часы работы</dt><dd>ежедневно с <span class="z">___</span> до <span class="z">___</span></dd></div>
+        <div><dt>Телефон</dt><dd><a href="tel:+79269041101">+7 (926) 904-11-01</a></dd></div>
+      </dl>
+      <div class="buttons">
+        <a class="btn btn-gold" href="tel:+79269041101">Позвонить</a>
+        <a class="btn btn-line" href="https://wa.me/79269041101">WhatsApp</a>
+      </div>
+    </div>
+    <div class="map-slot" role="img" aria-label="Место для карты"><span>Здесь будет карта с адресом ресторана</span></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot wrap">
+  <p>«Клуб Дольче», Балашиха</p>
+  <p>Демо-версия сайта для «Клуб Дольче». Не официальный сайт.</p>
+</footer>
+
+<!-- Телефон: после первого экрана кнопки связи всегда под пальцем (в блоке контактов прячутся) -->
+<div class="callbar">
+  <a class="btn btn-gold" href="tel:+79269041101">Позвонить</a>
+  <a class="btn btn-line" href="https://wa.me/79269041101">WhatsApp</a>
+</div>
+
+</body>
+</html>
