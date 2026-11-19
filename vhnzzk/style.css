@@ -620,3 +620,5 @@ img { display: block; max-width: 100%; }
 .hall-photos img { min-height: 0; }
 /* Заголовок ленты — под тем же наклоном, что и ряды фото (20.11) */
 .gallery-title { rotate: 2deg; transform-origin: left center; }
+/* Подписи на фото в ленте не показываем (Артур 20.11) */
+.ph figcaption { display: none !important; }
