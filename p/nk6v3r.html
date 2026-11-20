@@ -4,18 +4,38 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>«Никольское» — банкетный зал в Балашихе</title>
-<meta name="description" content="«Никольское» в Балашихе: залы, банкетное меню, новогодние корпоративы. Демо-версия сайта.">
+<title>«Никольское» — поминальные обеды в Балашихе</title>
+<meta name="description" content="«Никольское» в Балашихе: поминальные обеды в отдельном зале, пару минут пешком от крематория. Демо-версия сайта.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Golos+Text:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../vhnzzk/style.css">
 <link rel="stylesheet" href="../vhnzzk/light.css">
 <style>
 /* Заголовок первого экрана спрятан до запуска анимации — иначе он мелькает, пока грузится GSAP */
 .js-anim:not(.no-motion) .cine .l1 { opacity: 0; }
 .js-anim:not(.no-motion) .cine .l2 { clip-path: inset(0 100% 0 0); }
+
+/* Поминальные обеды: спокойный тон. Вместо праздничного золота — тёмно-зелёный, как стулья в их залах */
+:root {
+  --gold: #35503F;
+  --gold-ink: #35503F;
+  --ink-on-gold: #FFFFFF;
+  --blank: rgba(53, 80, 63, .16);
+}
+.btn-gold:hover { background: #2A4133; }
+/* Название — строгой антиквой, без рукописного шрифта */
+.brand-name { font-family: var(--serif); font-weight: 600; font-size: 34px; letter-spacing: .01em; }
+@media (max-width: 760px) { .brand-name { font-size: 30px; } }
+
+/* Фото залов и стола — спокойная сетка вместо бегущей ленты */
+.photo-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 24px; }
+.photo-grid img { display: block; width: 100%; aspect-ratio: 1.4; object-fit: cover; border-radius: 13px; background: var(--wood); }
+.photo-note { margin-top: 16px; color: var(--smoke); font-size: 15px; }
+@media (max-width: 760px) { .photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; } }
+
+/* Телефон: зал и столы, а не потолок с кондиционерами */
+@media (max-width: 760px) { .cine-photo { object-position: 30% 50% !important; height: 140%; top: -40%; bottom: auto; } }
 </style>
 <script>
 (function () {
@@ -29,20 +49,19 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="../vhnzzk/script.js" defer></script>
-<style>@media (max-width: 760px) { .cine-photo { object-position: 25% 50% !important; height: 145%; top: -45%; bottom: auto; } }</style>
 </head>
 <body>
 
 <header class="top wrap">
   <a class="brand" href="#top" id="top">
     <span class="brand-name">Никольское</span>
-    <span class="brand-note">банкетный зал в Балашихе</span>
+    <span class="brand-note">поминальные обеды в Балашихе</span>
   </a>
   <nav class="nav" aria-label="Разделы">
+    <a href="#zakaz">Как заказать</a>
     <a href="#zaly">Залы</a>
     <a href="#menu">Меню</a>
-    <a href="#korporativy">Корпоративы</a>
-    <a href="#voprosy">Вопросы</a>
+    <a href="#bankety">Банкеты</a>
     <a href="#kontakty">Контакты</a>
   </nav>
   <a class="top-phone" href="tel:+79037236826"><span class="top-phone-num">+7 (903) 723-68-26</span><span class="top-phone-short">Позвонить</span></a>
@@ -53,8 +72,8 @@
 <!-- Первый экран: заголовок → фото зала раскрывается на весь экран → кнопки -->
 <section class="cine" aria-labelledby="hero-title">
   <div class="cine-title">
-    <h1 id="hero-title" style="font-size:min(10.5vw,48px)"><span class="l1">Никольское</span> <span class="l2">банкетный зал</span></h1>
-    <p class="cine-sub">Свадьбы, юбилеи, дни рождения и новогодние корпоративы</p>
+    <h1 id="hero-title" style="font-size:min(8.6vw,48px)"><span class="l1">Никольское</span> <span class="l2">поминальные обеды</span></h1>
+    <p class="cine-sub">Пару минут пешком от крематория. Обед можно заказать меньше чем за&nbsp;сутки.</p>
     <div class="actions hero-actions">
       <a class="btn btn-gold" href="tel:+79037236826">Позвонить</a>
       <a class="btn btn-line" href="https://wa.me/79154824399"><span class="wide-only">Написать в&nbsp;</span>WhatsApp</a>
@@ -62,168 +81,133 @@
   </div>
 
   <div class="cine-card">
-    <img class="cine-photo" src="img/nk6v3r/hero.jpg" alt="Фото «Никольское» с Яндекс Карт" referrerpolicy="no-referrer">
+    <img class="cine-photo" src="img/nk6v3r/hero-pominki.jpg" alt="Белый зал «Никольского»: длинные столы с белыми скатертями">
     <div class="cine-shade" aria-hidden="true"></div>
     <div class="cine-card-text">
-      <h2>Пять залов, всего до&nbsp;100 гостей</h2>
-      <p>Банкетное меню — от&nbsp;<span class="z">___</span>&nbsp;₽ на&nbsp;гостя. Администратор подберёт зал под число гостей и пришлёт меню.</p>
+      <h2>Отдельный зал для вашей семьи</h2>
+      <p>Большой зал до&nbsp;100 гостей и&nbsp;небольшие залы для самых близких. Посторонних за&nbsp;соседними столами не&nbsp;будет.</p>
     </div>
-    <p class="cine-card-brand" aria-hidden="true">Никольское</p>
   </div>
 
   <div class="cine-cta">
     <div class="cta-inner">
       <div class="cta-text">
-        <h2>Свободна ли ваша дата?</h2>
-        <p>Позвоните или напишите. Администратор проверит дату и пришлёт банкетное меню.</p>
+        <h2>Нужно накрыть стол на&nbsp;поминки?</h2>
+        <p>Позвоните или напишите в&nbsp;WhatsApp. Администратор пришлёт варианты меню и&nbsp;фото залов, а&nbsp;к&nbsp;вашему приходу стол будет накрыт.</p>
         <div class="actions cta-actions">
           <a class="btn btn-gold" href="tel:+79037236826">Позвонить</a>
           <a class="btn btn-line" href="https://wa.me/79154824399"><span class="wide-only">Написать в&nbsp;</span>WhatsApp</a>
         </div>
       </div>
-      <img class="cta-photo" src="https://avatars.mds.yandex.net/get-altay/15502563/2a00000196ab0f0986d2ef4cafcf1183160e/orig" alt="Фото «Никольское» с Яндекс Карт" referrerpolicy="no-referrer">
+      <img class="cta-photo" src="https://avatars.mds.yandex.net/get-altay/18730616/2a0000019f4b166da72752575cb8468b1931/orig" alt="Накрытый длинный стол в зале «Никольского»" referrerpolicy="no-referrer">
     </div>
   </div>
 </section>
 
-<section class="sec halls-sec" id="zaly" aria-labelledby="zaly-title">
+<section class="sec" id="zakaz" aria-labelledby="zakaz-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="zakaz-title">Как заказать поминальный обед</h2>
+    </div>
+    <ol class="steps">
+      <li>
+        <h3>Позвоните или напишите</h3>
+        <p>Назовите дату, время и&nbsp;сколько будет гостей.</p>
+      </li>
+      <li>
+        <h3>Выберите меню</h3>
+        <p>Администратор пришлёт в&nbsp;WhatsApp варианты меню с&nbsp;ценой на&nbsp;человека и&nbsp;фото залов.</p>
+      </li>
+      <li>
+        <h3>Приходите к&nbsp;назначенному времени</h3>
+        <p>Стол будет накрыт к&nbsp;вашему приходу. От&nbsp;крематория можно дойти пешком.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec sec-line halls-sec" id="zaly" aria-labelledby="zaly-title">
   <div class="wrap">
     <div class="sec-head">
       <h2 id="zaly-title">Залы</h2>
-      <p>Выберите зал по числу гостей. Зал закрывается под ваш праздник, поэтому посторонних гостей в нём не будет.</p>
+      <p>Каждой семье — отдельный зал. Администратор подберёт его по&nbsp;числу гостей.</p>
     </div>
-    <!-- Залы: один <article class="hall"> на зал. Сетка сама встаёт в 1, 2 или 3 колонки. -->
     <div class="halls">
       <article class="hall">
         <div class="hall-photos">
-          <img class="hall-main" src="https://avatars.mds.yandex.net/get-altay/14246212/2a00000199e4960ccc4eca80e7c11f8c5b3c/orig" alt="Фото «Никольское» с Яндекс Карт" referrerpolicy="no-referrer" loading="lazy">
-          <img class="hall-extra" src="https://avatars.mds.yandex.net/get-altay/16431464/2a00000199e4960c938d816a0fcce04ac1f1/orig" alt="Фото «Никольское» с Яндекс Карт" referrerpolicy="no-referrer" loading="lazy">
+          <img class="hall-main" src="https://avatars.mds.yandex.net/get-altay/14246212/2a00000199e4960ccc4eca80e7c11f8c5b3c/orig" alt="Белый зал «Никольского»" referrerpolicy="no-referrer" loading="lazy">
+          <img class="hall-extra" src="https://avatars.mds.yandex.net/get-altay/19301027/2a0000019f4b166d7a43be287c3fb6ac5618/orig" alt="Закуски на столе в «Никольском»" referrerpolicy="no-referrer" loading="lazy">
         </div>
         <div class="hall-text">
           <h3>Белый зал</h3>
           <p class="cap">до <span class="z">___</span> гостей</p>
-          <p>Для свадьбы, юбилея и корпоратива всем коллективом. Столы ставят одной линией или отдельно, по&nbsp;<span class="z">___</span> человек за столом.</p>
+          <p>Большой светлый зал. Столы ставят длинными рядами или отдельно — по&nbsp;числу гостей.</p>
         </div>
       </article>
       <article class="hall">
         <div class="hall-photos">
-          <img class="hall-main" src="https://avatars.mds.yandex.net/get-altay/16497373/2a00000199eefd5511f7c2f7b38535e3e375/orig" alt="Фото «Никольское» с Яндекс Карт" referrerpolicy="no-referrer" loading="lazy">
-          <img class="hall-extra" src="https://avatars.mds.yandex.net/get-altay/16338459/2a00000199eefd5300a2aa815e0976b38f11/orig" alt="Фото «Никольское» с Яндекс Карт" referrerpolicy="no-referrer" loading="lazy">
+          <img class="hall-main" src="https://avatars.mds.yandex.net/get-altay/16497373/2a00000199eefd5511f7c2f7b38535e3e375/orig" alt="Зал с деревянными стенами в «Никольском»" referrerpolicy="no-referrer" loading="lazy">
+          <img class="hall-extra" src="https://avatars.mds.yandex.net/get-altay/16338459/2a00000199eefd5300a2aa815e0976b38f11/orig" alt="Зал с деревянными стенами, другой ракурс" referrerpolicy="no-referrer" loading="lazy">
         </div>
         <div class="hall-text">
           <h3>Зал с деревянными стенами</h3>
           <p class="cap">до <span class="z">___</span> гостей</p>
-          <p>Для дня рождения, семейного праздника или вечера отдела. За соседними столами не будет чужих людей.</p>
+          <p>Для обеда в кругу родных и&nbsp;коллег. За&nbsp;соседними столами не&nbsp;будет чужих людей.</p>
         </div>
       </article>
       <article class="hall">
         <div class="hall-photos">
-          <img class="hall-main" src="https://avatars.mds.yandex.net/get-altay/15286626/2a00000199eefd44607b980b698c559a2aa2/orig" alt="Фото «Никольское» с Яндекс Карт" referrerpolicy="no-referrer" loading="lazy">
-          <img class="hall-extra" src="https://avatars.mds.yandex.net/get-altay/15344725/2a00000199eefd46a6500d6fddbb5c4a72b6/orig" alt="Фото «Никольское» с Яндекс Карт" referrerpolicy="no-referrer" loading="lazy">
+          <img class="hall-main" src="https://avatars.mds.yandex.net/get-altay/15286626/2a00000199eefd44607b980b698c559a2aa2/orig" alt="Малый зал «Никольского» с овальным столом" referrerpolicy="no-referrer" loading="lazy">
+          <img class="hall-extra" src="https://avatars.mds.yandex.net/get-altay/15344725/2a00000199eefd46a6500d6fddbb5c4a72b6/orig" alt="Малый зал «Никольского»" referrerpolicy="no-referrer" loading="lazy">
         </div>
         <div class="hall-text">
           <h3>Малые залы</h3>
           <p class="cap">до <span class="z">___</span> гостей</p>
-          <p>Отдельные комнаты для небольшой компании.</p>
+          <p>Отдельные комнаты, когда гостей немного: семья и&nbsp;самые близкие.</p>
         </div>
       </article>
     </div>
-    <h3 class="gallery-title">Сервировка и праздники</h3>
-  </div>
 
-  <div class="gallery" aria-label="Фото сервировки и праздников">
-    <div class="gallery-tilt">
-      <div class="lane">
-        <div class="lane-group">
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/16323929/2a00000199eefd46a7bff8c8212fe7c73714/XXL" alt="Фото «Никольское» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/13944697/2a00000196ab0b0135c3366d52dde459e76c/XXL" alt="Фото «Никольское» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/19301027/2a0000019f4b166d7a43be287c3fb6ac5618/XXL" alt="Фото «Никольское» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/21113776/2a000001a058da626909a6edf244ce5635e6/XXL" alt="Фото «Никольское» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/20244164/2a000001a058da2e6b72b1f8623f8bd85cc3/XXL" alt="Фото «Никольское» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/20420873/2a0000019eded010240aec2f297f97af53ad/XXL" alt="Фото «Никольское» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-        </div>
-      </div>
-      <div class="lane">
-        <div class="lane-group">
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/16329243/2a0000019edecff66ff5537d471e46d66312/XXL" alt="Фото «Никольское» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/16487000/2a00000199eefd55a7b9a71390ba31962209/XXL" alt="Фото «Никольское» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/15487932/2a00000199eefd6141b812b9d27c45ce849d/XXL" alt="Фото «Никольское» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/18730616/2a0000019f4b166da72752575cb8468b1931/XXL" alt="Фото «Никольское» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/16374562/2a00000199e4960c501d971495be031bd433/XXL" alt="Фото «Никольское» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/18777611/2a000001a058da2c51ddc3129169b81c2e72/XXL" alt="Фото «Никольское» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-        </div>
-      </div>
+    <h3 class="gallery-title">Стол и залы</h3>
+    <div class="photo-grid">
+      <img src="https://avatars.mds.yandex.net/get-altay/16323929/2a00000199eefd46a7bff8c8212fe7c73714/XXL" alt="Малый зал с сервированным столом" loading="lazy" referrerpolicy="no-referrer">
+      <img src="https://avatars.mds.yandex.net/get-altay/20244164/2a000001a058da2e6b72b1f8623f8bd85cc3/XXL" alt="Мясная нарезка" loading="lazy" referrerpolicy="no-referrer">
+      <img src="https://avatars.mds.yandex.net/get-altay/20420873/2a0000019eded010240aec2f297f97af53ad/XXL" alt="Салат" loading="lazy" referrerpolicy="no-referrer">
+      <img src="https://avatars.mds.yandex.net/get-altay/16329243/2a0000019edecff66ff5537d471e46d66312/XXL" alt="Сырная тарелка" loading="lazy" referrerpolicy="no-referrer">
+      <img src="https://avatars.mds.yandex.net/get-altay/16487000/2a00000199eefd55a7b9a71390ba31962209/XXL" alt="Камин в зале" loading="lazy" referrerpolicy="no-referrer">
+      <img src="https://avatars.mds.yandex.net/get-altay/16374562/2a00000199e4960c501d971495be031bd433/XXL" alt="Кафе на первом этаже" loading="lazy" referrerpolicy="no-referrer">
     </div>
-  </div>
-  <div class="wrap gallery-foot">
-    <p>Фото — с вашей карточки на Яндекс Картах. На сайт можно поставить любые ваши фото.</p>
-    <button class="motion-toggle" type="button" aria-pressed="false">Пауза</button>
+    <p class="photo-note">Фото — с вашей карточки на Яндекс Картах. На сайт можно поставить любые ваши фото.</p>
   </div>
 </section>
 
 <section class="sec sec-line" id="menu" aria-labelledby="menu-title">
   <div class="wrap split">
     <div class="sec-head">
-      <h2 id="menu-title">Банкетное меню</h2>
-      <p>Цена зависит от блюд и числа гостей. Администратор пришлёт полное меню в WhatsApp, а блюда вы выберете сами.</p>
+      <h2 id="menu-title">Поминальное меню</h2>
+      <p>Есть несколько вариантов меню: в&nbsp;них разный набор блюд и&nbsp;разная цена. Администратор пришлёт их в&nbsp;WhatsApp.</p>
     </div>
     <div class="cta-cell"><a class="btn btn-line" href="https://wa.me/79154824399">Попросить меню в WhatsApp</a></div>
     <dl class="prices">
       <div class="price-row">
+        <dt>Поминальный обед</dt>
+        <dd>от <span class="z">___</span>&nbsp;₽ на&nbsp;человека</dd>
+      </div>
+      <div class="price-row">
         <dt>Банкет</dt>
         <dd>от <span class="z">___</span>&nbsp;₽ на&nbsp;гостя</dd>
       </div>
-      <div class="price-row">
-        <dt>Фуршет</dt>
-        <dd>от <span class="z">___</span>&nbsp;₽ на&nbsp;гостя</dd>
-      </div>
-      <div class="price-row">
-        <dt>Детское меню</dt>
-        <dd>от <span class="z">___</span>&nbsp;₽ на&nbsp;ребёнка</dd>
-      </div>
     </dl>
   </div>
 </section>
 
-<section class="sec sec-photo" id="korporativy" aria-labelledby="korp-title">
-  <img class="sec-photo-bg" src="https://images.unsplash.com/photo-1763463608071-1d02213619e7?auto=format&fit=crop&w=2000&q=80" alt="" loading="lazy">
+<section class="sec sec-line" id="bankety" aria-labelledby="bankety-title">
   <div class="wrap split">
     <div class="sec-head">
-      <h2 id="korp-title">Новогодние корпоративы</h2>
-      <p>Корпоратив можно провести в любом из залов. Напишите, сколько будет гостей, и администратор пришлёт свободные даты и новогоднее меню.</p>
+      <h2 id="bankety-title">Банкеты и семейные праздники</h2>
+      <p>Юбилеи, дни рождения и&nbsp;встречи семьи — в&nbsp;тех же залах. Напишите дату и&nbsp;число гостей, администратор пришлёт банкетное меню.</p>
     </div>
-    <div class="cta-cell"><a class="btn btn-gold" href="https://wa.me/79154824399">Спросить даты в WhatsApp</a></div>
-    <dl class="facts">
-      <div><dt>Даты</dt><dd>с <span class="z">___</span> по <span class="z">___</span> декабря</dd></div>
-      <div><dt>Компания</dt><dd>от <span class="z">___</span> до <span class="z">___</span> гостей</dd></div>
-      <div><dt>Новогоднее меню</dt><dd>от <span class="z">___</span>&nbsp;₽ на&nbsp;гостя</dd></div>
-    </dl>
-  </div>
-</section>
-
-<section class="sec" id="bron" aria-labelledby="bron-title">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2 id="bron-title">Как забронировать зал</h2>
-    </div>
-    <ol class="steps">
-      <li>
-        <h3>Позвоните или напишите</h3>
-        <p>Назовите дату, повод и примерное число гостей.</p>
-      </li>
-      <li>
-        <h3>Выберите зал и меню</h3>
-        <p>Администратор пришлёт меню и посчитает сумму на всех гостей.</p>
-      </li>
-      <li>
-        <h3>Внесите предоплату</h3>
-        <p>Предоплата <span class="z">___</span>&nbsp;% закрепляет за вами дату и зал.</p>
-      </li>
-      <li>
-        <h3>Приходите на праздник</h3>
-        <p>К назначенному времени зал будет накрыт.</p>
-      </li>
-    </ol>
+    <div class="cta-cell"><a class="btn btn-line" href="https://wa.me/79154824399">Спросить о банкете в WhatsApp</a></div>
   </div>
 </section>
 
@@ -231,28 +215,28 @@
   <div class="wrap split">
     <div class="sec-head">
       <h2 id="voprosy-title">Частые вопросы</h2>
-      <p>Если вашего вопроса здесь нет, задайте его администратору по телефону.</p>
+      <p>Если вашего вопроса здесь нет, задайте его администратору по&nbsp;телефону.</p>
     </div>
     <div class="faq">
       <details>
+        <summary>Как быстро можно заказать обед?</summary>
+        <p>Обед часто заказывают меньше чем за&nbsp;сутки. Позвоните — администратор скажет, успеют ли накрыть к&nbsp;вашему времени.</p>
+      </details>
+      <details>
+        <summary>Далеко ли от крематория?</summary>
+        <p>Пару минут пешком, гости могут дойти без машины.</p>
+      </details>
+      <details>
+        <summary>Что входит в поминальное меню?</summary>
+        <p>Администратор пришлёт в&nbsp;WhatsApp несколько вариантов меню с&nbsp;ценой на&nbsp;человека — выберете подходящий.</p>
+      </details>
+      <details>
         <summary>Можно принести свой алкоголь?</summary>
-        <p>Уточните у администратора: он расскажет условия для вашей даты и зала.</p>
+        <p>Уточните у&nbsp;администратора условия для вашей даты.</p>
       </details>
       <details>
-        <summary>Можно заказать торт у своего кондитера?</summary>
-        <p>Уточните у администратора, можно ли принести торт и как его подадут гостям.</p>
-      </details>
-      <details>
-        <summary>Можно пригласить своего ведущего и музыкантов?</summary>
-        <p>Уточните у администратора, что есть в зале для ведущего и музыки: колонки, микрофон, место для танцев.</p>
-      </details>
-      <details>
-        <summary>Где оставить машину?</summary>
-        <p>Уточните у администратора, есть ли парковка рядом с рестораном и сколько в ней мест.</p>
-      </details>
-      <details>
-        <summary>До какого часа можно отмечать?</summary>
-        <p>Банкет можно продлить до <span class="z">___</span>:00. Точное время уточните у администратора.</p>
+        <summary>Удобно ли пожилым гостям?</summary>
+        <p>Вход и&nbsp;зал доступны на&nbsp;коляске, есть парковка для людей с&nbsp;инвалидностью.</p>
       </details>
     </div>
   </div>
@@ -272,7 +256,7 @@
         <a class="btn btn-line" href="https://wa.me/79154824399">WhatsApp</a>
       </div>
     </div>
-    <div class="map-slot" role="img" aria-label="Место для карты"><span>Здесь будет карта с адресом ресторана</span></div>
+    <div class="map-slot" role="img" aria-label="Место для карты"><span>Здесь будет карта с адресом</span></div>
   </div>
 </section>
 
@@ -280,7 +264,7 @@
 
 <footer class="foot wrap">
   <p>«Никольское», Балашиха</p>
-  <p>Демо-версия сайта для «Никольское». Не официальный сайт.</p>
+  <p>Демо-версия сайта для «Никольского». Не официальный сайт.</p>
 </footer>
 
 <!-- Телефон: после первого экрана кнопки связи всегда под пальцем (в блоке контактов прячутся) -->
