@@ -34,6 +34,18 @@
 .photo-note { margin-top: 16px; color: var(--smoke); font-size: 15px; }
 @media (max-width: 760px) { .photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; } }
 
+/* Меню трапез: общий стол один раз, ниже 6 цен и что добавляется */
+.menu-base { margin-bottom: 28px; }
+.menu-base h3 { font-family: var(--serif); font-weight: 600; font-size: 28px; line-height: 1.2; margin: 0 0 4px; }
+.menu-group { margin: 18px 0 4px; font-weight: 600; }
+.menu-base ul { list-style: none; margin: 0; padding: 0; }
+.menu-base li { padding: 3px 0; font-size: 18px; line-height: 1.45; }
+.menu-note { display: block; font-size: 14px; line-height: 1.4; color: var(--smoke); }
+.menu-prices .price-row { flex-wrap: wrap; padding: 18px 0; }
+.menu-prices .price-row dt { font-size: 28px; }
+.menu-prices .menu-add { order: 3; flex-basis: 100%; margin: 6px 0 0; font-size: 16px; font-weight: 400; line-height: 1.45; white-space: normal; color: var(--smoke); }
+@media (max-width: 760px) { .menu-prices .price-row dt { font-size: 24px; } .menu-base li { font-size: 17px; } }
+
 /* Телефон: зал и столы, а не потолок с кондиционерами */
 @media (max-width: 760px) { .cine-photo { object-position: 30% 50% !important; height: 140%; top: -40%; bottom: auto; } }
 </style>
@@ -92,7 +104,7 @@
     <div class="cta-inner">
       <div class="cta-text">
         <h2>Нужно накрыть стол на&nbsp;поминки?</h2>
-        <p>Позвоните или напишите в&nbsp;WhatsApp. Администратор пришлёт варианты меню и&nbsp;фото залов, а&nbsp;к&nbsp;вашему приходу стол будет накрыт.</p>
+        <p>Поминальная трапеза — от&nbsp;1&nbsp;800&nbsp;₽ на&nbsp;человека. Позвоните или напишите в&nbsp;WhatsApp, и&nbsp;к&nbsp;вашему приходу стол будет накрыт.</p>
         <div class="actions cta-actions">
           <a class="btn btn-gold" href="tel:+79037236826">Позвонить</a>
           <a class="btn btn-line" href="https://wa.me/79154824399"><span class="wide-only">Написать в&nbsp;</span>WhatsApp</a>
@@ -114,8 +126,8 @@
         <p>Назовите дату, время и&nbsp;сколько будет гостей.</p>
       </li>
       <li>
-        <h3>Выберите меню</h3>
-        <p>Администратор пришлёт в&nbsp;WhatsApp варианты меню с&nbsp;ценой на&nbsp;человека и&nbsp;фото залов.</p>
+        <h3>Выберите трапезу</h3>
+        <p>Шесть вариантов, от&nbsp;1&nbsp;800 до&nbsp;4&nbsp;000&nbsp;₽ на&nbsp;человека. Состав — в&nbsp;разделе <a href="#menu">«Меню»</a>.</p>
       </li>
       <li>
         <h3>Приходите к&nbsp;назначенному времени</h3>
@@ -184,19 +196,67 @@
   <div class="wrap split">
     <div class="sec-head">
       <h2 id="menu-title">Поминальное меню</h2>
-      <p>Есть несколько вариантов меню: в&nbsp;них разный набор блюд и&nbsp;разная цена. Администратор пришлёт их в&nbsp;WhatsApp.</p>
+      <p>Шесть вариантов поминальной трапезы. Цена указана на&nbsp;человека, обслуживание&nbsp;— 10&nbsp;%.</p>
     </div>
-    <div class="cta-cell"><a class="btn btn-line" href="https://wa.me/79154824399">Попросить меню в WhatsApp</a></div>
-    <dl class="prices">
-      <div class="price-row">
-        <dt>Поминальный обед</dt>
-        <dd>от <span class="z">___</span>&nbsp;₽ на&nbsp;человека</dd>
+    <div class="cta-cell"><a class="btn btn-line" href="https://wa.me/79154824399">Заказать обед в WhatsApp</a></div>
+    <div class="menu">
+      <div class="menu-base">
+        <h3>В каждой трапезе</h3>
+        <p class="menu-group">Закуски</p>
+        <ul>
+          <li>Кутья поминальная, хлебная корзина</li>
+          <li>Домашние блины с&nbsp;мёдом</li>
+          <li>Нарезка из&nbsp;сезонных овощей</li>
+          <li>Мясное ассорти</li>
+          <li>Салат «Оливье»</li>
+          <li>Салат «Фирменный консенсус» <span class="menu-note">филе отварного цыплёнка, свежие огурцы, зёрна граната, чернослив, грецкие орехи, сметана, майонез</span></li>
+        </ul>
+        <p class="menu-group">Горячее</p>
+        <ul>
+          <li>Куриное филе, приготовленное на&nbsp;углях</li>
+          <li>Люля-кебаб из&nbsp;телятины на&nbsp;углях</li>
+          <li>Картофель по-деревенски</li>
+          <li>Красный соус собственного приготовления</li>
+        </ul>
+        <p class="menu-group">Напитки</p>
+        <ul>
+          <li>Домашний компот из&nbsp;сухофруктов</li>
+          <li>Минеральная вода с&nbsp;газом и&nbsp;без газа</li>
+        </ul>
       </div>
-      <div class="price-row">
-        <dt>Банкет</dt>
-        <dd>от <span class="z">___</span>&nbsp;₽ на&nbsp;гостя</dd>
-      </div>
-    </dl>
+      <dl class="prices menu-prices">
+        <div class="price-row">
+          <dt>Трапеза 1</dt>
+          <dd>1&nbsp;800&nbsp;₽</dd>
+          <dd class="menu-add">Всё из&nbsp;списка «В&nbsp;каждой трапезе»</dd>
+        </div>
+        <div class="price-row">
+          <dt>Трапеза 2</dt>
+          <dd>2&nbsp;100&nbsp;₽</dd>
+          <dd class="menu-add">+ нарезка из&nbsp;слабосолёной сёмги</dd>
+        </div>
+        <div class="price-row">
+          <dt>Трапеза 3</dt>
+          <dd>2&nbsp;500&nbsp;₽</dd>
+          <dd class="menu-add">+ нарезка из&nbsp;сёмги, салат «Языковый» (говяжий язык, солёные огурцы, яйца, соус)</dd>
+        </div>
+        <div class="price-row">
+          <dt>Трапеза 4</dt>
+          <dd>3&nbsp;000&nbsp;₽</dd>
+          <dd class="menu-add">+ нарезка из&nbsp;сёмги, салат «Языковый», шашлык из&nbsp;свинины (шейка)</dd>
+        </div>
+        <div class="price-row">
+          <dt>Трапеза 5</dt>
+          <dd>3&nbsp;500&nbsp;₽</dd>
+          <dd class="menu-add">+ нарезка из&nbsp;сёмги, салат «Языковый», шашлык из&nbsp;свинины, хачапури по-мегрельски</dd>
+        </div>
+        <div class="price-row">
+          <dt>Трапеза 6</dt>
+          <dd>4&nbsp;000&nbsp;₽</dd>
+          <dd class="menu-add">+ нарезка из&nbsp;сёмги, салат «Языковый», шашлык из&nbsp;свинины, сёмга на&nbsp;углях</dd>
+        </div>
+      </dl>
+    </div>
   </div>
 </section>
 
@@ -227,7 +287,7 @@
       </details>
       <details>
         <summary>Что входит в поминальное меню?</summary>
-        <p>Администратор пришлёт в&nbsp;WhatsApp несколько вариантов меню с&nbsp;ценой на&nbsp;человека — выберете подходящий.</p>
+        <p>Во&nbsp;всех вариантах&nbsp;— кутья, домашние блины с&nbsp;мёдом, закуски, горячее на&nbsp;углях, компот и&nbsp;вода. Всего шесть трапез, от&nbsp;1&nbsp;800 до&nbsp;4&nbsp;000&nbsp;₽ на&nbsp;человека, обслуживание&nbsp;— 10&nbsp;%. Состав&nbsp;— в&nbsp;разделе <a href="#menu">«Меню»</a>.</p>
       </details>
       <details>
         <summary>Можно принести свой алкоголь?</summary>
