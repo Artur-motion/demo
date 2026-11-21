@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Лайф — детейлинг и автомойка, Видное</title>
+<meta name="theme-color" content="#17191C">
+<link rel="icon" href="data:,">
+<script>document.documentElement.className = 'js pre';</script>
+<link rel="preload" as="image" href="img/hero-1200.jpg" imagesrcset="img/hero-1200.jpg 1200w, img/hero-2000.jpg 2000w" imagesizes="(min-width: 900px) 60vw, 100vw" fetchpriority="high">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/FiraSansExtraCondensed-italic-800-cyrillic-48e3f0.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/FiraSansExtraCondensed-italic-800-latin-1432e2.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/FiraSansExtraCondensed-italic-800-latin-ext-39753e.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/FiraSans-normal-400-cyrillic-8608f2.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/FiraSans-normal-400-latin-c64959.woff2">
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+/* Направление 3 — «Скорость»: асфальт и жёлтая разметка, узкий наклонный шрифт, все края с одним наклоном, цена мойки сразу на первом экране. */
+:root{
+  --asphalt:#17191C;   /* асфальт — фон */
+  --wet:#24272C;       /* мокрый асфальт — плашки */
+  --seam:#3A3F46;      /* линии */
+  --concrete:#A9AFB7;  /* бетон — подписи */
+  --white:#FFFFFF;     /* белая разметка — текст */
+  --yellow:#FFD21F;    /* жёлтая разметка — акцент и цены */
+  --ink:#111315;       /* текст на жёлтом */
+  --fast:cubic-bezier(.16,1,.3,1);
+  --k:10px;            /* наклон краёв */
+  --bar:60px;
+  --disp:'Fira Sans Extra Condensed','Arial Narrow',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--asphalt);color:var(--white);font:400 16px/1.5 'Fira Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,p,dl,dd,dt{margin:0}
+:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
+.slant:focus-visible,.bar a:focus-visible{outline-color:var(--ink);outline-offset:-5px}
+.btn-dark.slant:focus-visible,.bar a:last-child:focus-visible{outline-color:var(--yellow)}
+.wrap{max-width:1160px;margin:0 auto;padding:0 16px}
+.slant{clip-path:polygon(var(--k) 0,100% 0,calc(100% - var(--k)) 100%,0 100%)}
+
+.top{position:absolute;z-index:5;top:0;left:0;right:0;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 12px 0 16px}
+.brand{display:flex;align-items:baseline;gap:10px;font:italic 800 28px/1 var(--disp);letter-spacing:.01em;padding:10px 4px 10px 0}
+.brand small{font:400 13px/1 'Fira Sans',sans-serif;letter-spacing:0;color:#D9DCE0}
+.top-right{display:flex;align-items:center;gap:22px}
+.top-phone{display:none;font:italic 800 24px/1 var(--disp);letter-spacing:.01em}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 28px;font:italic 800 22px/1 var(--disp);letter-spacing:.015em;color:var(--ink);background:var(--yellow);transition:transform .1s var(--fast)}
+.btn:active{transform:scale(.97)}
+.btn-dark{color:var(--white);background:var(--wet)}
+.btn-sm{min-height:44px;padding:0 22px;font-size:20px}
+.top .btn{display:none} /* на телефоне звонок — в нижней полосе, в шапке не дублируем */
+.ico{width:20px;height:20px;flex:none}
+
+.hero{position:relative;height:100vh;height:100svh;min-height:640px;overflow:hidden}
+.hero-photo{position:absolute;top:0;left:0;width:100%;height:47%;clip-path:polygon(0 0,100% 0,100% 80%,0 100%);overflow:hidden;background:var(--wet)}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 36%}
+.hero-shade{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(23,25,28,.6) 0,rgba(23,25,28,0) 22%),linear-gradient(to bottom,rgba(23,25,28,0) 60%,rgba(23,25,28,.6) 100%)}
+.hero-body{position:absolute;left:16px;right:16px;bottom:calc(var(--bar) + env(safe-area-inset-bottom,0px) + 106px)}
+.name{display:block;margin-left:-.012em;font:italic 800 clamp(124px,38.5vw,168px)/.8 var(--disp);letter-spacing:-.005em;text-transform:uppercase;white-space:nowrap}
+.name b{display:inline-block;font-weight:inherit}
+.role{display:inline-block;margin-top:14px;padding:5px 18px 6px 14px;font:italic 800 clamp(21px,6vw,25px)/1.1 var(--disp);letter-spacing:.01em;color:var(--ink);background:var(--yellow);transform-origin:0 50%}
+.what{margin-top:12px;max-width:36ch;font-size:15.5px;line-height:1.42;color:#D9DCE0}
+.rate{display:flex;align-items:center;gap:12px;margin-top:12px}
+.rate-num{display:inline-flex;align-items:center;gap:6px;font:italic 800 44px/1 var(--disp)}
+.rate-num svg{width:24px;height:24px;color:var(--yellow)}
+.rate-txt{font-size:13px;line-height:1.3;color:var(--concrete)}
+.hero-cta{display:none}
+.band{position:absolute;left:0;right:0;bottom:calc(var(--bar) + env(safe-area-inset-bottom,0px));height:92px;display:grid;grid-template-columns:1fr 1fr;align-items:end;padding:0 16px 10px;background:var(--yellow);color:var(--ink);clip-path:polygon(0 16px,100% 0,100% 100%,0 100%)}
+.band div{overflow:hidden}
+.band div+div{padding-left:16px;border-left:2px solid var(--ink);transform:skewX(-10deg)}
+.band div+div>*{transform:skewX(10deg);transform-origin:0 100%}
+.band dt{font-size:13px;line-height:1.2;font-weight:400}
+.band dd{font:italic 800 38px/1 var(--disp);letter-spacing:.005em;white-space:nowrap}
+.band .only-desk{display:none}
+
+.ba{padding:52px 0 20px}
+.h2{font:italic 800 clamp(40px,11vw,68px)/.95 var(--disp);letter-spacing:.005em;text-transform:uppercase}
+.cmp{position:relative;margin-top:20px;aspect-ratio:4/5;overflow:hidden;background:var(--wet);clip-path:polygon(0 5%,100% 0,100% 95%,0 100%);touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:ew-resize}
+.cmp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 0;opacity:0;transition:opacity .2s cubic-bezier(.25,.46,.45,.94);-webkit-user-drag:none}
+.cmp img.is-loaded{opacity:1}
+.cmp-before{position:absolute;inset:0;clip-path:polygon(0 0,57% 0,43% 100%,0 100%)}
+.cmp-track{position:absolute;inset:0;pointer-events:none;transform:translate3d(50%,0,0);will-change:transform}
+.cmp-line{position:absolute;transition:opacity .15s linear;top:-10%;bottom:-10%;left:-1.5px;width:3px;background:var(--white);box-shadow:0 0 0 .5px rgba(0,0,0,.3)}
+.cmp-grip{position:absolute;top:50%;left:0;width:56px;height:52px;margin:-26px 0 0 -28px;padding:0;border:0;background:none;pointer-events:auto;cursor:ew-resize;touch-action:pan-y;will-change:transform}
+.cmp-grip i{position:absolute;inset:6px 4px;background:var(--yellow);clip-path:polygon(9px 0,100% 0,calc(100% - 9px) 100%,0 100%);display:grid;place-items:center;transition:transform .15s var(--fast)}
+.cmp-grip svg{width:22px;height:22px;color:var(--ink)}
+.cmp.is-press .cmp-grip i{transform:scale(.94);transition-duration:.1s}
+.cmp.is-glide .cmp-before{transition:clip-path .18s cubic-bezier(.23,1,.32,1)}
+.cmp.is-glide .cmp-track{transition:transform .18s cubic-bezier(.23,1,.32,1)}
+.cmp.is-glide .cmp-grip{transition:transform .18s cubic-bezier(.23,1,.32,1)}
+.cmp-lbl{position:absolute;top:8.5%;padding:5px 14px 6px;font:italic 800 19px/1 var(--disp);letter-spacing:.02em;color:var(--ink);background:var(--yellow);pointer-events:none;transition:opacity .15s cubic-bezier(.23,1,.32,1);--k:7px}
+.cmp-lbl-b{left:12px}
+.cmp-lbl-a{right:12px;top:6%}
+.note{margin-top:12px;font-size:13px;line-height:1.45;color:var(--concrete);max-width:52ch}
+
+.prices{padding:44px 0 36px}
+.rows{margin-top:18px;border-top:2px solid var(--white)}
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:16px;align-items:baseline;padding:12px 0 14px;border-bottom:1px solid var(--seam)}
+.row dt{font-weight:600;font-size:17px}
+.row .sum{font:italic 800 30px/1 var(--disp);color:var(--yellow);white-space:nowrap}
+.row .in{grid-column:1/-1;margin-top:4px;font-size:14px;line-height:1.45;color:var(--concrete);max-width:58ch}
+.promo{display:flex;align-items:center;gap:16px;margin-top:20px;padding:12px 26px 12px 20px;background:var(--yellow);color:var(--ink);--k:14px}
+.promo b{font:italic 800 46px/1 var(--disp);white-space:nowrap}
+.promo span{font-size:15px;line-height:1.35;font-weight:600}
+.prices .btn{margin-top:20px;width:100%}
+.foot{padding:26px 0 calc(var(--bar) + env(safe-area-inset-bottom,0px) + 26px);font-size:12px;color:var(--concrete)}
+
+.bar{position:fixed;z-index:20;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 1fr;height:calc(var(--bar) + env(safe-area-inset-bottom,0px));padding-bottom:env(safe-area-inset-bottom,0px);background:var(--wet)}
+.bar a{display:flex;align-items:center;justify-content:center;gap:10px;font:italic 800 23px/1 var(--disp);letter-spacing:.015em}
+.bar a:first-child{color:var(--ink);background:var(--yellow);margin-right:-9px;clip-path:polygon(0 0,100% 0,calc(100% - 18px) 100%,0 100%)}
+.bar a:last-child{color:var(--white);padding-left:9px}
+
+/* появление: скрыто до запуска, место занято сразу */
+.js.pre .a,.js.pre .name b,.js.pre .role,.js.pre .hero-photo img,.js.pre .band{visibility:hidden}
+.js.pre .a,.js.pre .name b,.js.pre .role,.js.pre .hero-photo img,.js.pre .band{animation:failsafe 0s linear 3s forwards}
+@keyframes failsafe{to{visibility:visible}}
+.go .hero-photo img{animation:photo .52s var(--fast) both}
+@keyframes photo{from{opacity:0;transform:translate3d(7%,0,0) scale(1.06)}to{opacity:1;transform:none}}
+.go .name b{animation:slam .26s var(--fast) both;animation-delay:calc(.12s + var(--i,0) * .035s)}
+@keyframes slam{from{opacity:0;transform:translate3d(-38px,0,0) skewX(-12deg)}to{opacity:1;transform:none}}
+.go .role{animation:wipe .2s var(--fast) .34s both}
+@keyframes wipe{from{opacity:0;transform:scaleX(.05)}to{opacity:1;transform:none}}
+.go .a{animation:slide .22s var(--fast) both;animation-delay:calc(.42s + var(--i,0) * .05s)}
+@keyframes slide{from{opacity:0;transform:translate3d(-18px,0,0)}to{opacity:1;transform:none}}
+.go .band{animation:band .32s var(--fast) .3s both}
+@keyframes band{from{transform:translate3d(0,100%,0)}to{transform:none}}
+.go .band dd{animation:rise .22s var(--fast) both;animation-delay:calc(.5s + var(--i,0) * .05s)}
+@keyframes rise{from{transform:translate3d(0,110%,0)}to{transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .go .hero-photo img,.go .name b,.go .role,.go .a,.go .band,.go .band dd{animation:none}
+  .cmp.is-glide .cmp-before,.cmp.is-glide .cmp-track,.cmp.is-glide .cmp-grip{transition:none}
+}
+
+@media (min-width:900px){
+  .wrap{padding:0 48px}
+  .top{height:76px;padding:0 44px 0 48px}
+  .brand{font-size:34px}
+  .top-phone{display:block}
+  .top .btn{display:inline-flex}
+  .bar{display:none}
+  :root{--bar:0px}
+  .hero{min-height:680px}
+  .hero-photo{left:auto;right:0;width:60%;height:100%;clip-path:polygon(22% 0,100% 0,100% 100%,0 100%)}
+  .hero-photo img{object-position:50% 34%}
+  .hero-shade{background:linear-gradient(to bottom,rgba(23,25,28,.6) 0,rgba(23,25,28,0) 18%)}
+  .hero-body{left:48px;right:auto;width:min(50vw,640px);bottom:168px}
+  .name{font-size:clamp(190px,20vw,300px)}
+  .role{font-size:34px;margin-top:22px;padding:7px 26px 8px 20px}
+  .what{font-size:18px;margin-top:18px}
+  .rate{margin-top:18px}
+  .rate-num{font-size:60px}
+  .rate-txt{font-size:14px}
+  .hero-cta{display:flex;gap:6px;margin-top:22px}
+  .band{height:118px;grid-template-columns:repeat(3,auto) 1fr;column-gap:40px;padding:0 48px 16px;clip-path:polygon(0 26px,100% 0,100% 100%,0 100%)}
+  .band .only-desk{display:block}
+  .band div+div{padding-left:28px}
+  .band dt{font-size:14px}
+  .band dd{font-size:52px}
+  .ba{padding:104px 0 32px}
+  .ba .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:72px;align-items:center}
+  .cmp{margin-top:0;max-width:560px;width:100%;justify-self:end}
+  .prices{padding:72px 0 56px}
+  .prices .wrap{max-width:900px}
+  .row .sum{font-size:44px}
+  .prices .btn{width:auto}
+  .foot{padding-bottom:36px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a class="brand a" href="#top" aria-label="Лайф, в начало страницы">ЛАЙФ <small>Видное, 8:00–22:00</small></a>
+  <div class="top-right">
+    <a class="top-phone a" href="tel:+79776971951">+7 (977) 697-19-51</a>
+    <a class="btn btn-sm slant" href="tel:+79776971951">Позвонить</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="hero-photo">
+    <img src="img/hero-1200.jpg" srcset="img/hero-1200.jpg 1200w, img/hero-2000.jpg 2000w" sizes="(min-width: 900px) 60vw, 100vw" width="1200" height="1600" alt="Белые машины в боксе «Лайф» под шестиугольными светильниками" fetchpriority="high" decoding="async">
+    <div class="hero-shade"></div>
+  </div>
+  <div class="hero-body">
+    <h1><span class="name" aria-label="Лайф"><b style="--i:0">Л</b><b style="--i:1">а</b><b style="--i:2">й</b><b style="--i:3">ф</b></span><span class="role slant">детейлинг и автомойка</span></h1>
+    <p class="what a" style="--i:0">Мойка, химчистка салона, полировка, керамика, плёнка и шиномонтаж.</p>
+    <div class="rate a" style="--i:1">
+      <span class="rate-num">5,0 <svg viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 1.2l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.5l6.1-.7z"/></svg></span>
+      <span class="rate-txt">1&nbsp;092 оценки<br>на Яндекс Картах</span>
+    </div>
+    <div class="hero-cta a" style="--i:2">
+      <a class="btn slant" href="https://wa.me/79267941155?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F." target="_blank" rel="noopener">Записаться в WhatsApp</a>
+      <a class="btn btn-dark slant" href="#ceny">Все цены на мойку</a>
+    </div>
+  </div>
+  <dl class="band">
+    <div><dt>Мойка кузова</dt><dd style="--i:0">от 1&nbsp;000&nbsp;₽</dd></div>
+    <div><dt>Комплексная мойка</dt><dd style="--i:1">от 2&nbsp;000&nbsp;₽</dd></div>
+    <div class="only-desk"><dt>Зимняя мойка</dt><dd style="--i:2">от 2&nbsp;200&nbsp;₽</dd></div>
+  </dl>
+</section>
+
+<section class="ba" id="do-posle">
+  <div class="wrap">
+    <div>
+      <h2 class="h2">Фара до и после полировки</h2>
+    </div>
+    <div class="cmp" data-pos="50" data-slant="7">
+      <img src="img/fara-after-1200.jpg" width="1200" height="1500" alt="Фара после полировки: стекло прозрачное" loading="lazy" decoding="async" draggable="false">
+      <div class="cmp-before"><img src="img/fara-before-1200.jpg" width="1200" height="1500" alt="Та же фара до полировки: стекло мутное" loading="lazy" decoding="async" draggable="false"></div>
+      <span class="cmp-lbl cmp-lbl-b slant">До</span>
+      <span class="cmp-lbl cmp-lbl-a slant">После</span>
+      <div class="cmp-track">
+        <span class="cmp-line"></span>
+        <button class="cmp-grip" type="button" role="slider" aria-label="Шторка: сколько видно фото «до»" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><i><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M8.5 6.5L4.5 11l4 4.5M13.5 6.5l4 4.5-4 4.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/></svg></i></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="prices" id="ceny">
+  <div class="wrap">
+    <h2 class="h2">Цены на мойку</h2>
+    <dl class="rows">
+      <div class="row"><dt>Мойка кузова в три фазы</dt><dd class="sum">от 1&nbsp;000&nbsp;₽</dd></div>
+      <div class="row"><dt>Комплексная мойка</dt><dd class="sum">от 2&nbsp;000&nbsp;₽</dd>
+        <dd class="in">Входит: мойка кузова в три фазы, продувка воздухом, протирка микрофиброй, чистка ковриков, пылесос, влажная уборка салона, стёкла изнутри.</dd></div>
+      <div class="row"><dt>Зимняя мойка</dt><dd class="sum">от 2&nbsp;200&nbsp;₽</dd>
+        <dd class="in">Входит: мойка кузова в три фазы, удаление реагента, обработка замков и уплотнителей.</dd></div>
+    </dl>
+    <p class="promo slant"><b>−20&nbsp;%</b><span>в будни с 8:00 до 11:00 на все услуги мойки</span></p>
+    <p class="note">Цены для легковой машины. Для кроссовера и внедорожника уточните цену при записи.</p>
+    <a class="btn slant" href="https://wa.me/79267941155?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A1%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D1%81%D1%82%D0%BE%D0%B8%D1%82%20%D0%BC%D0%BE%D0%B9%D0%BA%D0%B0%20%D0%B4%D0%BB%D1%8F%20%D0%BC%D0%BE%D0%B5%D0%B9%20%D0%BC%D0%B0%D1%88%D0%B8%D0%BD%D1%8B%3F" target="_blank" rel="noopener">Спросить цену в WhatsApp</a>
+  </div>
+</section>
+</main>
+
+<footer class="foot"><div class="wrap">Демо-версия сайта. Не официальный сайт «Лайф».</div></footer>
+
+<nav class="bar" aria-label="Связаться">
+  <a href="tel:+79776971951"><svg class="ico" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M5.2 1.8l2.6-.5 1.9 4.4-2 1.6c.9 1.9 2.3 3.3 4.2 4.2l1.6-2 4.4 1.9-.5 2.6c-.2 1-1 1.700-2 1.700C8.900 15.700 3.500 10.300 3.500 3.800c0-1 .700-1.800 1.700-2z"/></svg>Позвонить</a>
+  <a href="https://wa.me/79267941155?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F." target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 1.5a8.400 8.400 0 0 0-7.200 12.800L1.600 18.400l4.300-1.100A8.400 8.400 0 1 0 10 1.500zm0 1.700a6.700 6.700 0 1 1-3.500 12.400l-.300-.2-2.200.6.6-2.100-.2-.3A6.700 6.700 0 0 1 10 3.200zM7.300 5.900c-.2 0-.5 0-.7.300-.3.300-1 .9-1 2.300s1 2.700 1.100 2.800c.1.200 2 3.100 4.900 4.200 2.400.9 2.900.7 3.400.7.500-.1 1.600-.7 1.800-1.300.2-.6.2-1.200.2-1.300-.1-.1-.3-.2-.6-.3l-1.900-.9c-.3-.1-.4-.1-.6.100l-.800 1c-.1.200-.3.2-.6.100-.300-.1-1.100-.4-2.100-1.300-.8-.7-1.300-1.500-1.500-1.800-.100-.300 0-.4.100-.5l.4-.5c.1-.1.2-.3.3-.4.100-.2 0-.3 0-.5l-.800-2c-.2-.5-.4-.5-.6-.5z"/></svg>WhatsApp</a>
+</nav>
+
+<script src="cmp.js" defer></script>
+<script>
+(function () {
+  var d = document.documentElement, started = false;
+  function go() { if (started) return; started = true; window.__goAt = Math.round(performance.now()); d.classList.remove('pre'); d.classList.add('go'); }
+  var need = [['italic 800 60px "Fira Sans Extra Condensed"', 'ЛАЙФ детейлинг и автомойка'], ['italic 800 30px "Fira Sans Extra Condensed"', 'от 1 000 ₽ 5,0 WhatsApp'], ['400 16px "Fira Sans"', 'Мойка, химчистка 1 092 Яндекс']];
+  var fonts = (document.fonts && document.fonts.load) ? Promise.all(need.map(function (n) { return document.fonts.load(n[0], n[1]); })) : Promise.resolve();
+  var img = document.querySelector('.hero-photo img');
+  var photo = new Promise(function (res) { if (!img || (img.complete && img.naturalWidth)) return res(); img.addEventListener('load', res); img.addEventListener('error', res); });
+  Promise.all([fonts, photo]).then(go, go);
+  setTimeout(go, 2400);
+})();
+</script>
+</body>
+</html>

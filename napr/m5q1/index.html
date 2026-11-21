@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:,">
+<title>Lilit, маникюр: два способа показать работы</title>
+<link rel="preload" href="fonts/GolosText-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/GolosText-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:#E9EBEE;color:#22262C;font:400 16px/1.5 'Golos Text',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:900px;margin:0 auto;padding:22px 16px 30px}
+h1{margin:0;font-weight:600;font-size:24px;line-height:1.2}
+.intro{margin:8px 0 0;max-width:40em;color:#4F5661}
+.grid{display:grid;gap:36px;margin-top:22px}
+.opt{min-width:0}
+.phone{position:relative;width:100%;max-width:390px;margin:0 auto;border-radius:26px;overflow:hidden;background:#F4F5F7;box-shadow:0 0 0 1px #C6CAD1}
+.phone::before{content:"";display:block;padding-top:216.41%}
+.phone iframe{position:absolute;left:0;top:0;width:390px;height:844px;border:0;transform-origin:0 0}
+.cap{max-width:390px;margin:14px auto 0}
+h2{margin:0;font-weight:600;font-size:19px;line-height:1.25}
+.cap p{margin:6px 0 0;font-size:15px;line-height:1.45;color:#3A3F48}
+.open{display:inline-flex;align-items:center;min-height:46px;margin-top:12px;padding:0 20px;border-radius:999px;background:#22262C;color:#fff;font-weight:500;font-size:15px;text-decoration:none}
+.note{margin:30px 0 0;font-size:13px;color:#646B76;text-align:center}
+:focus-visible{outline:2px solid #22262C;outline-offset:3px}
+@media (min-width:860px){
+  .wrap{padding:28px 32px 36px}
+  h1{font-size:28px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:40px}
+  .phone,.cap{max-width:360px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Lilit, маникюр: два способа показать работы</h1>
+  <p class="intro">Шрифт, цвета и текст одинаковые. Различается только показ работ. Листать можно прямо здесь, пальцем или мышью.</p>
+
+  <div class="grid">
+    <section class="opt">
+      <div class="phone"><iframe src="1.html" title="Направление 1 «Одна работа крупно»" scrolling="no"></iframe></div>
+      <div class="cap">
+        <h2>1. Одна работа крупно</h2>
+        <p>Одна работа на весь экран, без рамки. Каждые пять секунд плавно сменяется следующей, листается пальцем и мышью. Шесть работ.</p>
+        <a class="open" href="1.html">Открыть страницу</a>
+      </div>
+    </section>
+    <section class="opt">
+      <div class="phone"><iframe src="2.html" title="Направление 2 «Ровная лента»" scrolling="no"></iframe></div>
+      <div class="cap">
+        <h2>2. Ровная лента</h2>
+        <p>Двенадцать работ одного размера, в кадре только руки и ногти. Листается пальцем и мышью. Пока ленту не трогали, она медленно плывёт сама.</p>
+        <a class="open" href="2.html">Открыть страницу</a>
+      </div>
+    </section>
+  </div>
+
+  <p class="note">Демо-версия сайта. Не официальный сайт студии Lilit</p>
+</div>
+<script>
+(function(){
+  var frames=[].slice.call(document.querySelectorAll('.phone'));
+  function fit(){frames.forEach(function(p){var f=p.querySelector('iframe');f.style.transform='scale('+(p.clientWidth/390).toFixed(4)+')';});}
+  fit();window.addEventListener('resize',fit);
+})();
+</script>
+</body>
+</html>

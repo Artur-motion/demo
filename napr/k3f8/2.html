@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Якорь — кафе на берегу Пахры, Подольск</title>
+<link rel="icon" href="data:,">
+<script>
+/* Первый экран скрыт до запуска анимации (место занято сразу). Через 3 с без запуска — показать как есть. */
+(function(){var d=document.documentElement;d.classList.add('pre');
+window.__plain=setTimeout(function(){if(!d.classList.contains('go')){d.classList.remove('pre');d.classList.add('plain');}},3000);})();
+</script>
+<link rel="preload" as="script" href="car.js">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/Montserrat-500-900-ru.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/PTSerif-700-italic-ru.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/PTSerif-700-ru.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/PTSerif-400-italic-ru.woff2">
+<link rel="preload" as="image" href="img/cut-103.webp" fetchpriority="high">
+<link rel="stylesheet" href="fonts/ru.css">
+<style>
+/* Направление 2 «Веранда» — как обложка их меню: светлый фон, название тёмно-синим рубленым («ЯКОРЬ»),
+   голубой — цвет воды на их знаке. Блюда вырезаны и едут лентой — перенос Hero Section 41 (21st.dev) по механике.
+   Блюда, вес и цены — антиквой их меню. Формы мягкие. */
+:root{
+  --bg:#f3f6f6;      /* белая скатерть, холодный молочный */
+  --ink:#1a1d4a;     /* тёмно-синий их названия */
+  --sea:#176f93;     /* вода на их знаке — подзаголовок, активная миниатюра */
+  --mist:#d4dde2;    /* линии и контуры */
+  --muted:#575d7a;
+  --honey:#d8961c;   /* звезда рейтинга */
+  --sans:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --serif:'PT Serif',Georgia,'Times New Roman',serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 15.5px/1.5 var(--sans);overflow-x:hidden;overflow-x:clip;padding-bottom:72px}
+a{color:inherit}
+img{display:block;max-width:100%}
+.wrap{max-width:1280px;margin:0 auto;padding:0 16px}
+
+/* шапка: название слева, «Позвонить» справа */
+.top{position:fixed;inset:0 0 auto 0;z-index:20;height:64px;border-bottom:1px solid var(--mist);
+  transition:background-color .3s cubic-bezier(.4,0,.2,1),box-shadow .3s cubic-bezier(.4,0,.2,1)}
+.top.scrolled{background:var(--bg);box-shadow:0 6px 24px rgba(26,29,74,.08)}
+.top .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font:900 22px/1 var(--sans);text-transform:uppercase;text-decoration:none}
+.nav{display:none;gap:36px;font-weight:600;font-size:15px}
+.nav a{text-decoration:none}
+.call{display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 18px;border-radius:999px;background:var(--ink);
+  color:#fff;font-weight:700;font-size:14.5px;text-decoration:none;white-space:nowrap}
+.call svg{width:16px;height:16px;fill:currentColor}
+.call .num{display:none}
+@media (max-width:1023px){.top .call{display:none}} /* на телефоне звонок — в нижней полосе, в шапке не дублируем (правило 20.11) */
+
+/* первый экран */
+.hero{padding:92px 0 36px;overflow:hidden}
+.row1{display:grid;gap:10px}
+.txt{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px}
+h1{margin:0}
+h1 .nm{display:block;font:900 64px/.92 var(--sans);text-transform:uppercase;letter-spacing:-.01em}
+h1 .kind{display:block;margin-top:8px;font:italic 700 22px/1.2 var(--serif);color:var(--sea)}
+.lead{margin:0;max-width:23em;color:var(--muted)}
+.btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:4px}
+.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 22px;
+  border-radius:999px;font-weight:700;font-size:15.5px;text-decoration:none;white-space:nowrap}
+.btn:active{transform:translateY(1px)}
+.btn.main{background:var(--ink);color:#fff}
+.btn.soft{border:1.5px solid rgba(26,29,74,.55);color:var(--ink)}
+.rate{display:flex;align-items:center;gap:7px;margin:0;font-size:13.5px;color:var(--muted)}
+.rate b{color:var(--ink);font-weight:800;font-size:15px}
+.rate svg{width:15px;height:15px;fill:var(--honey);flex:none}
+
+/* большая карусель блюд. Зона на телефоне — от края до края экрана; блюдо гаснет раньше, чем дойдёт до края (car.js) */
+.car{position:relative;overflow:hidden;touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:grab}
+.car.drag{cursor:grabbing}
+.car:focus-visible{outline:2px solid var(--sea);outline-offset:-2px;border-radius:12px}
+.car .it{position:absolute;top:0;will-change:transform,opacity}
+.main-car{margin:0 -16px}
+.main-car::before{content:"";display:block;width:min(390px,100%);aspect-ratio:5/4;margin:0 auto}
+.main-car .it{left:0;width:100%;height:100%;display:flex;justify-content:center}
+.main-car img{width:min(390px,100%);height:100%;object-fit:contain;pointer-events:none}
+
+/* второй ряд: подпись и лента миниатюр */
+.row2{display:grid;gap:20px;margin-top:2px}
+.cap-box{display:flex;flex-direction:column;align-items:center;gap:8px}
+.cap-car{width:100%;height:54px}
+.cap-car .it{left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;gap:clamp(10px,3.6vw,15px)}
+.cap-name{font:700 clamp(17px,5.3vw,21px)/1.15 var(--serif);white-space:nowrap}
+.cap-sep{width:2px;height:30px;border-radius:2px;background:var(--sea);flex:none}
+.cap-price{display:flex;flex-direction:column;white-space:nowrap}
+.cap-price b{font:italic 700 22px/1.05 var(--serif)}
+.cap-price span{font:italic 400 14.5px/1.2 var(--serif);color:var(--muted)}
+.note{margin:0;font:italic 400 13.5px/1.4 var(--serif);color:var(--muted)}
+
+.thumbs{position:relative}
+.thumbs::before,.thumbs::after{content:"";position:absolute;top:0;bottom:0;width:100px;z-index:2;pointer-events:none}
+.thumbs::before{left:0;background:linear-gradient(to right,var(--bg) 15%,rgba(243,246,246,0))}
+.thumbs::after{right:0;background:linear-gradient(to left,var(--bg) 15%,rgba(243,246,246,0))}
+.thumb-car{height:140px;--b:50%}
+.thumb-car .it{left:50%;width:var(--b);margin-left:calc(var(--b) / -2);height:132px;top:4px;display:flex;align-items:center;justify-content:center;
+  background:none;border:0;padding:0;cursor:pointer;font:inherit;color:var(--mist)}
+.thumb-car .it svg{position:absolute;bottom:0;left:50%;margin-left:-80px;width:161px;height:92px}
+.thumb-car .it.on{color:var(--sea)}
+.thumb-car .it img{position:relative;width:112px;height:auto;pointer-events:none}
+.thumb-car .it:focus-visible{outline:2px solid var(--sea);outline-offset:-2px;border-radius:12px}
+.meta{margin:18px 0 0;text-align:center;font-size:13.5px;color:var(--muted)}
+
+/* вход: всё скрыто до запуска, место занято */
+html.pre .in,html.pre .top .wrap,html.pre .bar a{visibility:hidden}
+html.go .top .wrap,html.go .bar a{animation:lights .7s cubic-bezier(.4,0,.2,1) both}
+html.go .in{animation:rise .8s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(var(--i,0) * 80ms)}
+html.go .in.dish{animation:serve 1.1s cubic-bezier(.22,1,.36,1) .12s both}
+@keyframes lights{from{opacity:0}to{opacity:1}}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes serve{from{opacity:0;transform:translateX(48px)}to{opacity:1;transform:none}}
+
+/* ниже первого экрана — короткий кусок меню, чтобы кнопка «Меню» вела в настоящее место */
+.menu{padding:52px 0 24px}
+.menu h2{margin:0 0 16px;font:italic 700 40px/1 var(--serif);text-align:center}
+.list{list-style:none;margin:0 auto;padding:0;max-width:640px}
+.list li{display:flex;align-items:baseline;gap:12px;padding:14px 2px;border-bottom:1px solid var(--mist)}
+.list .n{flex:1;font:700 17px/1.3 var(--serif)}
+.list .w{font:italic 400 15px/1.3 var(--serif);color:var(--muted);white-space:nowrap}
+.list .p{font:italic 700 19px/1.2 var(--serif);white-space:nowrap;min-width:4.4em;text-align:right}
+.find{padding:30px 0 8px;text-align:center}
+.find p{margin:0 auto;max-width:31em}
+.find .big{font:800 21px/1.25 var(--sans);margin-bottom:8px}
+.find .small{color:var(--muted);font-size:14.5px}
+footer{padding:28px 16px 20px;text-align:center;font-size:12px;color:var(--muted)}
+
+/* нижняя полоса на телефоне */
+.bar{position:fixed;inset:auto 0 0 0;z-index:30;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px 12px calc(8px + env(safe-area-inset-bottom));
+  background:var(--bg);border-top:1px solid var(--mist)}
+.bar a{display:flex;align-items:center;justify-content:center;gap:8px;height:48px;border-radius:999px;font-weight:700;text-decoration:none}
+.bar a svg{width:18px;height:18px;fill:currentColor}
+.bar .b1{background:var(--ink);color:#fff}
+.bar .b2{border:1.5px solid rgba(26,29,74,.55);color:var(--ink)}
+
+@media (min-width:640px){.thumb-car{--b:33.333%}}
+@media (min-width:768px){.thumb-car{--b:25%}}
+@media (min-width:1024px){
+  body{padding-bottom:0;font-size:16px}
+  .bar{display:none}
+  .wrap{padding:0 32px}
+  .top{height:70px}
+  .logo{font-size:24px}
+  .nav{display:flex}
+  .call .num{display:inline}
+  .call .word{display:none}
+  .hero{padding:calc(70px + 64px) 0 64px}
+  .row1{grid-template-columns:3fr 2fr;gap:24px;align-items:center}
+  .txt{align-items:flex-start;text-align:left;gap:18px;min-height:382px;justify-content:center;max-width:540px}
+  h1 .nm{font-size:clamp(96px,9vw,128px)}
+  h1 .kind{font-size:32px;margin-top:12px}
+  .lead{font-size:17px;max-width:27em}
+  .btns{justify-content:flex-start}
+  /* у блюда своя зона: колонка и по 64 px запаса с боков. У края зоны блюдо мягко гаснет и до текста не доходит */
+  .main-car{margin:0 -64px;
+    -webkit-mask-image:linear-gradient(to right,transparent 0,#000 64px,#000 calc(100% - 64px),transparent 100%);
+            mask-image:linear-gradient(to right,transparent 0,#000 64px,#000 calc(100% - 64px),transparent 100%)}
+  .main-car::before,.main-car img{width:min(475px,calc(100% - 128px))}
+  .row2{grid-template-columns:3fr 2fr;gap:24px;align-items:center;margin-top:44px}
+  .thumbs{order:-1;max-width:660px}
+  .thumb-car{--b:33.333%}
+  .cap-name{font-size:25px}
+  .cap-price b{font-size:26px}
+  .meta{text-align:left;margin-top:28px}
+  .menu{padding:88px 0 32px}
+  .menu h2{font-size:56px;margin-bottom:22px}
+  footer{padding-bottom:36px}
+}
+@media (min-width:1280px){.thumb-car{--b:25%}}
+@media (hover:hover){
+  .nav a:hover{color:var(--sea)}
+  .btn.main::before{content:"";position:absolute;inset:0;border-radius:inherit;
+    background:linear-gradient(45deg,transparent 25%,rgba(255,255,255,.35) 50%,transparent 75%,transparent 100%) no-repeat;
+    background-size:250% 250%;background-position:200% 0;transition:background-position 0s}
+  .btn.main:hover::before{background-position:-100% 0;transition-duration:1s}
+  .btn.soft:hover{border-color:var(--ink)}
+}
+@media (prefers-reduced-motion:reduce){html.go .in,html.go .in.dish,html.go .top .wrap,html.go .bar a{animation:none}}
+</style>
+</head>
+<body>
+
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="logo" href="#">Якорь</a>
+    <nav class="nav" aria-label="Разделы"><a href="#menu">Меню</a><a href="#adres">Адрес и часы</a></nav>
+    <a class="call" href="tel:+74967692020"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg><span class="word">Позвонить</span><span class="num">+7 (4967) 69-20-20</span></a>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="hero">
+  <div class="wrap">
+    <div class="row1">
+      <div class="txt">
+        <h1 class="in" style="--i:0"><span class="nm">Якорь</span> <span class="kind">кафе на берегу Пахры</span></h1>
+        <p class="lead in" style="--i:1">Шашлык и рыба с мангала. Летняя веранда и беседки с&nbsp;видом на реку.</p>
+        <div class="btns in" style="--i:2">
+          <a class="btn main" href="#menu">Меню</a>
+          <a class="btn soft" href="https://wa.me/79774657947?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%B1%D1%80%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C%20%D1%81%D1%82%D0%BE%D0%BB%20%D0%B2%20%C2%AB%D0%AF%D0%BA%D0%BE%D1%80%D0%B5%C2%BB.">Забронировать стол</a>
+        </div>
+        <p class="rate in" style="--i:3"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.6 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.5l-5.9 3.1 1.2-6.5L2.5 9.5l6.6-.9z"/></svg><b>4,8</b> на Яндекс Картах, 1&nbsp;693 оценки</p>
+      </div>
+
+      <div class="car main-car in dish" id="mainCar" tabindex="0" role="group" aria-roledescription="карусель" aria-label="Блюда кафе">
+        <div class="it"><img src="img/cut-103.webp" width="800" height="640" alt="Стейк из сёмги" fetchpriority="high" decoding="async" draggable="false"></div>
+        <div class="it"><img data-src="img/cut-111.webp" width="800" height="640" alt="Шашлык из индейки" decoding="async" draggable="false"></div>
+        <div class="it"><img data-src="img/cut-013.webp" width="800" height="640" alt="Салат «Цезарь» с креветками" decoding="async" draggable="false"></div>
+        <div class="it"><img data-src="img/cut-073.webp" width="800" height="640" alt="Медальоны с овощами" decoding="async" draggable="false"></div>
+        <div class="it"><img data-src="img/cut-045.webp" width="800" height="640" alt="Сырная тарелка" decoding="async" draggable="false"></div>
+        <div class="it"><img data-src="img/cut-064.webp" width="800" height="640" alt="Паста карбонара" decoding="async" draggable="false"></div>
+        <div class="it"><img data-src="img/cut-087.webp" width="800" height="640" alt="Жареный судак" decoding="async" draggable="false"></div>
+      </div>
+    </div>
+
+    <div class="row2">
+      <div class="cap-box in" style="--i:4">
+        <div class="car cap-car" id="capCar">
+          <div class="it"><span class="cap-name">Стейк из сёмги</span><i class="cap-sep"></i><span class="cap-price"><b>1&nbsp;200&nbsp;₽</b><span>150 г</span></span></div>
+          <div class="it"><span class="cap-name">Шашлык из индейки</span><i class="cap-sep"></i><span class="cap-price"><b>590&nbsp;₽</b><span>180 г</span></span></div>
+          <div class="it"><span class="cap-name">Цезарь с креветками</span><i class="cap-sep"></i><span class="cap-price"><b>780&nbsp;₽</b><span>200 г</span></span></div>
+          <div class="it"><span class="cap-name">Медальоны с овощами</span><i class="cap-sep"></i><span class="cap-price"><b>735&nbsp;₽</b><span>330 г</span></span></div>
+          <div class="it"><span class="cap-name">Сырная тарелка</span><i class="cap-sep"></i><span class="cap-price"><b>920&nbsp;₽</b><span>200 г</span></span></div>
+          <div class="it"><span class="cap-name">Паста карбонара</span><i class="cap-sep"></i><span class="cap-price"><b>480&nbsp;₽</b><span>300 г</span></span></div>
+          <div class="it"><span class="cap-name">Жареный судак</span><i class="cap-sep"></i><span class="cap-price"><b>720&nbsp;₽</b><span>200 г</span></span></div>
+        </div>
+        <p class="note">Цены из меню доставки, в кафе могут отличаться</p>
+      </div>
+
+      <div class="thumbs in" style="--i:5">
+        <div class="car thumb-car" id="thumbCar">
+          <button class="it" type="button" aria-label="Стейк из сёмги"><svg viewBox="0 0 161 92" fill="none" aria-hidden="true"><path d="M0.682517 80.6118L0.501193 39.6946C0.480127 34.9409 3.80852 30.8294 8.46241 29.8603L148.426 0.713985C154.636 -0.579105 160.465 4.16121 160.465 10.504V80.7397C160.465 86.2674 155.98 90.7465 150.453 90.7397L10.6701 90.5674C5.16936 90.5607 0.706893 86.1125 0.682517 80.6118Z" stroke="currentColor"/></svg><img src="img/cut-103-t.webp" width="220" height="154" alt="" draggable="false"></button>
+          <button class="it" type="button" aria-label="Шашлык из индейки"><svg viewBox="0 0 161 92" fill="none" aria-hidden="true"><path d="M0.682517 80.6118L0.501193 39.6946C0.480127 34.9409 3.80852 30.8294 8.46241 29.8603L148.426 0.713985C154.636 -0.579105 160.465 4.16121 160.465 10.504V80.7397C160.465 86.2674 155.98 90.7465 150.453 90.7397L10.6701 90.5674C5.16936 90.5607 0.706893 86.1125 0.682517 80.6118Z" stroke="currentColor"/></svg><img src="img/cut-111-t.webp" width="220" height="200" alt="" draggable="false"></button>
+          <button class="it" type="button" aria-label="Цезарь с креветками"><svg viewBox="0 0 161 92" fill="none" aria-hidden="true"><path d="M0.682517 80.6118L0.501193 39.6946C0.480127 34.9409 3.80852 30.8294 8.46241 29.8603L148.426 0.713985C154.636 -0.579105 160.465 4.16121 160.465 10.504V80.7397C160.465 86.2674 155.98 90.7465 150.453 90.7397L10.6701 90.5674C5.16936 90.5607 0.706893 86.1125 0.682517 80.6118Z" stroke="currentColor"/></svg><img src="img/cut-013-t.webp" width="220" height="138" alt="" draggable="false"></button>
+          <button class="it" type="button" aria-label="Медальоны с овощами"><svg viewBox="0 0 161 92" fill="none" aria-hidden="true"><path d="M0.682517 80.6118L0.501193 39.6946C0.480127 34.9409 3.80852 30.8294 8.46241 29.8603L148.426 0.713985C154.636 -0.579105 160.465 4.16121 160.465 10.504V80.7397C160.465 86.2674 155.98 90.7465 150.453 90.7397L10.6701 90.5674C5.16936 90.5607 0.706893 86.1125 0.682517 80.6118Z" stroke="currentColor"/></svg><img src="img/cut-073-t.webp" width="220" height="194" alt="" draggable="false"></button>
+          <button class="it" type="button" aria-label="Сырная тарелка"><svg viewBox="0 0 161 92" fill="none" aria-hidden="true"><path d="M0.682517 80.6118L0.501193 39.6946C0.480127 34.9409 3.80852 30.8294 8.46241 29.8603L148.426 0.713985C154.636 -0.579105 160.465 4.16121 160.465 10.504V80.7397C160.465 86.2674 155.98 90.7465 150.453 90.7397L10.6701 90.5674C5.16936 90.5607 0.706893 86.1125 0.682517 80.6118Z" stroke="currentColor"/></svg><img src="img/cut-045-t.webp" width="220" height="153" alt="" draggable="false"></button>
+          <button class="it" type="button" aria-label="Паста карбонара"><svg viewBox="0 0 161 92" fill="none" aria-hidden="true"><path d="M0.682517 80.6118L0.501193 39.6946C0.480127 34.9409 3.80852 30.8294 8.46241 29.8603L148.426 0.713985C154.636 -0.579105 160.465 4.16121 160.465 10.504V80.7397C160.465 86.2674 155.98 90.7465 150.453 90.7397L10.6701 90.5674C5.16936 90.5607 0.706893 86.1125 0.682517 80.6118Z" stroke="currentColor"/></svg><img src="img/cut-064-t.webp" width="220" height="143" alt="" draggable="false"></button>
+          <button class="it" type="button" aria-label="Жареный судак"><svg viewBox="0 0 161 92" fill="none" aria-hidden="true"><path d="M0.682517 80.6118L0.501193 39.6946C0.480127 34.9409 3.80852 30.8294 8.46241 29.8603L148.426 0.713985C154.636 -0.579105 160.465 4.16121 160.465 10.504V80.7397C160.465 86.2674 155.98 90.7465 150.453 90.7397L10.6701 90.5674C5.16936 90.5607 0.706893 86.1125 0.682517 80.6118Z" stroke="currentColor"/></svg><img src="img/cut-087-t.webp" width="220" height="194" alt="" draggable="false"></button>
+        </div>
+      </div>
+    </div>
+
+    <p class="meta in" style="--i:6">Ежедневно с 12:00 до 00:00. Улица Фёдорова, 16</p>
+  </div>
+</section>
+
+<section class="menu" id="menu">
+  <div class="wrap">
+    <h2>С мангала</h2>
+    <ul class="list">
+      <li><span class="n">Шашлык из свиной шеи</span><span class="w">200 г</span><span class="p">690&nbsp;₽</span></li>
+      <li><span class="n">Шашлык из баранины</span><span class="w">200 г</span><span class="p">950&nbsp;₽</span></li>
+      <li><span class="n">Люля-кебаб из баранины</span><span class="w">180 г</span><span class="p">750&nbsp;₽</span></li>
+      <li><span class="n">Свиные рёбрышки</span><span class="w">200 г</span><span class="p">675&nbsp;₽</span></li>
+      <li><span class="n">Форель на углях</span><span class="w">250 г</span><span class="p">845&nbsp;₽</span></li>
+      <li><span class="n">Овощи и картофель на углях</span><span class="w">600 г</span><span class="p">1&nbsp;680&nbsp;₽</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="find" id="adres">
+  <div class="wrap">
+    <p class="big">Подольск, улица Фёдорова, 16</p>
+    <p class="small">Открыто ежедневно с 12:00 до 00:00. От остановки «Дом-музей Ленина» 400 метров.</p>
+  </div>
+</section>
+</main>
+
+<footer>Демо-версия сайта. Не официальный сайт кафе «Якорь»</footer>
+
+<div class="bar">
+  <a class="b1" href="tel:+74967692020"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>Позвонить</a>
+  <a class="b2" href="https://wa.me/79774657947"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.9 13.3L3 21l4.8-1.1A9 9 0 1 0 12 3z"/></svg>WhatsApp</a>
+</div>
+
+<script src="car.js"></script>
+<script>
+(function(){
+  var $=function(s){return [].slice.call(document.querySelectorAll(s));};
+  var mainCar=document.getElementById('mainCar'), capCar=document.getElementById('capCar'), thumbCar=document.getElementById('thumbCar');
+  var mains=$('#mainCar .it'), caps=$('#capCar .it'), thumbs=$('#thumbCar .it');
+  /* блюдо за шаг проезжает 0,62 ширины своей зоны и по дороге гаснет: к краю зоны его уже не видно —
+     половиной не торчит и на текст не заходит */
+  var STEP=.62, rMain=Car.slide(mains,0,1.1,{from:.08,to:.62,scale:.1,step:STEP});
+  var rCap=Car.swap(caps,28,0,.5);          /* старая подпись успевает погаснуть до появления новой */
+  var rThumb=Car.slide(thumbs,0,3.2);
+  var car=Car({
+    n:mains.length, delay:3000, dur:750, watch:document.getElementById('hero'),
+    render:function(rel){rMain(rel);rCap(rel);rThumb(rel);},
+    ready:function(i){var im=mains[i].querySelector('img');return im.complete&&im.naturalWidth>0;},
+    onActive:function(a){thumbs.forEach(function(t,i){t.classList.toggle('on',i===a);});}
+  });
+  car.bind(mainCar,function(){return mains[0].offsetWidth*STEP;});   /* блюдо идёт за пальцем один в один */
+  car.bind(capCar,function(){return Math.min(caps[0].offsetWidth,360);});
+  car.bind(thumbCar,function(){return thumbs[0].offsetWidth;});
+  thumbs.forEach(function(t,i){t.addEventListener('click',function(){car.goIndex(i);});});
+
+  var first=mains[0].querySelector('img');
+  Car.intro([['900 64px Montserrat','ЯКОРЬ'],['500 16px Montserrat','Шашлык и рыба, WhatsApp 4,8'],['700 16px Montserrat','Меню'],
+             ['italic 700 22px "PT Serif"','кафе на берегу 1 200 ₽'],['700 21px "PT Serif"','Стейк из сёмги']],first,function(){
+    Car.loadRest($('#mainCar img'));
+    setTimeout(car.start,1300);
+  });
+
+  var top=document.getElementById('top');
+  function onScroll(){top.classList.toggle('scrolled',window.scrollY>0);}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+})();
+</script>
+</body>
+</html>

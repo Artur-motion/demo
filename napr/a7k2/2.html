@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Лайф — детейлинг и автомойка, Видное</title>
+<meta name="theme-color" content="#F4F6F8">
+<link rel="icon" href="data:,">
+<script>document.documentElement.className = 'js pre';</script>
+<link rel="preload" as="image" href="img/hero-1200.jpg" imagesrcset="img/hero-1200.jpg 1200w, img/hero-2000.jpg 2000w" imagesizes="(min-width: 900px) 46vw, 100vw" fetchpriority="high">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/IBMPlexSans-normal-400-cyrillic-0564cf.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/IBMPlexSans-normal-400-latin-868a23.woff2">
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+/* Направление 2 — «Лаборатория»: светлая стерильная студия, всё как в паспорте машины: факты в таблице, тонкие линии, прямые углы. */
+:root{
+  --paper:#F4F6F8;   /* белый халат — фон */
+  --white:#FFFFFF;   /* лист */
+  --tile:#E4E8EC;    /* плитка — подложки */
+  --rule:#C3CAD2;    /* линия */
+  --ink:#111820;     /* графит — текст */
+  --steel:#5A6572;   /* сталь — подписи */
+  --blue:#1746D1;    /* синяя микрофибра из их бокса — акцент */
+  --ease:cubic-bezier(.2,0,0,1);
+  --bar:64px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.5 'IBM Plex Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,p,dl,dd,dt,figure{margin:0}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 16px}
+
+.top{position:relative;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-bottom:1px solid var(--rule);background:var(--paper)}
+.brand{font-weight:600;font-size:19px;letter-spacing:-.01em;padding:12px 0}
+.top-right{display:flex;align-items:center;gap:22px}
+.top-phone{display:none;font-weight:500;font-variant-numeric:tabular-nums}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;border-radius:2px;font:500 16px/1 'IBM Plex Sans',sans-serif;color:#fff;background:var(--blue);border:1px solid var(--blue);transition:transform .12s var(--ease)}
+.btn:active{transform:scale(.98)}
+.btn-line{color:var(--ink);background:var(--white);border-color:var(--ink)}
+.btn-sm{min-height:44px;padding:0 16px;font-size:15px}
+.top .btn{display:none} /* на телефоне звонок — в нижней полосе, в шапке не дублируем */
+.ico{width:20px;height:20px;flex:none}
+
+.hero{padding:18px 0 0}
+.name{display:block;overflow:hidden;margin:-.06em 0 -.1em -.03em;padding:.06em 0 .12em .03em;font-weight:500;font-size:clamp(72px,24vw,104px);line-height:.92;letter-spacing:-.045em}
+.name b{display:block;font-weight:inherit}
+.role{display:block;margin-top:6px;font-weight:500;font-size:clamp(19px,5.4vw,22px);line-height:1.2;letter-spacing:-.01em}
+.what{margin-top:10px;max-width:36ch;color:var(--steel);line-height:1.45}
+.ph{position:relative;margin-top:18px;aspect-ratio:358/404;background:var(--tile);overflow:hidden}
+.ph-in{position:absolute;inset:0;overflow:hidden}
+.ph-in img{width:100%;height:100%;object-fit:cover;object-position:50% 42%}
+.scan{position:absolute;inset:0;border-bottom:2px solid var(--blue);transform:translate3d(0,-100%,0);opacity:0;pointer-events:none}
+.tag{position:absolute;left:0;bottom:0;display:flex;align-items:center;gap:12px;padding:10px 16px 10px 14px;background:var(--white);border-top:1px solid var(--ink);border-right:1px solid var(--ink)}
+.tag-num{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:30px;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.tag-num svg{width:19px;height:19px;color:var(--blue)}
+.tag-txt{font-size:13px;line-height:1.3;color:var(--steel)}
+.frame{position:absolute;inset:0;border:1px solid var(--ink);pointer-events:none}
+.spec{display:grid;grid-template-columns:1fr 1fr;margin-top:0;border-bottom:1px solid var(--rule)}
+.spec div{padding:12px 12px 13px 0;border-top:1px solid var(--rule)}
+.spec div:nth-child(even){padding-left:12px;border-left:1px solid var(--rule)}
+.spec div:nth-child(-n+2){border-top:0}
+.spec .wide{grid-column:1/-1;padding-left:0;border-left:0}
+.spec dt{font-size:13px;line-height:1.3;color:var(--steel)}
+.spec dd{margin-top:2px;font-weight:500;font-size:15px;line-height:1.35}
+.hero-cta{display:none}
+
+.ba{margin-top:44px;padding:44px 0 40px;background:var(--white);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.h2{font-weight:500;font-size:clamp(28px,7.6vw,44px);line-height:1.08;letter-spacing:-.03em}
+.cmp{position:relative;margin-top:22px;aspect-ratio:4/5;overflow:hidden;background:var(--tile);outline:1px solid var(--ink);outline-offset:-1px;touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:ew-resize}
+.cmp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 0;opacity:0;transition:opacity .2s cubic-bezier(.25,.46,.45,.94);-webkit-user-drag:none}
+.cmp img.is-loaded{opacity:1}
+.cmp-before{position:absolute;inset:0;clip-path:inset(0 50% 0 0)}
+.cmp-track{position:absolute;inset:0;pointer-events:none;transform:translate3d(50%,0,0);will-change:transform}
+.cmp-line{position:absolute;transition:opacity .15s linear;top:0;bottom:0;left:-1px;width:2px;background:#fff;box-shadow:0 0 0 .5px rgba(0,0,0,.25)}
+.cmp-grip{position:absolute;top:50%;left:0;width:52px;height:52px;margin:-26px 0 0 -26px;padding:0;border:0;background:none;pointer-events:auto;cursor:ew-resize;touch-action:pan-y;will-change:transform}
+.cmp-grip i{position:absolute;inset:6px;background:var(--blue);border:1px solid #fff;border-radius:2px;display:grid;place-items:center;transition:transform .15s var(--ease)}
+.cmp-grip svg{width:22px;height:22px;color:#fff}
+.cmp.is-press .cmp-grip i{transform:scale(.94);transition-duration:.1s}
+.cmp.is-glide .cmp-before{transition:clip-path .18s cubic-bezier(.23,1,.32,1)}
+.cmp.is-glide .cmp-track{transition:transform .18s cubic-bezier(.23,1,.32,1)}
+.cmp.is-glide .cmp-grip{transition:transform .18s cubic-bezier(.23,1,.32,1)}
+.cmp-lbl{position:absolute;top:0;padding:8px 12px;font-weight:500;font-size:13px;line-height:1;color:var(--ink);background:var(--white);border-bottom:1px solid var(--ink);pointer-events:none;transition:opacity .15s cubic-bezier(.23,1,.32,1)}
+.cmp-lbl-b{left:0;border-right:1px solid var(--ink)}
+.cmp-lbl-a{right:0;border-left:1px solid var(--ink)}
+
+.prices{padding:44px 0 36px}
+.rows{margin-top:20px;border-top:1px solid var(--ink)}
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:16px;padding:15px 0;border-bottom:1px solid var(--rule)}
+.row dt{font-weight:500;font-size:17px}
+.row .sum{font-weight:600;font-size:18px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.row .in{grid-column:1/-1;margin-top:5px;font-size:14px;line-height:1.45;color:var(--steel);max-width:58ch}
+.promo{margin-top:20px;padding:14px 16px;background:var(--white);border:1px solid var(--rule);border-left:3px solid var(--blue);font-weight:500}
+.note{margin-top:14px;font-size:13px;line-height:1.45;color:var(--steel);max-width:56ch}
+.prices .btn{margin-top:20px;width:100%}
+.foot{padding:24px 0 calc(var(--bar) + env(safe-area-inset-bottom,0px) + 26px);border-top:1px solid var(--rule);font-size:12px;color:var(--steel)}
+
+.bar{position:fixed;z-index:20;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:8px 12px calc(8px + env(safe-area-inset-bottom,0px));background:rgba(244,246,248,.97);border-top:1px solid var(--rule)}
+.bar .btn{min-height:48px;padding:0 10px}
+
+/* появление: скрыто до запуска, место занято сразу */
+.js.pre .a,.js.pre .name b,.js.pre .ph{visibility:hidden}
+.js.pre .a,.js.pre .name b,.js.pre .ph{animation:failsafe 0s linear 3s forwards}
+@keyframes failsafe{to{visibility:visible}}
+.go .name b{animation:rise .38s var(--ease) .04s both}
+@keyframes rise{from{transform:translate3d(0,106%,0)}to{transform:none}}
+.go .a{animation:up .24s var(--ease) both;animation-delay:calc(.14s + var(--i,0) * .04s)}
+@keyframes up{from{opacity:0;transform:translate3d(0,8px,0)}to{opacity:1;transform:none}}
+.go .ph-in{animation:open-a .64s var(--ease) .18s both}
+.go .ph-in img{animation:open-b .64s var(--ease) .18s both}
+@keyframes open-a{from{transform:translate3d(0,-100%,0)}to{transform:none}}
+@keyframes open-b{from{transform:translate3d(0,100%,0)}to{transform:none}}
+.go .scan{animation:scan .64s var(--ease) .18s both,scan-off .16s linear .82s forwards}
+@keyframes scan{from{transform:translate3d(0,-100%,0);opacity:1}to{transform:translate3d(0,0,0);opacity:1}}
+@keyframes scan-off{to{opacity:0}}
+.go .tag{animation:tag .24s var(--ease) .78s both}
+@keyframes tag{from{opacity:0;transform:translate3d(-12px,0,0)}to{opacity:1;transform:none}}
+.go .spec .a{animation-delay:calc(.5s + var(--i,0) * .04s)}
+@media (prefers-reduced-motion:reduce){
+  .go .name b,.go .a,.go .ph-in,.go .ph-in img,.go .scan,.go .tag{animation:none}
+  .cmp.is-glide .cmp-before,.cmp.is-glide .cmp-track,.cmp.is-glide .cmp-grip{transition:none}
+}
+
+@media (min-width:900px){
+  .wrap{padding:0 48px}
+  .top{height:72px;padding:0 48px}
+  .brand{font-size:21px}
+  .top-phone{display:block}
+  .top .btn{display:inline-flex}
+  .bar{display:none}
+  .hero{padding:0}
+  .hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,46%);grid-template-rows:1fr auto;column-gap:64px;min-height:calc(100svh - 72px);padding-top:40px;padding-bottom:48px}
+  .hero-l{grid-column:1;grid-row:1;align-self:end}
+  .ph{grid-column:2;grid-row:1/3}
+  .spec{grid-column:1;grid-row:2}
+  .name{font-size:clamp(120px,13vw,208px)}
+  .role{font-size:30px;margin-top:10px}
+  .what{font-size:18px;margin-top:16px;max-width:38ch}
+  .ph{margin-top:0;aspect-ratio:auto;height:calc(100svh - 72px - 88px);min-height:480px;max-height:820px}
+  .ph-in img{object-position:50% 46%}
+  .spec{margin-top:36px;border-top:1px solid var(--rule)}
+  .spec dd{font-size:16px}
+  .hero-cta{display:flex;gap:12px;margin-top:28px}
+  .ba{margin-top:0;padding:96px 0}
+  .ba .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,46%);column-gap:64px;align-items:center}
+  .cmp{margin-top:0;max-width:540px;width:100%;justify-self:end}
+  .prices{padding:88px 0 64px}
+  .prices .wrap{max-width:900px}
+  .prices .btn{width:auto}
+  .foot{padding-bottom:36px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a class="brand" href="#top" aria-label="Лайф, в начало страницы">Лайф</a>
+  <div class="top-right">
+    <a class="top-phone" href="tel:+79776971951">+7 (977) 697-19-51</a>
+    <a class="btn btn-sm" href="tel:+79776971951">Позвонить</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-l">
+      <h1><span class="name"><b>Лайф</b></span><span class="role a" style="--i:1">детейлинг и автомойка</span></h1>
+      <p class="what a" style="--i:2">Мойка, химчистка салона, полировка, керамика, защитная плёнка и шиномонтаж.</p>
+      <div class="hero-cta a" style="--i:3">
+        <a class="btn" href="https://wa.me/79267941155?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F." target="_blank" rel="noopener">Записаться в WhatsApp</a>
+        <a class="btn btn-line" href="#ceny">Цены на мойку</a>
+      </div>
+    </div>
+    <figure class="ph">
+        <div class="ph-in"><img src="img/hero-1200.jpg" srcset="img/hero-1200.jpg 1200w, img/hero-2000.jpg 2000w" sizes="(min-width: 900px) 46vw, 100vw" width="1200" height="1600" alt="Белые машины в боксе «Лайф» под шестиугольными светильниками" fetchpriority="high" decoding="async"></div>
+        <div class="scan"></div>
+        <div class="frame"></div>
+        <figcaption class="tag a">
+          <span class="tag-num">5,0 <svg viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 1.2l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.5l6.1-.7z"/></svg></span>
+          <span class="tag-txt">1&nbsp;092 оценки<br>на Яндекс Картах</span>
+        </figcaption>
+    </figure>
+    <dl class="spec">
+        <div class="a" style="--i:0"><dt>Открыто</dt><dd>каждый день<br>с&nbsp;8:00 до&nbsp;22:00</dd></div>
+        <div class="a" style="--i:1"><dt>Запись заранее</dt><dd>есть</dd></div>
+        <div class="a" style="--i:2"><dt>Моечных зон</dt><dd>4</dd></div>
+        <div class="a" style="--i:3"><dt>Пока ждёте</dt><dd>кафе и Wi-Fi</dd></div>
+        <div class="a wide" style="--i:4"><dt>Адрес</dt><dd>Видное, Олимпийская улица, 6, корп.&nbsp;1</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="ba" id="do-posle">
+  <div class="wrap">
+    <div class="ba-text">
+      <h2 class="h2">Фара до и после полировки</h2>
+    </div>
+    <div class="cmp" data-pos="50">
+        <img src="img/fara-after-1200.jpg" width="1200" height="1500" alt="Фара после полировки: стекло прозрачное" loading="lazy" decoding="async" draggable="false">
+        <div class="cmp-before"><img src="img/fara-before-1200.jpg" width="1200" height="1500" alt="Та же фара до полировки: стекло мутное" loading="lazy" decoding="async" draggable="false"></div>
+        <span class="cmp-lbl cmp-lbl-b">До</span>
+        <span class="cmp-lbl cmp-lbl-a">После</span>
+        <div class="cmp-track">
+          <span class="cmp-line"></span>
+          <button class="cmp-grip" type="button" role="slider" aria-label="Шторка: сколько видно фото «до»" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><i><svg viewBox="0 0 22 22" aria-hidden="true"><path d="M8.5 6.5L4.5 11l4 4.5M13.5 6.5l4 4.5-4 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square"/></svg></i></button>
+        </div>
+    </div>
+  </div>
+</section>
+
+<section class="prices" id="ceny">
+  <div class="wrap">
+    <h2 class="h2">Цены на мойку</h2>
+    <dl class="rows">
+      <div class="row"><dt>Мойка кузова в три фазы</dt><dd class="sum">от 1&nbsp;000&nbsp;₽</dd></div>
+      <div class="row"><dt>Комплексная мойка</dt><dd class="sum">от 2&nbsp;000&nbsp;₽</dd>
+        <dd class="in">Входит: мойка кузова в три фазы, продувка воздухом, протирка микрофиброй, чистка ковриков, пылесос, влажная уборка салона, стёкла изнутри.</dd></div>
+      <div class="row"><dt>Зимняя мойка</dt><dd class="sum">от 2&nbsp;200&nbsp;₽</dd>
+        <dd class="in">Входит: мойка кузова в три фазы, удаление реагента, обработка замков и уплотнителей.</dd></div>
+    </dl>
+    <p class="promo">В будни с 8:00 до 11:00 — скидка 20&nbsp;% на все услуги мойки.</p>
+    <p class="note">Цены для легковой машины. Для кроссовера и внедорожника уточните цену при записи.</p>
+    <a class="btn" href="https://wa.me/79267941155?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A1%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%D1%81%D1%82%D0%BE%D0%B8%D1%82%20%D0%BC%D0%BE%D0%B9%D0%BA%D0%B0%20%D0%B4%D0%BB%D1%8F%20%D0%BC%D0%BE%D0%B5%D0%B9%20%D0%BC%D0%B0%D1%88%D0%B8%D0%BD%D1%8B%3F" target="_blank" rel="noopener">Спросить цену в WhatsApp</a>
+  </div>
+</section>
+</main>
+
+<footer class="foot"><div class="wrap">Демо-версия сайта. Не официальный сайт «Лайф».</div></footer>
+
+<nav class="bar" aria-label="Связаться">
+  <a class="btn" href="tel:+79776971951"><svg class="ico" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M5.2 1.8l2.6-.5 1.9 4.4-2 1.6c.9 1.9 2.3 3.3 4.2 4.2l1.6-2 4.4 1.9-.5 2.6c-.2 1-1 1.700-2 1.700C8.900 15.700 3.500 10.300 3.500 3.800c0-1 .700-1.800 1.700-2z"/></svg>Позвонить</a>
+  <a class="btn btn-line" href="https://wa.me/79267941155?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F." target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 1.5a8.400 8.400 0 0 0-7.200 12.800L1.600 18.400l4.300-1.100A8.400 8.400 0 1 0 10 1.500zm0 1.700a6.700 6.700 0 1 1-3.500 12.400l-.300-.2-2.200.6.6-2.100-.2-.3A6.700 6.700 0 0 1 10 3.200zM7.300 5.900c-.2 0-.5 0-.7.300-.3.300-1 .9-1 2.300s1 2.700 1.100 2.800c.1.200 2 3.100 4.900 4.200 2.400.9 2.900.7 3.400.7.500-.1 1.600-.7 1.800-1.300.2-.6.2-1.200.2-1.300-.1-.1-.3-.2-.6-.3l-1.900-.9c-.3-.1-.4-.1-.6.100l-.800 1c-.1.200-.3.2-.6.100-.300-.1-1.100-.4-2.100-1.300-.8-.7-1.300-1.500-1.500-1.800-.100-.300 0-.4.100-.5l.4-.5c.1-.1.2-.3.3-.4.100-.2 0-.3 0-.5l-.800-2c-.2-.5-.4-.5-.6-.5z"/></svg>WhatsApp</a>
+</nav>
+
+<script src="cmp.js" defer></script>
+<script>
+(function () {
+  var d = document.documentElement, started = false;
+  function go() { if (started) return; started = true; window.__goAt = Math.round(performance.now()); d.classList.remove('pre'); d.classList.add('go'); }
+  var need = [['500 80px "IBM Plex Sans"', 'Лайф'], ['400 16px "IBM Plex Sans"', 'Мойка, химчистка 1 092 WhatsApp 5,0'], ['600 16px "IBM Plex Sans"', '5,0']];
+  var fonts = (document.fonts && document.fonts.load) ? Promise.all(need.map(function (n) { return document.fonts.load(n[0], n[1]); })) : Promise.resolve();
+  var img = document.querySelector('.ph-in img');
+  var photo = new Promise(function (res) { if (!img || (img.complete && img.naturalWidth)) return res(); img.addEventListener('load', res); img.addEventListener('error', res); });
+  Promise.all([fonts, photo]).then(go, go);
+  setTimeout(go, 2400);
+})();
+</script>
+</body>
+</html>

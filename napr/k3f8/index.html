@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Кафе «Якорь»: два направления</title>
+<link rel="icon" href="data:,">
+<style>
+:root{--bg:#E9ECEF;--ink:#14181D;--mute:#56606B;--line:#C9CFD6;--s:.8}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,p{margin:0}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+.head{padding:28px 0 22px}
+h1{font-size:clamp(24px,3.2vw,34px);line-height:1.15;font-weight:700;letter-spacing:-.01em}
+.head p{margin-top:8px;max-width:72ch;color:var(--mute)}
+.grid{display:grid;grid-template-columns:1fr;gap:44px;padding-bottom:36px}
+.dir{display:flex;flex-direction:column;align-items:center;min-width:0}
+.phone{position:relative;width:calc(390px * var(--s));height:calc(844px * var(--s));overflow:hidden;border-radius:calc(28px * var(--s));background:#0B0E13;box-shadow:0 0 0 1px var(--line),0 0 0 calc(7px * var(--s)) #14181D}
+.phone iframe{display:block;width:calc(390px + var(--sb,0px));max-width:none;height:844px;border:0;transform:scale(var(--s));transform-origin:0 0}
+.txt{width:100%;max-width:calc(390px * var(--s) + 14px);margin-top:26px}
+h2{font-size:20px;line-height:1.25;font-weight:700}
+.txt p{margin-top:8px;font-size:15px;line-height:1.5}
+.txt .why{color:var(--mute)}
+.acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.acts a,.acts button{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:6px;font-family:inherit;font-weight:600;font-size:15px;line-height:1;cursor:pointer;text-decoration:none}
+.acts a{color:#fff;background:var(--ink);border:1px solid var(--ink)}
+.acts button{color:var(--ink);background:transparent;border:1px solid var(--ink)}
+.foot{padding:20px 0 32px;border-top:1px solid var(--line);font-size:12px;color:var(--mute)}
+:focus-visible{outline:2px solid #1746D1;outline-offset:3px}
+@media (min-width:900px){
+  .wrap{padding:0 40px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;align-items:start}
+  .txt{max-width:420px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="head">
+    <h1>Кафе «Якорь»: два направления</h1>
+    <p>В обоих одни и те же данные и фото «Якоря». Название набрано так же, как на обложке их меню, блюда и цены — тем же шрифтом, что в самом меню. Разные тема, подача фото и движение. Блюда сменяются сами раз в три секунды; можно листать пальцем или мышью, прямо в этих экранах.</p>
+  </header>
+
+  <main class="grid">
+    <section class="dir">
+      <div class="phone"><iframe data-src="1.html" title="Направление 1 — Синяя доска"></iframe></div>
+      <div class="txt">
+        <h2>1. Синяя доска</h2>
+        <p>Тёмная тема, как страница их печатного меню. Фото из меню стоят целиком, вместе с сине-серым деревом их съёмки. Блюдо сменяется наплывом и медленно приближается. Кнопки цвета углей, формы прямые.</p>
+        <p class="why">Чем сильно: ближе всего к их меню; мангал и рыба видны в первую секунду.</p>
+        <div class="acts"><a href="1.html">Открыть на телефоне</a><button type="button" data-again>Показать появление ещё раз</button></div>
+      </div>
+    </section>
+
+    <section class="dir">
+      <div class="phone"><iframe data-src="2.html" title="Направление 2 — Веранда"></iframe></div>
+      <div class="txt">
+        <h2>2. Веранда</h2>
+        <p>Светлая тема, как обложка их меню: тёмно-синее название, голубой — цвет воды на их знаке. Блюда вырезаны из фото и едут лентой; у края своей зоны блюдо гаснет. Формы мягкие.</p>
+        <p class="why">Чем сильно: светло и спокойно, как на веранде у реки; на компьютере блюдо и текст не мешают друг другу.</p>
+        <div class="acts"><a href="2.html">Открыть на телефоне</a><button type="button" data-again>Показать появление ещё раз</button></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">Демо-набросок для кафе «Якорь». Не официальный сайт.</footer>
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  function fit() {
+    var wide = window.matchMedia('(min-width: 900px)').matches;
+    var col = wide ? (Math.min(window.innerWidth, 1040) - 80 - 32) / 2 : window.innerWidth - 46;
+    var s = Math.min(1, (col - 14) / 390);
+    if (wide) s = Math.min(s, Math.max(.6, (window.innerHeight - 196) / 844));
+    root.style.setProperty('--s', s.toFixed(4));
+  }
+  /* полоса прокрутки на компьютере не должна сужать экран телефона: прячем её за край рамки */
+  var probe = document.createElement('div');
+  probe.style.cssText = 'position:absolute;top:-99px;width:60px;height:60px;overflow:scroll';
+  document.body.appendChild(probe);
+  root.style.setProperty('--sb', (probe.offsetWidth - probe.clientWidth) + 'px');
+  document.body.removeChild(probe);
+  fit();
+  window.addEventListener('resize', fit);
+  var frames = [].slice.call(document.querySelectorAll('iframe[data-src]'));
+  function load(f) { if (!f.getAttribute('src')) f.setAttribute('src', f.getAttribute('data-src')); }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { load(e.target); io.unobserve(e.target); } });
+    }, { threshold: .45 });
+    frames.forEach(function (f) { io.observe(f); });
+  } else frames.forEach(load);
+  [].forEach.call(document.querySelectorAll('[data-again]'), function (b) {
+    b.addEventListener('click', function () {
+      var f = b.closest('.dir').querySelector('iframe');
+      f.setAttribute('src', f.getAttribute('data-src') + '?r=' + Date.now());
+      f.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    });
+  });
+})();
+</script>
+</body>
+</html>
