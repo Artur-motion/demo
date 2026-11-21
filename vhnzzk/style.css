@@ -182,10 +182,18 @@ img { display: block; max-width: 100%; }
 }
 
 /* ---------- Первый экран с анимацией (класс ставит script.js) ---------- */
-/* Пока анимация не запустилась, карточку с фото не показываем: иначе фото успевает появиться
-   в обычном виде и прыгает в «окно», когда скрипт переставляет карточку. Через 3 с без анимации — no-motion, видно как есть. */
-.js-anim:not(.no-motion):not(.cine-live) .cine-card { visibility: hidden; }
+/* Пока анимация не запустилась, первый экран не показываем, но его место (высота экрана) уже занято.
+   Иначе подзаголовок, кнопки и фото успевают появиться в обычной вёрстке и прыгают, когда скрипт их переставляет
+   и когда догружаются шрифты. Скрипт ждёт шрифты и показывает всё сразу в готовом виде.
+   Через 3 с без анимации — no-motion: обычная колонка, всё видно. */
+/* margin-bottom — длина прокрутки первого экрана (как --pin-len в script.js: 2200 / на телефоне 1600). Пока её не было,
+   до запуска скрипта страница была короткой, залы и лента оказывались «рядом с экраном», и все их фото (2–4 МБ)
+   начинали грузиться сразу, наперегонки с первым фото. */
+.js-anim:not(.no-motion):not(.cine-live) .cine { height: 100vh; height: 100svh; padding: 0; margin-bottom: 2200px; overflow: hidden; visibility: hidden; }
 .cine-live .cine { height: 100vh; height: 100svh; padding: 0; overflow: hidden; }
+/* Закрепление при прокрутке: обёртку ставит script.js, длина прокрутки — в --pin-len */
+.cine-pin { height: calc(100vh + var(--pin-len, 0px)); height: calc(100svh + var(--pin-len, 0px)); }
+.cine-pin > .cine { position: sticky; top: 0; }
 .cine-live .cine-title {
   position: absolute;
   inset: 0;
@@ -198,6 +206,7 @@ img { display: block; max-width: 100%; }
 .hero-actions { margin-top: 28px; }
 .cine-live .cine-card {
   position: absolute;
+  will-change: transform; /* свой слой на всё время: не пересоздаётся между этапами прокрутки */
   left: 50%;
   top: 50%;
   width: 85vw;
@@ -549,6 +558,7 @@ img { display: block; max-width: 100%; }
   .cine h1 { font-size: min(14.4vw, 60px); line-height: .98; }
   .cine-sub { font-size: 23px; margin-top: 14px; }
   .cine-live .cine-title { padding-bottom: 6vh; }
+  .js-anim:not(.no-motion):not(.cine-live) .cine { margin-bottom: 1600px; }
   .actions.hero-actions, .actions.cta-actions { flex-direction: row; flex-wrap: nowrap; justify-content: center; margin-top: 22px; gap: 10px; width: 100%; max-width: 343px; }
   .hero-actions .btn, .cta-actions .btn { flex: 1 1 0; padding: 0 12px; }
   .actions.cta-actions { justify-content: flex-start; margin-left: 0; }

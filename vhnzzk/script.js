@@ -17,10 +17,15 @@
     if (contacts) new IntersectionObserver(function (e) { contactsSeen = e[0].isIntersecting; update(); }).observe(contacts);
   })();
 
-  if (reduce || !window.gsap || !window.ScrollTrigger) {
+  // no-motion уже стоит, если анимация не успела за 3 с (запасной показ в <head>): страница остаётся обычной,
+  // иначе готовая страница на глазах перестроилась бы в первый экран с анимацией.
+  if (reduce || !window.gsap || !window.ScrollTrigger || root.classList.contains('no-motion')) {
     root.classList.add('no-motion');
     return;
   }
+
+  // Фото ниже первого экрана расшифровываются в фоне: кадр прокрутки их не ждёт (меньше рывков на слабом телефоне)
+  [].forEach.call(document.querySelectorAll('img:not(.cine-photo)'), function (img) { img.decoding = 'async'; });
 
   gsap.registerPlugin(ScrollTrigger);
   ScrollTrigger.config({ ignoreMobileResize: true });
@@ -33,9 +38,18 @@
   if (mq.addEventListener) mq.addEventListener('change', onModeChange); else if (mq.addListener) mq.addListener(onModeChange);
 
   /* ---------- Первый экран ---------- */
-  (function hero() {
+  function hero() {
     var sec = document.querySelector('.cine');
     if (!sec) return;
+    // Закрепление первого экрана делает сам браузер (position: sticky в обёртке нужной высоты), а не скрипт.
+    // Раньше скрипт переключал секцию между fixed и обычным положением: на телефоне прокрутка идёт без ожидания скрипта,
+    // и в момент, когда закрепление снималось, фото уезжало наверх рывками.
+    var scrollLen = mobile ? 1600 : 2200;
+    var pinWrap = document.createElement('div');
+    pinWrap.className = 'cine-pin';
+    pinWrap.style.setProperty('--pin-len', scrollLen + 'px');
+    sec.parentNode.insertBefore(pinWrap, sec);
+    pinWrap.appendChild(sec);
     root.classList.add('cine-live');
 
     var title = sec.querySelector('.cine-title');
@@ -56,7 +70,7 @@
 
     // Верх фото зала виден уже в первом экране («окно» внизу): в образце карточка ждёт под экраном,
     // но тогда первый экран без фото. Дальше механика та же: карточка въезжает и раскрывается.
-    var secTop = sec.getBoundingClientRect().top + window.pageYOffset; // шапка и плашка над первым экраном
+    var secTop = pinWrap.getBoundingClientRect().top + window.pageYOffset; // шапка над первым экраном (по обёртке: она не закрепляется)
     // На телефоне фото начинается сразу под кнопками (без пустых полос), но не меньше 30 % высоты экрана.
     var h1 = sec.querySelector('h1'), btns = sec.querySelector('.hero-actions'), contentH = 0;
     function measure() { if (h1 && btns) contentH = btns.getBoundingClientRect().bottom - h1.getBoundingClientRect().top; }
@@ -74,7 +88,7 @@
     // Шрифты догружаются позже — пересчитать высоту заголовка и место фото
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (window.pageYOffset === 0) ScrollTrigger.refresh(); });
     ScrollTrigger.addEventListener('refreshInit', function () {
-      if (window.pageYOffset === 0) { secTop = sec.getBoundingClientRect().top; measure(); }
+      if (window.pageYOffset === 0) { secTop = pinWrap.getBoundingClientRect().top; measure(); }
       place();
     });
     if (shade) gsap.set(shade, { opacity: 0 });                  // затемнение нужно только под текстом
@@ -92,12 +106,10 @@
     // Прокрутка: заголовок уходит, фото въезжает и раскрывается на весь экран, потом сжимается и уходит
     var tl = gsap.timeline({
       scrollTrigger: {
-        trigger: sec,
+        trigger: pinWrap,
         start: 'top top',
-        end: '+=' + (mobile ? 1600 : 2200),
-        pin: true,
+        end: '+=' + scrollLen,
         scrub: 1,
-        anticipatePin: 1,
         invalidateOnRefresh: true
       }
     });
@@ -115,10 +127,10 @@
     // На телефоне заголовок не размывается, поэтому прячем его, чтобы он не просвечивал под кнопками
     if (!blur && !light) tl.to(title, { autoAlpha: 0, duration: 0.4 }, 3.6);
     tl.to(cta, { autoAlpha: 1, scale: 1, filter: blur ? 'blur(0px)' : 'none', duration: 1, ease: 'power2.out' }, 3.9);
-  })();
+  }
 
   /* ---------- Ряды фото навстречу друг другу ---------- */
-  (function gallery() {
+  function gallery() {
     var strip = document.querySelector('.gallery');
     if (!strip) return;
     var toggle = document.querySelector('.motion-toggle');
@@ -189,5 +201,29 @@
         { x: function () { return Math.min(window.innerWidth, 1300) * 0.83; }, autoAlpha: 0 },
         { x: 0, autoAlpha: 1, duration: 0.65, stagger: 0.09 }, 0);
     });
-  })();
+  }
+
+  /* ---------- Запуск: первый экран появляется один раз и сразу в готовом виде ---------- */
+  // До запуска первый экран скрыт (style.css). Ждём его шрифты: с запасным шрифтом заголовок занимает больше строк,
+  // и после подмены шрифта подзаголовок, кнопки и фото прыгали вверх. Ждём не дольше ~2,4 с от начала загрузки:
+  // в 3 с срабатывает запасной показ без анимации.
+  function heroFonts() {
+    if (!document.fonts || !document.fonts.load) return Promise.resolve();
+    var jobs = [];
+    [].forEach.call(document.querySelectorAll('.cine h1, .cine-sub, .hero-actions .btn'), function (el) {
+      var cs = window.getComputedStyle(el);
+      jobs.push(document.fonts.load(cs.fontStyle + ' ' + cs.fontWeight + ' ' + cs.fontSize + ' ' + cs.fontFamily, el.textContent));
+    });
+    return Promise.all(jobs);
+  }
+  var started = false;
+  function start() {
+    if (started) return;
+    started = true;
+    if (root.classList.contains('no-motion')) return; // запасной показ уже сработал
+    hero();
+    gallery();
+  }
+  heroFonts().then(start, start);
+  setTimeout(start, Math.max(0, 2400 - performance.now()));
 })();
