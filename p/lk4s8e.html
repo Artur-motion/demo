@@ -6,10 +6,10 @@
 <meta name="robots" content="noindex, nofollow">
 <title>«Luxe» — банкетный зал в Астрахани</title>
 <meta name="description" content="«Luxe» в Астрахани: залы, банкетное меню, новогодние корпоративы. Демо-версия сайта.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Golos+Text:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://images.unsplash.com">
+<link rel="stylesheet" href="../lib/fonts.css">
+<link rel="preload" as="font" type="font/woff2" href="../lib/fonts/CormorantGaramond-normal-500-cyrillic-dc67de.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../lib/fonts/GolosText-normal-400-cyrillic-465785.woff2" crossorigin>
+<link rel="preload" as="image" href="img/lk4s8e/hero.jpg" fetchpriority="high">
 <link rel="stylesheet" href="../vhnzzk/style.css">
 <link rel="stylesheet" href="../vhnzzk/light.css">
 <style>
@@ -26,8 +26,8 @@
   setTimeout(function () { if (!r.classList.contains('cine-live')) r.classList.add('no-motion'); }, 3000);
 })();
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="../lib/gsap.min.js" defer></script>
+<script src="../lib/ScrollTrigger.min.js" defer></script>
 <script src="../vhnzzk/script.js" defer></script>
 <style>@media (max-width: 760px) { .cine-photo { object-position: 20% 50% !important; height: 160%; top: -60%; bottom: auto; } }</style>
 </head>
@@ -62,7 +62,7 @@
   </div>
 
   <div class="cine-card">
-    <img class="cine-photo" src="img/lk4s8e/hero.jpg" alt="Фото «Luxe» с Яндекс Карт" referrerpolicy="no-referrer">
+    <img fetchpriority="high" class="cine-photo" src="img/lk4s8e/hero.jpg" alt="Фото «Luxe» с Яндекс Карт" referrerpolicy="no-referrer">
     <div class="cine-shade" aria-hidden="true"></div>
     <div class="cine-card-text">
       <h2>Два зала, всего до&nbsp;70 гостей</h2>
@@ -81,7 +81,7 @@
           <a class="btn btn-line" href="https://wa.me/79616553395"><span class="wide-only">Написать в&nbsp;</span>WhatsApp</a>
         </div>
       </div>
-      <img class="cta-photo" src="https://avatars.mds.yandex.net/get-altay/12820607/2a00000192b58181ff81da7c3981dc0e8012/orig" alt="Фото «Luxe» с Яндекс Карт" referrerpolicy="no-referrer">
+      <img class="cta-photo" src="img/lk4s8e/7ad7c15bcd-1200.jpg" alt="Фото «Luxe» с Яндекс Карт">
     </div>
   </div>
 </section>
@@ -96,8 +96,8 @@
     <div class="halls">
       <article class="hall">
         <div class="hall-photos">
-          <img class="hall-main" src="https://avatars.mds.yandex.net/get-altay/10095165/2a000001927136563174a3ec65644d3e65e2/orig" alt="Фото «Luxe» с Яндекс Карт" referrerpolicy="no-referrer" loading="lazy">
-          <img class="hall-extra" src="https://avatars.mds.yandex.net/get-altay/14844975/2a000001955314d659802b6227d4a30e129b/orig" alt="Фото «Luxe» с Яндекс Карт" referrerpolicy="no-referrer" loading="lazy">
+          <img class="hall-main" src="img/lk4s8e/8e11e94780-1200.jpg" alt="Фото «Luxe» с Яндекс Карт" loading="lazy">
+          <img class="hall-extra" src="img/lk4s8e/60d500284e-1200.jpg" alt="Фото «Luxe» с Яндекс Карт" loading="lazy">
         </div>
         <div class="hall-text">
           <h3>Белый зал</h3>
@@ -107,8 +107,8 @@
       </article>
       <article class="hall">
         <div class="hall-photos">
-          <img class="hall-main" src="https://avatars.mds.yandex.net/get-altay/10267222/2a00000192b58248c8679198c7bcbaec858b/orig" alt="Фото «Luxe» с Яндекс Карт" referrerpolicy="no-referrer" loading="lazy">
-          <img class="hall-extra" src="https://avatars.mds.yandex.net/get-altay/13805978/2a00000192b582190290264db95a58798554/orig" alt="Фото «Luxe» с Яндекс Карт" referrerpolicy="no-referrer" loading="lazy">
+          <img class="hall-main" src="img/lk4s8e/e3501502fe-1200.jpg" alt="Фото «Luxe» с Яндекс Карт" loading="lazy">
+          <img class="hall-extra" src="img/lk4s8e/f9137dee43-1200.jpg" alt="Фото «Luxe» с Яндекс Карт" loading="lazy">
         </div>
         <div class="hall-text">
           <h3>Персиковый зал</h3>
@@ -124,18 +124,18 @@
     <div class="gallery-tilt">
       <div class="lane">
         <div class="lane-group">
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/13482651/2a00000192b581d1a7202f060e4cc52f350a/XXL" alt="Фото «Luxe» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/14165812/2a00000192b581acf6bd042573c6ab124ff8/XXL" alt="Фото «Luxe» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/13594632/2a0000019271361248e7dee55ea087a72bcc/XXL" alt="Фото «Luxe» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/13294935/2a00000192b5810a985d2f0098dd7b8f349e/XXL" alt="Фото «Luxe» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/lk4s8e/39219f8368-1024.jpg" alt="Фото «Luxe» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/lk4s8e/cf6bea5e3e-1024.jpg" alt="Фото «Luxe» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/lk4s8e/ed6f7f3f53-1024.jpg" alt="Фото «Luxe» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/lk4s8e/1041678318-1024.jpg" alt="Фото «Luxe» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
         </div>
       </div>
       <div class="lane">
         <div class="lane-group">
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/14381528/2a00000194cb3fa31caf39a4a9d83f3e2016/XXL" alt="Фото «Luxe» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/15352901/2a00000194cb3fa30958c310970b15ec62e8/XXL" alt="Фото «Luxe» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/14793643/2a000001955314d6124572e99f1113244c1a/XXL" alt="Фото «Luxe» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/14296560/2a0000019271368cc53659f9bf4dacfc8e5f/XXL" alt="Фото «Luxe» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/lk4s8e/7b35b05fff-1024.jpg" alt="Фото «Luxe» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/lk4s8e/9519be5811-1024.jpg" alt="Фото «Luxe» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/lk4s8e/11a808905a-1024.jpg" alt="Фото «Luxe» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/lk4s8e/39e75fe070-1024.jpg" alt="Фото «Luxe» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
         </div>
       </div>
     </div>
@@ -171,7 +171,7 @@
 </section>
 
 <section class="sec sec-photo" id="korporativy" aria-labelledby="korp-title">
-  <img class="sec-photo-bg" src="https://images.unsplash.com/photo-1763463608071-1d02213619e7?auto=format&fit=crop&w=2000&q=80" alt="" loading="lazy">
+  <img class="sec-photo-bg" src="img/lk4s8e/356d40650c-2000.jpg" alt="" loading="lazy">
   <div class="wrap split">
     <div class="sec-head">
       <h2 id="korp-title">Новогодние корпоративы</h2>

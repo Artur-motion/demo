@@ -182,6 +182,9 @@ img { display: block; max-width: 100%; }
 }
 
 /* ---------- Первый экран с анимацией (класс ставит script.js) ---------- */
+/* Пока анимация не запустилась, карточку с фото не показываем: иначе фото успевает появиться
+   в обычном виде и прыгает в «окно», когда скрипт переставляет карточку. Через 3 с без анимации — no-motion, видно как есть. */
+.js-anim:not(.no-motion):not(.cine-live) .cine-card { visibility: hidden; }
 .cine-live .cine { height: 100vh; height: 100svh; padding: 0; overflow: hidden; }
 .cine-live .cine-title {
   position: absolute;

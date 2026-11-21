@@ -6,10 +6,10 @@
 <meta name="robots" content="noindex, nofollow">
 <title>«Старый город» — банкетный зал в Балашихе</title>
 <meta name="description" content="«Старый город» в Балашихе: залы, банкетное меню, новогодние корпоративы. Демо-версия сайта.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Golos+Text:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://images.unsplash.com">
+<link rel="stylesheet" href="../lib/fonts.css">
+<link rel="preload" as="font" type="font/woff2" href="../lib/fonts/CormorantGaramond-normal-500-cyrillic-dc67de.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../lib/fonts/GolosText-normal-400-cyrillic-465785.woff2" crossorigin>
+<link rel="preload" as="image" href="img/sg9d4w/1b6022dc8c-2000.jpg" fetchpriority="high">
 <link rel="stylesheet" href="../vhnzzk/style.css">
 <link rel="stylesheet" href="../vhnzzk/light.css">
 <style>
@@ -26,8 +26,8 @@
   setTimeout(function () { if (!r.classList.contains('cine-live')) r.classList.add('no-motion'); }, 3000);
 })();
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="../lib/gsap.min.js" defer></script>
+<script src="../lib/ScrollTrigger.min.js" defer></script>
 <script src="../vhnzzk/script.js" defer></script>
 <style>@media (max-width: 760px) { .cine-photo { object-position: 50% 50% !important; height: 145%; top: -38.3%; bottom: auto; } }</style>
 </head>
@@ -61,7 +61,7 @@
   </div>
 
   <div class="cine-card">
-    <img class="cine-photo" src="https://images.unsplash.com/photo-1524824267900-2fa9cbf7a506?auto=format&fit=crop&w=2400&q=80" alt="Фото для примера" referrerpolicy="no-referrer">
+    <img fetchpriority="high" class="cine-photo" src="img/sg9d4w/1b6022dc8c-2000.jpg" alt="Фото для примера">
     <div class="cine-shade" aria-hidden="true"></div>
     <div class="cine-card-text">
       <h2>Два зала, всего до&nbsp;60 гостей</h2>
@@ -79,7 +79,7 @@
           <a class="btn btn-gold" href="tel:+74955293316">Позвонить</a>
         </div>
       </div>
-      <img class="cta-photo" src="https://avatars.mds.yandex.net/get-altay/13929277/2a00000192707e2e0e5e01871daf900d081b/orig" alt="Фото «Старый город» с Яндекс Карт" referrerpolicy="no-referrer">
+      <img class="cta-photo" src="img/sg9d4w/0f6f88a1d0-1200.jpg" alt="Фото «Старый город» с Яндекс Карт">
     </div>
   </div>
 </section>
@@ -94,8 +94,8 @@
     <div class="halls">
       <article class="hall">
         <div class="hall-photos">
-          <img class="hall-main" src="https://avatars.mds.yandex.net/get-altay/15251677/2a000001981d193ba0268e3fe6fb4ca12f4c/orig" alt="Фото «Старый город» с Яндекс Карт" referrerpolicy="no-referrer" loading="lazy">
-          <img class="hall-extra" src="https://avatars.mds.yandex.net/get-altay/10156117/2a00000189f3a56934ba672908ba1c02c542/orig" alt="Фото «Старый город» с Яндекс Карт" referrerpolicy="no-referrer" loading="lazy">
+          <img class="hall-main" src="img/sg9d4w/366bbcef41-1200.jpg" alt="Фото «Старый город» с Яндекс Карт" loading="lazy">
+          <img class="hall-extra" src="img/sg9d4w/efd2e15db5-1200.jpg" alt="Фото «Старый город» с Яндекс Карт" loading="lazy">
         </div>
         <div class="hall-text">
           <h3>Жёлтый зал</h3>
@@ -105,8 +105,8 @@
       </article>
       <article class="hall">
         <div class="hall-photos">
-          <img class="hall-main" src="https://avatars.mds.yandex.net/get-altay/223006/2a0000015b1fea6ac1a8af79564d91847b20/orig" alt="Фото «Старый город» с Яндекс Карт" referrerpolicy="no-referrer" loading="lazy">
-          <img class="hall-extra" src="https://avatars.mds.yandex.net/get-altay/18134764/2a0000019dc5be82a576d7b2ac045ad472f3/orig" alt="Фото «Старый город» с Яндекс Карт" referrerpolicy="no-referrer" loading="lazy">
+          <img class="hall-main" src="img/sg9d4w/3c3a47c419-1200.jpg" alt="Фото «Старый город» с Яндекс Карт" loading="lazy">
+          <img class="hall-extra" src="img/sg9d4w/b1b0512041-1200.jpg" alt="Фото «Старый город» с Яндекс Карт" loading="lazy">
         </div>
         <div class="hall-text">
           <h3>Зал с кирпичом</h3>
@@ -122,22 +122,22 @@
     <div class="gallery-tilt">
       <div class="lane">
         <div class="lane-group">
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/9428388/2a00000189eaef7cea40935870e1cf4b2b3e/XXL" alt="Фото «Старый город» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/5527230/2a0000018393d00f02150a717347257ec386/XXL" alt="Фото «Старый город» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/10648814/2a00000189eaef7cf0eb616259252be8921c/XXL" alt="Фото «Старый город» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/15223195/2a00000194f5621d812be2ab267efd068b95/XXL" alt="Фото «Старый город» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/9663145/2a00000189f34c42e514e8fe64d222c8a255/XXL" alt="Фото «Старый город» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/14800460/2a00000195474a3da30c09e2fc70ac4c2e53/XXL" alt="Фото «Старый город» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/sg9d4w/feb94197d4-1024.jpg" alt="Фото «Старый город» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/sg9d4w/d2487a9b15-1024.jpg" alt="Фото «Старый город» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/sg9d4w/a7b585c338-1024.jpg" alt="Фото «Старый город» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/sg9d4w/1deec758e6-1024.jpg" alt="Фото «Старый город» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/sg9d4w/7155ceeb1a-1024.jpg" alt="Фото «Старый город» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/sg9d4w/1dad92eb63-1024.jpg" alt="Фото «Старый город» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
         </div>
       </div>
       <div class="lane">
         <div class="lane-group">
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/16399547/2a000001981d193c21983a6eea355d068b70/XXL" alt="Фото «Старый город» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/11421964/2a0000018c5821f823a749ddf9b7be087ca8/XXL" alt="Фото «Старый город» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/14540206/2a00000194f56220742f8bd72ecb9a552ebc/XXL" alt="Фото «Старый город» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/14033308/2a00000191f715a08d05e0d9878d5429b3f1/XXL" alt="Фото «Старый город» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/216588/2a0000015b1fea625a02d8e0b3a4c5a489c5/XXL" alt="Фото «Старый город» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/223006/2a0000015b1fea362b6b9927178fb2196d6a/XXL" alt="Фото «Старый город» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/sg9d4w/860b2ecf8f-1024.jpg" alt="Фото «Старый город» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/sg9d4w/ab7587ed7d-1024.jpg" alt="Фото «Старый город» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/sg9d4w/c6bcd1741d-1024.jpg" alt="Фото «Старый город» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/sg9d4w/0e549f7326-1024.jpg" alt="Фото «Старый город» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/sg9d4w/e9d4400e09-1024.jpg" alt="Фото «Старый город» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/sg9d4w/4429a86240-1024.jpg" alt="Фото «Старый город» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
         </div>
       </div>
     </div>
@@ -173,7 +173,7 @@
 </section>
 
 <section class="sec sec-photo" id="korporativy" aria-labelledby="korp-title">
-  <img class="sec-photo-bg" src="https://images.unsplash.com/photo-1763463608071-1d02213619e7?auto=format&fit=crop&w=2000&q=80" alt="" loading="lazy">
+  <img class="sec-photo-bg" src="img/sg9d4w/356d40650c-2000.jpg" alt="" loading="lazy">
   <div class="wrap split">
     <div class="sec-head">
       <h2 id="korp-title">Новогодние корпоративы</h2>

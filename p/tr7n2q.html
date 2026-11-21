@@ -6,10 +6,10 @@
 <meta name="robots" content="noindex, nofollow">
 <title>«Тархун» — банкетный зал в Балашихе</title>
 <meta name="description" content="«Тархун» в Балашихе: залы, банкетное меню, новогодние корпоративы. Демо-версия сайта.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Golos+Text:wght@400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://images.unsplash.com">
+<link rel="stylesheet" href="../lib/fonts.css">
+<link rel="preload" as="font" type="font/woff2" href="../lib/fonts/CormorantGaramond-normal-500-cyrillic-dc67de.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../lib/fonts/GolosText-normal-400-cyrillic-465785.woff2" crossorigin>
+<link rel="preload" as="image" href="img/tr7n2q/hero-2000.jpg" fetchpriority="high">
 <link rel="stylesheet" href="../vhnzzk/style.css">
 <link rel="stylesheet" href="../vhnzzk/photo-tone.css">
 <style>
@@ -26,8 +26,8 @@
   setTimeout(function () { if (!r.classList.contains('cine-live')) r.classList.add('no-motion'); }, 3000);
 })();
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+<script src="../lib/gsap.min.js" defer></script>
+<script src="../lib/ScrollTrigger.min.js" defer></script>
 <script src="../vhnzzk/script.js" defer></script>
 <style>@media (max-width: 760px) { .cine-photo { object-position: 60% 50% !important; height: 160%; top: -60%; bottom: auto; } }</style>
 </head>
@@ -62,7 +62,7 @@
   </div>
 
   <div class="cine-card">
-    <img class="cine-photo" src="img/tr7n2q/hero.jpg" alt="Фото «Тархун» с Яндекс Карт" referrerpolicy="no-referrer">
+    <img fetchpriority="high" class="cine-photo" src="img/tr7n2q/hero-2000.jpg" alt="Фото «Тархун» с Яндекс Карт" referrerpolicy="no-referrer">
     <div class="cine-shade" aria-hidden="true"></div>
     <div class="cine-card-text">
       <h2>Зал до&nbsp;50 гостей и караоке-зал</h2>
@@ -81,7 +81,7 @@
           <a class="btn btn-line" href="https://wa.me/79259170373"><span class="wide-only">Написать в&nbsp;</span>WhatsApp</a>
         </div>
       </div>
-      <img class="cta-photo" src="https://avatars.mds.yandex.net/get-altay/16503558/2a0000019a72b7800edb9004128fd6f701f2/orig" alt="Фото «Тархун» с Яндекс Карт" referrerpolicy="no-referrer">
+      <img class="cta-photo" src="img/tr7n2q/b872f95d0f-1200.jpg" alt="Фото «Тархун» с Яндекс Карт">
     </div>
   </div>
 </section>
@@ -96,8 +96,8 @@
     <div class="halls">
       <article class="hall">
         <div class="hall-photos">
-          <img class="hall-main" src="https://avatars.mds.yandex.net/get-altay/20105000/2a0000019e2b836d9ec94d88aaf1b9097958/orig" alt="Фото «Тархун» с Яндекс Карт" referrerpolicy="no-referrer" loading="lazy">
-          <img class="hall-extra" src="https://avatars.mds.yandex.net/get-altay/16309447/2a0000019c47d3db3af6bf8078cb405d1921/orig" alt="Фото «Тархун» с Яндекс Карт" referrerpolicy="no-referrer" loading="lazy">
+          <img class="hall-main" src="img/tr7n2q/1d91422c11-1200.jpg" alt="Фото «Тархун» с Яндекс Карт" loading="lazy">
+          <img class="hall-extra" src="img/tr7n2q/a222aaf303-1200.jpg" alt="Фото «Тархун» с Яндекс Карт" loading="lazy">
         </div>
         <div class="hall-text">
           <h3>Зал</h3>
@@ -107,8 +107,8 @@
       </article>
       <article class="hall">
         <div class="hall-photos">
-          <img class="hall-main" src="https://avatars.mds.yandex.net/get-altay/15294995/2a0000019a72b952aa76716c328c8a4c89e6/orig" alt="Фото «Тархун» с Яндекс Карт" referrerpolicy="no-referrer" loading="lazy">
-          <img class="hall-extra" src="https://avatars.mds.yandex.net/get-altay/16483787/2a0000019a72bf6e9b905f111d30175bbc1e/orig" alt="Фото «Тархун» с Яндекс Карт" referrerpolicy="no-referrer" loading="lazy">
+          <img class="hall-main" src="img/tr7n2q/a5933855f1-1200.jpg" alt="Фото «Тархун» с Яндекс Карт" loading="lazy">
+          <img class="hall-extra" src="img/tr7n2q/4463ad8667-1200.jpg" alt="Фото «Тархун» с Яндекс Карт" loading="lazy">
         </div>
         <div class="hall-text">
           <h3>Караоке-зал</h3>
@@ -124,22 +124,22 @@
     <div class="gallery-tilt">
       <div class="lane">
         <div class="lane-group">
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/16338459/2a0000019a72bee7e0f882986b6f668fbe53/XXL" alt="Фото «Тархун» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/16472720/2a0000019a72b9173f5decd3202c7bf45f80/XXL" alt="Фото «Тархун» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/17021023/2a0000019a72e6a824c673182354676b7bf1/XXL" alt="Фото «Тархун» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/16430504/2a0000019a72e6876cedec9a2c12e7679627/XXL" alt="Фото «Тархун» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/16899665/2a0000019a72e6c067cc48e87e942ac76bb6/XXL" alt="Фото «Тархун» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/16130837/2a0000019a72e723566886d6ccc98e456b7a/XXL" alt="Фото «Тархун» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/tr7n2q/7f3c321b43-1024.jpg" alt="Фото «Тархун» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/tr7n2q/7ae7baf140-1024.jpg" alt="Фото «Тархун» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/tr7n2q/b9422a4310-1024.jpg" alt="Фото «Тархун» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/tr7n2q/72166bc3ab-1024.jpg" alt="Фото «Тархун» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/tr7n2q/92f31423e6-1024.jpg" alt="Фото «Тархун» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/tr7n2q/2ac726e353-1024.jpg" alt="Фото «Тархун» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
         </div>
       </div>
       <div class="lane">
         <div class="lane-group">
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/15388054/2a0000019a54fea59d155dba7b9e8e6b7624/XXL" alt="Фото «Тархун» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/19693520/2a0000019bc79ed99ea44d71059818669055/XXL" alt="Фото «Тархун» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/21030379/2a000001a05d2d9e4b2209259d4e532b3ad6/XXL" alt="Фото «Тархун» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/16309447/2a0000019b4ab5e33f6066eafcbd7adf6a47/XXL" alt="Фото «Тархун» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/16114102/2a0000019a72b8f3572bc6f4cfe30e127b4b/XXL" alt="Фото «Тархун» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
-          <figure class="ph"><img src="https://avatars.mds.yandex.net/get-altay/18785127/2a0000019e2b8365044e38648c1aee3747ed/XXL" alt="Фото «Тархун» с Яндекс Карт" loading="lazy" width="900" height="580" referrerpolicy="no-referrer"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/tr7n2q/1f142eeba2-1024.jpg" alt="Фото «Тархун» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/tr7n2q/fa4255f280-1024.jpg" alt="Фото «Тархун» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/tr7n2q/2b3778f98d-1024.jpg" alt="Фото «Тархун» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/tr7n2q/3832f9aca9-1024.jpg" alt="Фото «Тархун» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/tr7n2q/f82b020b9f-1024.jpg" alt="Фото «Тархун» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
+          <figure class="ph"><img src="img/tr7n2q/eab83eeefa-1024.jpg" alt="Фото «Тархун» с Яндекс Карт" loading="lazy" width="900" height="580"><figcaption>Фото</figcaption></figure>
         </div>
       </div>
     </div>
@@ -175,7 +175,7 @@
 </section>
 
 <section class="sec sec-photo" id="korporativy" aria-labelledby="korp-title">
-  <img class="sec-photo-bg" src="https://avatars.mds.yandex.net/get-altay/15394162/2a0000019b4a8cbb25060f28ba1f05132ebd/orig" alt="" loading="lazy">
+  <img class="sec-photo-bg" src="img/tr7n2q/392cebcfeb-2000.jpg" alt="" loading="lazy">
   <div class="wrap split">
     <div class="sec-head">
       <h2 id="korp-title">Новогодние корпоративы</h2>
