@@ -44,7 +44,15 @@
     // Закрепление первого экрана делает сам браузер (position: sticky в обёртке нужной высоты), а не скрипт.
     // Раньше скрипт переключал секцию между fixed и обычным положением: на телефоне прокрутка идёт без ожидания скрипта,
     // и в момент, когда закрепление снималось, фото уезжало наверх рывками.
-    var scrollLen = mobile ? 1600 : 2200;
+    // Шкала прокрутки в «единицах»: 1 единица = столько же px, сколько раньше (1600 / 4.9 на телефоне, 2200 / 4.9 на компьютере),
+    // поэтому въезд и раскрытие фото идут с прежней скоростью. Короче стал только хвост: фото встало на весь экран,
+    // короткая пауза (HOLD) — и оно ровно уходит вверх (EXIT), без сжатия в карточку и без разгона.
+    var unitPx = (mobile ? 1600 : 2200) / 4.9;
+    var OPEN = 2.1;   // фото раскрыто, подпись проявилась (как раньше)
+    var HOLD = 0.1;   // «вдох» на весь экран: подпись видна целиком уже к ~1.95, так что пауза выходит ~0.25 (≈ 90 px на телефоне); раньше простой был 0.9
+    var EXIT = 1.3;   // уход фото: на телефоне ~425 px прокрутки, фото идёт примерно вдвое быстрее пальца, с постоянной скоростью
+    var exitAt = OPEN + HOLD;
+    var scrollLen = Math.round(unitPx * (exitAt + EXIT)); // 1143 px на телефоне, 1571 на компьютере — столько же в style.css (margin-bottom)
     var pinWrap = document.createElement('div');
     pinWrap.className = 'cine-pin';
     pinWrap.style.setProperty('--pin-len', scrollLen + 'px');
@@ -103,13 +111,13 @@
       { opacity: 1, y: 0, scale: 1, filter: blur ? 'blur(0px)' : 'none', duration: 1.8, ease: 'expo.out' }, 0)
       .fromTo(l2, { clipPath: 'inset(0 100% 0 0)' }, { clipPath: 'inset(0 0% 0 0)', duration: 1.4, ease: 'power4.inOut' }, 0.3);
 
-    // Прокрутка: заголовок уходит, фото въезжает и раскрывается на весь экран, потом сжимается и уходит
+    // Прокрутка: заголовок уходит, фото въезжает и раскрывается на весь экран, короткая пауза — и фото уходит вверх
     var tl = gsap.timeline({
       scrollTrigger: {
         trigger: pinWrap,
         start: 'top top',
         end: '+=' + scrollLen,
-        scrub: 1,
+        scrub: 0.4, // было 1: фото «доплывало» ещё секунду после остановки пальца
         invalidateOnRefresh: true
       }
     });
@@ -122,11 +130,13 @@
     var heroBtns = sec.querySelector('.hero-actions');
     if (heroBtns) tl.to(heroBtns, { autoAlpha: 0, duration: 0.6, ease: 'none' }, 0);
     if (brand) tl.to(brand, { autoAlpha: 1, duration: 0.6 }, 1.6);
-    tl.to(card, { width: cardW, height: cardH, borderRadius: radius, duration: 0.8, ease: 'power2.inOut' }, 3.0)
-      .to(card, { y: function () { return -window.innerHeight * 1.1; }, duration: 1, ease: 'power2.in' }, 3.6);
-    // На телефоне заголовок не размывается, поэтому прячем его, чтобы он не просвечивал под кнопками
-    if (!blur && !light) tl.to(title, { autoAlpha: 0, duration: 0.4 }, 3.6);
-    tl.to(cta, { autoAlpha: 1, scale: 1, filter: blur ? 'blur(0px)' : 'none', duration: 1, ease: 'power2.out' }, 3.9);
+    // Уход: фото уезжает вверх целиком, как перелистнутая страница. Скорость постоянная (ease: 'none') — раньше был разгон
+    // (power2.in), а перед ним ещё сжатие в карточку: из-за них фото то медлило, то улетало.
+    tl.to(card, { y: function () { return -window.innerHeight * 1.1; }, duration: EXIT, ease: 'none' }, exitAt);
+    // На телефоне заголовок не размывается, поэтому прячем его, пока он закрыт фото: иначе просвечивал бы под кнопками
+    if (!blur && !light) tl.to(title, { autoAlpha: 0, duration: 0.4 }, 1.8);
+    // Блок «Свободна ли ваша дата?» проявляется под уходящим фото: как раньше, через 0.3 после начала ухода
+    tl.to(cta, { autoAlpha: 1, scale: 1, filter: blur ? 'blur(0px)' : 'none', duration: EXIT - 0.3, ease: 'power2.out' }, exitAt + 0.3);
   }
 
   /* ---------- Ряды фото навстречу друг другу ---------- */
