@@ -132,6 +132,21 @@ footer{padding:28px 0 20px;font-size:12px;color:var(--muted)}
 .bar .b1{background:var(--ember);color:var(--coal)}
 .bar .b2{border:1.5px solid rgba(242,245,245,.4);color:var(--ash)}
 
+/* телефон: фото — галерея. Название блюда, цена и точки лежат на самом фото, чтобы листать, не прокручивая (Артур 22.11).
+   Видимая высота iPhone с панелями ≈ 664 px: фото, подпись, название и кнопки — над нижней полосой. Миниатюры — только на компьютере. */
+.dots{display:none;gap:7px;height:6px;margin-top:8px}
+.dots i{width:6px;height:6px;border-radius:50%;background:rgba(242,245,245,.32);transition:background-color .4s,width .4s}
+.dots i.on{width:18px;border-radius:3px;background:var(--ash)}
+.menu .note{display:none;margin-top:12px}
+@media (max-width:1023px){
+  .stage{aspect-ratio:6/5}
+  .hero > .wrap{display:flex;flex-direction:column}
+  .now{order:-1;position:relative;z-index:5;margin-top:-68px;border-top:0;padding-top:0}
+  .txt{margin-top:18px}
+  .thumbs,.now .note{display:none}
+  .dots{display:flex}
+  .menu .note{display:block}
+}
 @media (min-width:640px) and (max-width:1023px){
   .stage{aspect-ratio:16/11}
   .thumb-car{--b:18%}
@@ -225,6 +240,7 @@ footer{padding:28px 0 20px;font-size:12px;color:var(--muted)}
         <div class="it"><span class="cap-name">Паста карбонара</span><span class="cap-price">480&nbsp;₽</span><span class="cap-w">300 г</span></div>
         <div class="it"><span class="cap-name">Жареный судак</span><span class="cap-price">720&nbsp;₽</span><span class="cap-w">200 г</span></div>
       </div>
+      <div class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
       <div class="thumbs">
         <div class="car thumb-car" id="thumbCar">
           <button class="it" type="button" aria-label="Стейк из сёмги"><img src="img/sq-103-t.jpg" width="220" height="220" alt="" draggable="false"></button>
@@ -240,7 +256,6 @@ footer{padding:28px 0 20px;font-size:12px;color:var(--muted)}
     </div>
 
     <div class="meta in" style="--i:4">
-      <p class="rate"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.6 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.5l-5.9 3.1 1.2-6.5L2.5 9.5l6.6-.9z"/></svg><b>4,8</b> на Яндекс Картах, 1&nbsp;693 оценки</p>
       <p>Ежедневно с 12:00 до 00:00. Улица Фёдорова, 16</p>
     </div>
   </div>
@@ -257,6 +272,7 @@ footer{padding:28px 0 20px;font-size:12px;color:var(--muted)}
       <li><span class="n">Форель на углях</span><span class="w">250 г</span><span class="p">845&nbsp;₽</span></li>
       <li><span class="n">Овощи и картофель на углях</span><span class="w">600 г</span><span class="p">1&nbsp;680&nbsp;₽</span></li>
     </ul>
+    <p class="note">Цены из меню доставки, в кафе могут отличаться</p>
   </div>
 </section>
 
@@ -280,7 +296,7 @@ footer{padding:28px 0 20px;font-size:12px;color:var(--muted)}
 (function(){
   var $=function(s){return [].slice.call(document.querySelectorAll(s));};
   var mainCar=document.getElementById('mainCar'), capCar=document.getElementById('capCar'), thumbCar=document.getElementById('thumbCar');
-  var mains=$('#mainCar .it'), caps=$('#capCar .it'), thumbs=$('#thumbCar .it');
+  var mains=$('#mainCar .it'), caps=$('#capCar .it'), thumbs=$('#thumbCar .it'), dots=$('.dots i');
   var rThumb=Car.slide(thumbs,0,3.4);
   var rCap=Car.swap(caps,0,55,.5);      /* строка перекатывается по вертикали, как в списке меню */
   /* фото: следующее проявляется поверх текущего (стол тот же — меняется блюдо), поэтому у края нечему торчать */
@@ -299,6 +315,7 @@ footer{padding:28px 0 20px;font-size:12px;color:var(--muted)}
     ready:function(i){var im=mains[i].querySelector('img');return im.complete&&im.naturalWidth>0;},
     onActive:function(a){
       thumbs.forEach(function(t,i){t.classList.toggle('on',i===a);});
+      dots.forEach(function(t,i){t.classList.toggle('on',i===a);});
       mains.forEach(function(m,i){m.classList.toggle('on',i===a);});
     }
   });
