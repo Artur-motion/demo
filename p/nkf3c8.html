@@ -69,7 +69,8 @@
 .todo b { display: block; margin-bottom: 2px; }
 .video-slot { aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; text-align: center; }
 
-@media (max-width: 760px) { .cine-photo { object-position: 45% 60% !important; height: 140%; top: -40%; bottom: auto; } }
+/* Телефон: зал с колонной и диванами внизу кадра, а не потолок */
+@media (max-width: 760px) { .cine-photo { object-position: 62% 92% !important; } }
 </style>
 <script>
 (function () {
