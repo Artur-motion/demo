@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Валентино — ресторан и банкетный зал, Сергиев Посад</title>
+<meta name="description" content="Валентино — ресторан и банкетный зал в Сергиевом Посаде: банкетное и фуршетное меню, европейская, итальянская и русская кухня.">
+<link rel="icon" href="data:,">
+<script>
+/* Первый экран скрыт до запуска анимации (место занято сразу). Через 3 с без запуска — показать как есть. */
+(function(){var d=document.documentElement;d.classList.add('pre');
+window.__plain=setTimeout(function(){if(!d.classList.contains('go')){d.classList.remove('pre');d.classList.add('plain');}},3000);})();
+</script>
+<link rel="preload" as="script" href="car.js">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/Prata-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/Montserrat-500-900-ru.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/PTSerif-700-ru.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/PTSerif-700-italic-ru.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/PTSerif-400-italic-ru.woff2">
+<link rel="preload" as="image" href="img/sq-001-800.jpg" imagesrcset="img/sq-001-800.jpg 800w" imagesizes="(min-width:1024px) 60vw, 100vw" fetchpriority="high">
+<link rel="stylesheet" href="fonts/ru.css">
+<style>
+/* Шаблон кафе волны 1 — скелет «Якоря» 1 «Синяя доска» без подписей блюд на фото
+   (фото с Карт к блюдам меню не привязаны — названия и цены на фото не ставим).
+   Своё у каждого кафе — только переменные ниже: тема (тёмная / светлая), цвета с их меню и вывески, шрифт названия. */
+/* «Валентино» — светлая тема: белый зал, белые шторы и диваны; акцент — золото их знака VALENTINO на стене (фото 16); название — Prata прописными с разрядкой (антиква, как подпись VALENTINO на их меню, фото 7). */
+:root{
+  --bg:#f7f5f2;  --bg-rgb:247,245,242;
+  --line:#e5dfd5;
+  --ink:#24201b; --ink-rgb:36,32,27;
+  --soft:#4f4840;
+  --muted:#827a6f;
+  --accent:#9a7631;
+  --on-accent:#ffffff;
+  --sans:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --serif:'PT Serif',Georgia,'Times New Roman',serif;
+  --nm-font:'Prata',Georgia,serif; --nm-w:400; --nm-tt:uppercase; --nm-ls:.03em;
+  --nm-m:44px;
+  --nm-d:clamp(84px,7.6vw,108px);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 15.5px/1.5 var(--sans);overflow-x:hidden;overflow-x:clip;padding-bottom:72px}
+a{color:inherit}
+img{display:block;max-width:100%}
+.wrap{max-width:1280px;margin:0 auto;padding:0 16px}
+
+/* шапка: название слева, «Позвонить» справа */
+.top{position:fixed;inset:0 0 auto 0;z-index:20;height:60px;transition:background-color .3s cubic-bezier(.4,0,.2,1),box-shadow .3s cubic-bezier(.4,0,.2,1)}
+.top.scrolled{background:var(--bg);box-shadow:0 1px 0 var(--line)}
+.top .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-family:var(--nm-font);font-weight:var(--nm-w);text-transform:var(--nm-tt);font-size:22px;line-height:1;text-decoration:none;white-space:nowrap}
+.nav{display:none;gap:36px;font-weight:600;font-size:15px}
+.nav a{text-decoration:none}
+.call{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px;border-radius:8px;border:1.5px solid var(--accent);
+  color:var(--ink);font-weight:700;font-size:14.5px;text-decoration:none;white-space:nowrap;background:rgba(var(--bg-rgb),.55)}
+.call svg{width:16px;height:16px;fill:var(--accent)}
+.call .num{display:none}
+@media (max-width:1023px){.top .call{display:none}} /* на телефоне звонок — в нижней полосе, в шапке не дублируем (правило 20.11) */
+
+/* первый экран: фото на всю ширину, края растворяются в фоне */
+.hero{position:relative;overflow:hidden;padding-bottom:28px}
+.stage{position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:grab}
+.stage.drag{cursor:grabbing}
+.stage .it{position:absolute;inset:0;opacity:0}
+.stage .it img{width:100%;height:100%;object-fit:cover;pointer-events:none;transform:scale(1);transition:transform 0s 1.4s}
+.stage .it.on img{transform:scale(1.07);transition:transform 7s cubic-bezier(.2,.5,.4,1)}
+.stage::before,.stage::after{content:"";position:absolute;left:0;right:0;z-index:3;pointer-events:none}
+.stage::before{top:0;height:30%;background:linear-gradient(to bottom,rgba(var(--bg-rgb),.92),rgba(var(--bg-rgb),.55) 38%,rgba(var(--bg-rgb),0))}
+.stage::after{bottom:0;height:30%;background:linear-gradient(to top,var(--bg) 6%,rgba(var(--bg-rgb),.7) 45%,rgba(var(--bg-rgb),0))}
+.stage:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+
+.txt{position:relative;z-index:4;margin-top:-54px;display:flex;flex-direction:column;gap:12px}
+h1{margin:0}
+h1 .nm{display:block;font-family:var(--nm-font);font-weight:var(--nm-w);text-transform:var(--nm-tt);letter-spacing:var(--nm-ls);font-size:var(--nm-m);line-height:.95;margin-left:-.04em;overflow-wrap:normal}
+h1 .kind{display:block;margin-top:8px;font:italic 700 21px/1.2 var(--serif)}
+.lead{margin:0;max-width:24em;color:var(--soft)}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.btn{display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 20px;border-radius:8px;font-weight:700;font-size:15.5px;text-decoration:none;white-space:nowrap}
+.btn:active{transform:translateY(1px)}
+.btn.main{background:var(--accent);color:var(--on-accent)}
+.btn.line{border:1.5px solid rgba(var(--ink-rgb),.4);color:var(--ink)}
+
+/* точки листания (телефон) и лента миниатюр (компьютер) — без подписей */
+.now{margin-top:30px}
+.car{position:relative;overflow:hidden;touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:grab}
+.car.drag{cursor:grabbing}
+.car .it{position:absolute;top:0;will-change:transform}
+.thumbs{position:relative;margin:0 -16px}
+.thumbs::after{content:"";position:absolute;top:0;bottom:0;right:0;width:56px;z-index:2;pointer-events:none;background:linear-gradient(to left,var(--bg),rgba(var(--bg-rgb),0))}
+.thumbs::before{content:"";position:absolute;top:0;bottom:0;left:0;width:56px;z-index:2;pointer-events:none;background:linear-gradient(to right,var(--bg),rgba(var(--bg-rgb),0))}
+.thumb-car{height:78px;--b:27%}
+.thumb-car .it{left:50%;width:var(--b);margin-left:calc(var(--b) / -2);height:78px;padding:3px 5px;background:none;border:0;cursor:pointer}
+.thumb-car .it img{width:100%;height:100%;object-fit:cover;border-radius:6px;opacity:.5;pointer-events:none;transition:opacity .4s}
+.thumb-car .it::after{content:"";position:absolute;inset:3px 5px;border-radius:6px;border:2px solid var(--accent);opacity:0;transition:opacity .4s}
+.thumb-car .it.on img{opacity:1}
+.thumb-car .it.on::after{opacity:1}
+.thumb-car .it:focus-visible{outline:2px solid var(--ink);outline-offset:-1px;border-radius:8px}
+.meta{margin:18px 0 0;display:flex;flex-direction:column;gap:4px;font-size:13.5px;color:var(--soft)}
+.meta p{margin:0}
+
+/* вход: всё скрыто до запуска, место занято */
+html.pre .in,html.pre .top .wrap,html.pre .bar a{visibility:hidden}
+html.go .top .wrap,html.go .bar a{animation:lights .7s cubic-bezier(.4,0,.2,1) both}
+html.go .in{animation:rise .9s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(.25s + var(--i,0) * 90ms)}
+html.go .stage.in{animation:lights 1.6s cubic-bezier(.4,0,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes lights{from{opacity:0}to{opacity:1}}
+
+/* меню — списком из карточки: название, вес, цена */
+.menu{padding:48px 0 20px}
+.menu h2,.find h2{margin:0 0 14px;font:italic 700 38px/1 var(--serif)}
+.menu h3{margin:26px 0 2px;font:800 13px/1.3 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.list{list-style:none;margin:0;padding:0;max-width:680px}
+.list li{display:flex;align-items:baseline;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+.list .n{flex:1;font:700 17px/1.3 var(--serif)}
+.list .w{font:italic 400 15px/1.3 var(--serif);color:var(--soft);white-space:nowrap}
+.list .p{font:italic 700 19px/1.2 var(--serif);white-space:nowrap;min-width:4.4em;text-align:right}
+.note{margin:12px 0 0;font:italic 400 13.5px/1.4 var(--serif);color:var(--muted)}
+
+/* адрес, часы и что есть — фактами из карточки */
+.find{padding:36px 0 4px}
+.find .big{font:800 21px/1.25 var(--sans);margin:0 0 6px}
+.find .small{margin:0;color:var(--soft);font-size:14.5px;max-width:31em}
+.hours,.facts{list-style:none;margin:16px 0 0;padding:0;max-width:680px}
+.hours li{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid var(--line);font-size:15px}
+.hours li span:last-child{font-weight:700;white-space:nowrap}
+.facts{margin-top:22px}
+.facts li{padding:9px 0 9px 18px;border-bottom:1px solid var(--line);font-size:15px;position:relative}
+.facts li::before{content:"";position:absolute;left:0;top:18px;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+footer{padding:28px 0 20px;font-size:12px;color:var(--muted)}
+
+/* нижняя полоса на телефоне */
+.bar{position:fixed;inset:auto 0 0 0;z-index:30;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px 12px calc(8px + env(safe-area-inset-bottom));
+  background:var(--bg);border-top:1px solid var(--line)}
+.bar a{display:flex;align-items:center;justify-content:center;gap:8px;height:48px;border-radius:8px;font-weight:700;text-decoration:none}
+.bar a svg{width:18px;height:18px;fill:currentColor}
+.bar .b1{background:var(--accent);color:var(--on-accent)}
+.bar .b2{border:1.5px solid rgba(var(--ink-rgb),.4);color:var(--ink)}
+
+/* телефон: фото — галерея, точки лежат на самом фото; видимая высота iPhone с панелями ≈ 664 px —
+   фото, название и кнопки над нижней полосой. Миниатюры — только на компьютере. */
+.dots{display:none;gap:7px;height:6px}
+.dots i{width:6px;height:6px;border-radius:50%;background:rgba(var(--ink-rgb),.34);transition:background-color .4s,width .4s}
+.dots i.on{width:18px;border-radius:3px;background:var(--ink)}
+@media (max-width:1023px){
+  .stage{aspect-ratio:6/5}
+  .hero > .wrap{display:flex;flex-direction:column}
+  .now{order:-1;position:relative;z-index:5;margin-top:-26px}
+  .txt{margin-top:22px}
+  .thumbs{display:none}
+  .dots{display:flex}
+}
+@media (min-width:640px) and (max-width:1023px){
+  .stage{aspect-ratio:16/11}
+}
+@media (min-width:1024px){
+  body{padding-bottom:0;font-size:16px}
+  .bar{display:none}
+  .wrap{padding:0 32px}
+  .top{height:70px}
+  .logo{font-size:24px}
+  .nav{display:flex}
+  .call .num{display:inline}
+  .call .word{display:none}
+  .hero{--x0:max(32px, calc(50vw - 608px));min-height:min(100vh,900px);padding:0 0 48px;display:flex;align-items:flex-end}
+  /* у фото своя зона: начинается там, где кончается колонка текста, и до правого края окна */
+  .stage{position:absolute;top:0;right:0;bottom:0;left:calc(var(--x0) + 488px);width:auto;height:100%;aspect-ratio:auto}
+  .stage::before{height:22%}
+  .stage::after{top:0;bottom:0;height:auto;background:
+    linear-gradient(to right,var(--bg) 0,var(--bg) 32px,rgba(var(--bg-rgb),.72) 20%,rgba(var(--bg-rgb),0) 44%),
+    linear-gradient(to top,var(--bg) 2%,rgba(var(--bg-rgb),0) 24%)}
+  /* колонка текста лежит поверх фото, но сама мышь не ловит — фото справа можно тянуть */
+  .hero > .wrap{width:100%;position:relative;z-index:4;pointer-events:none}
+  .hero > .wrap > *{pointer-events:auto}
+  .txt{margin-top:0;gap:16px;max-width:520px;padding-top:118px}
+  h1 .nm{font-size:var(--nm-d)}
+  h1 .kind{font-size:30px;margin-top:12px}
+  .lead{font-size:17px}
+  .now{max-width:520px;margin-top:34px}
+  .meta{max-width:520px}
+  .thumbs{margin:0}
+  .thumb-car{height:92px;--b:25%}
+  .thumb-car .it{height:92px}
+  .menu{padding:80px 0 28px}
+  .menu h2,.find h2{font-size:56px;margin-bottom:20px}
+  .find{padding:56px 0 8px}
+  footer{padding:36px 0}
+}
+@media (hover:hover){
+  .nav a:hover{color:var(--accent)}
+  .btn.main:hover{filter:brightness(1.08)}
+  .btn.line:hover{border-color:var(--ink)}
+  .thumb-car .it:hover img{opacity:.85}
+}
+@media (prefers-reduced-motion:reduce){
+  html.go .in,html.go .stage.in,html.go .top .wrap,html.go .bar a{animation:none}
+  .stage .it.on img{transform:none;transition:none}
+}
+</style>
+</head>
+<body>
+
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="logo" href="#">Валентино</a>
+    <nav class="nav" aria-label="Разделы"><a href="#menu">Меню</a><a href="#adres">Адрес и часы</a></nav>
+    <a class="call" href="tel:+79259999765"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg><span class="word">Позвонить</span><span class="num">+7 (925) 999-97-65</span></a>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="hero">
+  <div class="stage in" id="mainCar" tabindex="0" role="group" aria-roledescription="карусель" aria-label="Фото «Валентино»">
+    <div class="it"><img src="img/sq-001-800.jpg" srcset="img/sq-001-800.jpg 800w" sizes="(min-width:1024px) 60vw, 100vw" width="554" height="554" alt="Фото «Валентино» с Яндекс Карт" fetchpriority="high" decoding="async" draggable="false"></div>
+    <div class="it"><img data-src="img/sq-004-800.jpg" data-srcset="img/sq-004-800.jpg 800w, img/sq-004-1200.jpg 1200w" sizes="(min-width:1024px) 60vw, 100vw" width="1200" height="1200" alt="Фото «Валентино» с Яндекс Карт" decoding="async" draggable="false"></div>
+    <div class="it"><img data-src="img/sq-025-800.jpg" data-srcset="img/sq-025-800.jpg 800w" sizes="(min-width:1024px) 60vw, 100vw" width="561" height="561" alt="Фото «Валентино» с Яндекс Карт" decoding="async" draggable="false"></div>
+    <div class="it"><img data-src="img/sq-029-800.jpg" data-srcset="img/sq-029-800.jpg 800w" sizes="(min-width:1024px) 60vw, 100vw" width="600" height="600" alt="Фото «Валентино» с Яндекс Карт" decoding="async" draggable="false"></div>
+    <div class="it"><img data-src="img/sq-002-800.jpg" data-srcset="img/sq-002-800.jpg 800w" sizes="(min-width:1024px) 60vw, 100vw" width="561" height="561" alt="Фото «Валентино» с Яндекс Карт" decoding="async" draggable="false"></div>
+    <div class="it"><img data-src="img/sq-018-800.jpg" data-srcset="img/sq-018-800.jpg 800w" sizes="(min-width:1024px) 60vw, 100vw" width="600" height="600" alt="Фото «Валентино» с Яндекс Карт" decoding="async" draggable="false"></div>
+    <div class="it"><img data-src="img/sq-040-800.jpg" data-srcset="img/sq-040-800.jpg 800w, img/sq-040-1200.jpg 1200w" sizes="(min-width:1024px) 60vw, 100vw" width="1200" height="1200" alt="Фото «Валентино» с Яндекс Карт" decoding="async" draggable="false"></div>
+  </div>
+
+  <div class="wrap">
+    <div class="txt">
+      <h1 class="in" style="--i:0"><span class="nm">Валентино</span> <span class="kind">ресторан и банкетный зал</span></h1>
+      <p class="lead in" style="--i:1">Банкетный зал и фуршетное меню: канапе, тарталетки, горячее.</p>
+      <div class="btns in" style="--i:2">
+        <a class="btn main" href="#menu">Меню</a>
+        <a class="btn line" href="https://wa.me/79259999765?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BF%D1%80%D0%BE%20%D0%B1%D0%B0%D0%BD%D0%BA%D0%B5%D1%82%20%D0%B2%20%C2%AB%D0%92%D0%B0%D0%BB%D0%B5%D0%BD%D1%82%D0%B8%D0%BD%D0%BE%C2%BB.">Заказать банкет</a>
+      </div>
+    </div>
+
+    <div class="now in" style="--i:3">
+      <div class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="thumbs">
+        <div class="car thumb-car" id="thumbCar">
+          <button class="it" type="button" aria-label="Фото 1"><img src="img/sq-001-t.jpg" width="220" height="220" alt="" draggable="false"></button>
+          <button class="it" type="button" aria-label="Фото 2"><img src="img/sq-004-t.jpg" width="220" height="220" alt="" draggable="false"></button>
+          <button class="it" type="button" aria-label="Фото 3"><img src="img/sq-025-t.jpg" width="220" height="220" alt="" draggable="false"></button>
+          <button class="it" type="button" aria-label="Фото 4"><img src="img/sq-029-t.jpg" width="220" height="220" alt="" draggable="false"></button>
+          <button class="it" type="button" aria-label="Фото 5"><img src="img/sq-002-t.jpg" width="220" height="220" alt="" draggable="false"></button>
+          <button class="it" type="button" aria-label="Фото 6"><img src="img/sq-018-t.jpg" width="220" height="220" alt="" draggable="false"></button>
+          <button class="it" type="button" aria-label="Фото 7"><img src="img/sq-040-t.jpg" width="220" height="220" alt="" draggable="false"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="meta in" style="--i:4">
+      <p>Ежедневно 11:00–23:00. Улица Дружбы, 2Б</p>
+    </div>
+  </div>
+</section>
+
+<section class="menu" id="menu">
+  <div class="wrap">
+    <h2>Банкетное меню</h2>
+    <h3>Фуршет</h3>
+    <ul class="list">
+      <li><span class="n">Канапе с лососем</span><span class="w"></span><span class="p">80&nbsp;₽</span></li>
+      <li><span class="n">Канапе с черри и моцареллой</span><span class="w"></span><span class="p">60&nbsp;₽</span></li>
+      <li><span class="n">Тарталетка с икрой</span><span class="w"></span><span class="p">100&nbsp;₽</span></li>
+      <li><span class="n">Рулетики из лосося с творожным сыром</span><span class="w"></span><span class="p">110&nbsp;₽</span></li>
+      <li><span class="n">Шашлычки из куриного филе с беконом</span><span class="w"></span><span class="p">160&nbsp;₽</span></li>
+      <li><span class="n">Шашлычки из форели с болгарским перцем</span><span class="w"></span><span class="p">300&nbsp;₽</span></li>
+      <li><span class="n">Бургер-мини с куриной котлетой</span><span class="w"></span><span class="p">150&nbsp;₽</span></li>
+    </ul>
+    <h3>Горячее</h3>
+    <ul class="list">
+      <li><span class="n">Жульен грибной в мешочке</span><span class="w"></span><span class="p">250&nbsp;₽</span></li>
+      <li><span class="n">Форель стейк</span><span class="w"></span><span class="p">280&nbsp;₽</span></li>
+      <li><span class="n">Бефстроганов из свиной вырезки</span><span class="w"></span><span class="p">170&nbsp;₽</span></li>
+      <li><span class="n">Сборная солянка</span><span class="w"></span><span class="p">140&nbsp;₽</span></li>
+    </ul>
+    <p class="note">Цены из карточки на Яндекс Картах на 22 ноября 2026 года.</p>
+  </div>
+</section>
+
+<section class="find" id="adres">
+  <div class="wrap">
+    <h2>Адрес и часы</h2>
+    <p class="big">Сергиев Посад, улица Дружбы, 2Б</p>
+    <ul class="hours">
+      <li><span>Ежедневно</span><span>11:00–23:00</span></li>
+    </ul>
+    <ul class="facts">
+      <li>Банкетный зал</li>
+      <li>Фуршетное меню: канапе, тарталетки, рулетики</li>
+      <li>Европейская, итальянская и русская кухня</li>
+      <li>Пандус и парковка для людей с инвалидностью</li>
+      <li>Оплата картой</li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">Демо-версия сайта. Не официальный сайт ресторана «Валентино».</div></footer>
+
+<div class="bar">
+  <a class="b1" href="tel:+79259999765"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>Позвонить</a>
+  <a class="b2" href="https://wa.me/79259999765"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.9 13.3L3 21l4.8-1.1A9 9 0 1 0 12 3z"/></svg>WhatsApp</a>
+</div>
+
+<script src="car.js"></script>
+<script>
+(function(){
+  var $=function(s){return [].slice.call(document.querySelectorAll(s));};
+  var mainCar=document.getElementById('mainCar'), thumbCar=document.getElementById('thumbCar');
+  var mains=$('#mainCar .it'), thumbs=$('#thumbCar .it'), dots=$('.dots i');
+  var rThumb=Car.slide(thumbs,0,3.4);
+  /* фото: следующее проявляется поверх текущего, поэтому у края нечему торчать */
+  function rMain(rel){
+    for(var i=0;i<mains.length;i++){
+      var d=rel(i), el=mains[i], op=d>=0?(d<1?1-d:0):(d>-1?1:0);
+      if(op<=0){ if(!el._h){el.style.visibility='hidden';el.style.opacity=0;el._h=1;} continue; }
+      if(el._h){el.style.visibility='';el._h=0;}
+      el.style.opacity=op.toFixed(3); el.style.zIndex=d>=0?2:1;
+    }
+  }
+  var car=Car({
+    n:mains.length, delay:3000, dur:1100, ease:function(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;},
+    watch:document.getElementById('hero'),
+    render:function(rel){rMain(rel);rThumb(rel);},
+    ready:function(i){var im=mains[i].querySelector('img');return im.complete&&im.naturalWidth>0;},
+    onActive:function(a){
+      thumbs.forEach(function(t,i){t.classList.toggle('on',i===a);});
+      dots.forEach(function(t,i){t.classList.toggle('on',i===a);});
+      mains.forEach(function(m,i){m.classList.toggle('on',i===a);});
+    }
+  });
+  car.bind(mainCar,function(){return Math.min(mainCar.offsetWidth,520)*.7;});
+  car.bind(thumbCar,function(){return thumbs[0].offsetWidth;});
+  thumbs.forEach(function(t,i){t.addEventListener('click',function(){car.goIndex(i);});});
+
+  var first=mains[0].querySelector('img');
+  Car.intro([["400 44px Prata", "Валентино"], ["500 16px Montserrat", "Банкетный зал и фуршетное меню: канапе,  WhatsApp"], ["700 16px Montserrat", "Меню Забронировать"], ["italic 700 21px \"PT Serif\"", "ресторан и банкетный зал"]],first,function(){
+    Car.loadRest($('#mainCar img'));
+    setTimeout(car.start,1600);
+  });
+
+  var top=document.getElementById('top');
+  function onScroll(){top.classList.toggle('scrolled',window.scrollY>8);}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+})();
+</script>
+</body>
+</html>
