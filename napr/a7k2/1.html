@@ -115,8 +115,9 @@ h1,h2,p,dl,dd{margin:0}
 .js.pre .hero-dark{animation:failsafe-dark 0s linear 3s forwards}
 @keyframes failsafe{to{visibility:visible}}
 @keyframes failsafe-dark{to{opacity:0}}
-.go .hero-dark{animation:lamps .72s linear both}
-@keyframes lamps{0%{opacity:.86}10%{opacity:.34}19%{opacity:.74}33%{opacity:.16}43%{opacity:.46}62%,100%{opacity:0}}
+.go .hero-dark{animation:lamps .6s cubic-bezier(.25,.1,.25,1) both}
+/* свет включается одним ровным наплывом: мерцание ламп (было 22.11) Артур принял за сбой, а 3 вспышки за 0,7 с — ещё и против правила о вспышках WCAG 2.3.1 */
+@keyframes lamps{from{opacity:.86}to{opacity:0}}
 .go .hero-photo img{animation:settle 2.4s var(--ease) both}
 @keyframes settle{from{transform:scale(1.07)}to{transform:scale(1)}}
 .go .glint{animation:glint .85s cubic-bezier(.4,0,.2,1) .62s both}
