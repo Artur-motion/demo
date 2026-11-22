@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Драйв — автомойка и детейлинг, Красногорск</title>
+<meta name="description" content="Драйв — автомойка и детейлинг, Красногорск">
+<meta name="theme-color" content="#0B0E13">
+<link rel="icon" href="data:,">
+<script>document.documentElement.className = 'js pre';</script>
+<link rel="preload" as="image" href="img/hero-1200.jpg" imagesrcset="img/hero-1200.jpg 1200w, img/hero-2000.jpg 2000w" imagesizes="(min-width: 900px) 58vw, 100vw" fetchpriority="high">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/Unbounded-normal-400_800-cyrillic-23e3f1.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/Unbounded-normal-400_800-latin-a08d2e.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/Onest-normal-400_700-cyrillic-dea2c9.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/Onest-normal-400_700-latin-f5814c.woff2">
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+/* Направление 1 — «Бокс под светом»: тёмная студия, свет ламп вместо цветного акцента, срезанные углы от их шестиугольных светильников. */
+:root{
+  --night:#0B0E13;      /* ночь бокса — фон */
+  --graphite:#161B23;   /* графит — плашки */
+  --seam:#2A313C;       /* шов плитки — линии */
+  --steel:#8E99A8;      /* сталь — второстепенный текст */
+  --mist:#C8D1DE;       /* основной текст на тёмном */
+  --light:#F4F7FF;      /* свет ламп — заголовки и главная кнопка */
+  --ice:#9CC8FF;        /* холодный блик — звезда, фокус */
+  --ease:cubic-bezier(.2,0,0,1);
+  --cut:10px;
+  --bar:64px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--night);color:var(--mist);font:400 16px/1.5 'Onest',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,p,dl,dd{margin:0}
+:focus-visible{outline:2px solid var(--ice);outline-offset:3px}
+.cut:focus-visible{outline-color:#1F6FE0;outline-offset:-5px}
+.btn-line.cut:focus-visible,.cmp.cut:focus-visible{outline-color:var(--ice)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+.cut{clip-path:polygon(var(--cut) 0,100% 0,100% calc(100% - var(--cut)),calc(100% - var(--cut)) 100%,0 100%,0 var(--cut))}
+
+/* шапка */
+.top{position:absolute;z-index:5;top:0;left:0;right:0;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 16px}
+.brand{font:600 17px/1 'Unbounded',sans-serif;color:var(--light);letter-spacing:.01em;padding:14px 0}
+.top-right{display:flex;align-items:center;gap:20px}
+.top-phone{display:none;font-weight:500;color:var(--light);font-variant-numeric:tabular-nums}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;font:600 16px/1 'Onest',sans-serif;color:var(--night);background:var(--light);transition:transform .12s var(--ease),background-color .12s var(--ease)}
+.btn:active{transform:scale(.97)}
+.btn-line{color:var(--light);background:var(--seam);position:relative;isolation:isolate}
+.btn-line::before{content:"";position:absolute;inset:1px;z-index:-1;background:var(--night);clip-path:polygon(calc(var(--cut) - .5px) 0,100% 0,100% calc(100% - var(--cut) + .5px),calc(100% - var(--cut) + .5px) 100%,0 100%,0 calc(var(--cut) - .5px))}
+.btn-sm{min-height:44px;padding:0 18px;font-size:15px;--cut:8px}
+.top .btn{display:none} /* на телефоне звонок — в нижней полосе, в шапке не дублируем */
+.ico{width:20px;height:20px;flex:none}
+
+/* первый экран */
+.hero{position:relative;height:100vh;height:100svh;min-height:620px;overflow:hidden;background:var(--night)}
+.hero-photo{position:absolute;top:0;left:0;width:100%;height:68%;overflow:hidden}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;transform-origin:50% 30%}
+.hero-shade{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(11,14,19,.62) 0,rgba(11,14,19,0) 20%),linear-gradient(to bottom,rgba(11,14,19,0) 52%,rgba(11,14,19,.86) 86%,var(--night) 100%)}
+.hero-dark{position:absolute;inset:0;background:#04060A;opacity:0;pointer-events:none}
+.glint{position:absolute;top:-20%;left:0;width:34%;height:140%;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(244,247,255,.2) 50%,rgba(255,255,255,0));transform:translate3d(-150%,0,0) skewX(-18deg);pointer-events:none}
+.hero-text{position:absolute;left:16px;right:16px;bottom:calc(var(--bar) + env(safe-area-inset-bottom,0px) + 22px)}
+.name{display:block;overflow:hidden;margin:-.1em 0 -.06em -.04em;padding:.1em 0 .14em .04em;font:700 clamp(58px,18.5vw,84px)/.92 'Unbounded',sans-serif;letter-spacing:-.02em;color:var(--light)}
+.name b{display:block;font-weight:inherit}
+.role{display:block;margin-top:8px;font:500 clamp(15px,4.3vw,18px)/1.25 'Unbounded',sans-serif;color:var(--light)}
+.what{margin-top:14px;max-width:34ch;font-size:16px;line-height:1.45;color:var(--mist)}
+.rate{display:inline-flex;align-items:center;gap:12px;margin-top:18px;padding:10px 18px 10px 14px;background:rgba(244,247,255,.09);--cut:9px}
+.rate-num{display:inline-flex;align-items:center;gap:7px;font:600 26px/1 'Unbounded',sans-serif;color:var(--light);font-variant-numeric:tabular-nums}
+.rate-num svg{width:20px;height:20px;color:var(--ice)}
+.rate-txt{font-size:13px;line-height:1.3;color:var(--mist)}
+.where{margin-top:14px;font-size:13px;line-height:1.4;color:var(--steel)}
+.hero-cta{display:none}
+
+/* работы: лента фото, листается пальцем; на компьютере — сетка 3 в ряд */
+.works{padding:48px 0 24px}
+.h2{font:600 clamp(24px,6.6vw,38px)/1.14 'Unbounded',sans-serif;letter-spacing:-.01em;color:var(--light)}
+.strip{display:flex;gap:10px;margin:24px -16px 0;padding:0 16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:16px;-webkit-overflow-scrolling:touch;scrollbar-width:none;overscroll-behavior-x:contain}
+.strip::-webkit-scrollbar{display:none}
+.strip figure{margin:0;flex:0 0 78%;aspect-ratio:4/5;scroll-snap-align:start;background:var(--graphite);overflow:hidden;--cut:16px}
+.strip img{width:100%;height:100%;object-fit:cover}
+@media (min-width:900px){
+  .strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:28px 0 0;padding:0;overflow:visible}
+  .strip figure{aspect-ratio:4/5}
+}
+.note{margin-top:14px;font-size:13px;line-height:1.45;color:var(--steel);max-width:52ch}
+
+/* цены */
+.prices{padding:48px 0 40px}
+.rows{margin-top:22px;border-top:1px solid var(--seam)}
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:16px;padding:16px 0;border-bottom:1px solid var(--seam)}
+.row dt{font-weight:600;font-size:17px;color:var(--light)}
+.row .sum{font:700 19px/1.35 'Onest',sans-serif;color:var(--light);font-variant-numeric:tabular-nums;white-space:nowrap}
+.row .in{grid-column:1/-1;margin-top:6px;font-size:14px;line-height:1.45;color:var(--steel);max-width:56ch}
+.promo{margin-top:22px;padding:16px 18px;background:var(--graphite);color:var(--light);font-weight:500;--cut:12px}
+.prices .btn{margin-top:22px;width:100%}
+.foot{padding:28px 0 calc(var(--bar) + env(safe-area-inset-bottom,0px) + 28px);font-size:12px;color:var(--steel)}
+
+/* нижняя полоса на телефоне */
+.bar{position:fixed;z-index:20;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:8px 12px calc(8px + env(safe-area-inset-bottom,0px));background:rgba(11,14,19,.96);border-top:1px solid var(--seam)}
+.bar .btn{min-height:48px;padding:0 10px}
+
+/* появление: до запуска всё скрыто, место занято */
+.js.pre .a,.js.pre .name b{visibility:hidden}
+.js.pre .hero-dark{opacity:.86}
+.js.pre .a,.js.pre .name b{animation:failsafe 0s linear 3s forwards}
+.js.pre .hero-dark{animation:failsafe-dark 0s linear 3s forwards}
+@keyframes failsafe{to{visibility:visible}}
+@keyframes failsafe-dark{to{opacity:0}}
+.go .hero-dark{animation:lamps .6s cubic-bezier(.25,.1,.25,1) both}
+/* свет включается одним ровным наплывом: мерцание ламп (было 22.11) Артур принял за сбой, а 3 вспышки за 0,7 с — ещё и против правила о вспышках WCAG 2.3.1 */
+@keyframes lamps{from{opacity:.86}to{opacity:0}}
+.go .hero-photo img{animation:settle 2.4s var(--ease) both}
+@keyframes settle{from{transform:scale(1.07)}to{transform:scale(1)}}
+.go .glint{animation:glint .85s cubic-bezier(.4,0,.2,1) .62s both}
+@keyframes glint{from{transform:translate3d(-150%,0,0) skewX(-18deg)}to{transform:translate3d(330%,0,0) skewX(-18deg)}}
+.go .name b{animation:rise .46s var(--ease) .36s both}
+@keyframes rise{from{transform:translate3d(0,108%,0)}to{transform:none}}
+.go .a{animation:up .34s var(--ease) both;animation-delay:calc(.44s + var(--i,0) * .06s)}
+@keyframes up{from{opacity:0;transform:translate3d(0,14px,0)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .go .hero-dark,.go .hero-photo img,.go .glint,.go .name b,.go .a{animation:none}
+  .cmp.is-glide .cmp-before,.cmp.is-glide .cmp-track,.cmp.is-glide .cmp-grip{transition:none}
+}
+
+@media (min-width:900px){
+  .wrap{padding:0 48px}
+  .top{height:76px;padding:0 48px}
+  .brand{font-size:19px}
+  .top-phone{display:block}
+  .top .btn{display:inline-flex}
+  .bar{display:none}
+  .hero{min-height:660px}
+  .hero-photo{left:auto;right:0;width:58%;height:100%}
+  .hero-photo img{object-position:50% 34%}
+  .hero-shade{background:linear-gradient(to right,var(--night) 0,rgba(11,14,19,.5) 22%,rgba(11,14,19,0) 46%),linear-gradient(to bottom,rgba(11,14,19,.6) 0,rgba(11,14,19,0) 18%),linear-gradient(to bottom,rgba(11,14,19,0) 70%,rgba(11,14,19,.7) 100%)}
+  .hero-text{left:48px;right:auto;bottom:72px;width:min(46vw,620px)}
+  .name{font-size:clamp(96px,10.5vw,168px)}
+  .role{font-size:22px;margin-top:14px}
+  .what{font-size:18px;margin-top:20px;max-width:36ch}
+  .rate{margin-top:26px}
+  .where{font-size:14px;margin-top:18px}
+  .hero-cta{display:flex;gap:12px;margin-top:28px}
+  .ba{padding:112px 0 40px}
+  .ba .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:72px;align-items:center}
+  .cmp{margin-top:0;max-width:560px;justify-self:end;width:100%}
+  .prices{padding:72px 0 64px}
+  .prices .wrap{max-width:880px}
+  .prices .btn{width:auto}
+  .foot{padding-bottom:40px}
+}
+</style>
+<style>
+.name{font-size:min(clamp(58px,18.5vw,84px),calc((100vw - 34px) / 4.4))}
+@media (min-width:900px){.name{font-size:min(clamp(96px,10.5vw,168px),calc((min(46vw,620px) - 6px) / 4.4))}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a class="brand a" href="#top" aria-label="Драйв, в начало страницы">Драйв</a>
+  <div class="top-right">
+    <a class="top-phone a" href="tel:+79852206663">+7 (985) 220-66-63</a>
+    <a class="btn btn-sm cut" href="tel:+79852206663">Позвонить</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="hero-photo">
+    <img src="img/hero-1200.jpg" srcset="img/hero-1200.jpg 1200w, img/hero-2000.jpg 2000w" sizes="(min-width: 900px) 58vw, 100vw" width="1200" height="702" alt="Фото «Драйв» с Яндекс Карт" style="object-position:35% 50%" fetchpriority="high" decoding="async">
+    <div class="hero-shade"></div>
+    <div class="glint"></div>
+    <div class="hero-dark"></div>
+  </div>
+  <div class="hero-text">
+    <h1><span class="name"><b>Драйв</b></span><span class="role a" style="--i:1">автомойка и детейлинг</span></h1>
+    <p class="what a" style="--i:2">Мойка, химчистка салона, полировка, керамика, антигравийная плёнка и шиномонтаж.</p>
+    <p class="where a" style="--i:4">Красногорск, Центральный проезд, 20, подземная парковка. Ежедневно <span style="white-space:nowrap">8:00–22:00</span></p>
+    <div class="hero-cta a" style="--i:5">
+      <a class="btn cut" href="https://wa.me/79852206663?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F." target="_blank" rel="noopener">Записаться в WhatsApp</a>
+      <a class="btn btn-line cut" href="#ceny">Цены</a>
+    </div>
+  </div>
+</section>
+
+<section class="works" id="raboty">
+  <div class="wrap">
+    <h2 class="h2">Наши работы</h2>
+    <div class="strip">
+      <figure class="cut"><img src="img/w1-1024.jpg" width="1024" height="1280" alt="Работа «Драйв»" loading="lazy" decoding="async"></figure>
+      <figure class="cut"><img src="img/w2-1024.jpg" width="576" height="720" alt="Работа «Драйв»" loading="lazy" decoding="async"></figure>
+      <figure class="cut"><img src="img/w3-1024.jpg" width="1024" height="768" alt="Работа «Драйв»" loading="lazy" decoding="async"></figure>
+      <figure class="cut"><img src="img/w4-1024.jpg" width="576" height="720" alt="Работа «Драйв»" loading="lazy" decoding="async"></figure>
+      <figure class="cut"><img src="img/w5-1024.jpg" width="720" height="900" alt="Работа «Драйв»" loading="lazy" decoding="async"></figure>
+      <figure class="cut"><img src="img/w6-1024.jpg" width="1024" height="1280" alt="Работа «Драйв»" loading="lazy" decoding="async"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="prices" id="ceny">
+  <div class="wrap">
+    <h2 class="h2">Цены</h2>
+    <dl class="rows">
+      <div class="row"><dt>Мойка кузова</dt><dd class="sum">от&nbsp;400&nbsp;₽</dd></div>
+      <div class="row"><dt>Наномойка</dt><dd class="sum">1&nbsp;100&nbsp;₽</dd></div>
+      <div class="row"><dt>Химчистка салона</dt><dd class="sum">1&nbsp;000&nbsp;₽</dd></div>
+      <div class="row"><dt>Полировка кузова</dt><dd class="sum">1&nbsp;000&nbsp;₽</dd></div>
+      <div class="row"><dt>Детейлинг</dt><dd class="sum">4&nbsp;000&nbsp;₽</dd></div>
+    </dl>
+    <p class="note">Цены из карточки на Яндекс Картах на 22 ноября 2026 года.</p>
+    <a class="btn cut" href="https://wa.me/79852206663?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D1%86%D0%B5%D0%BD%D1%83%20%D0%B4%D0%BB%D1%8F%20%D0%BC%D0%BE%D0%B5%D0%B9%20%D0%BC%D0%B0%D1%88%D0%B8%D0%BD%D1%8B." target="_blank" rel="noopener">Спросить цену в WhatsApp</a>
+  </div>
+</section>
+</main>
+
+<footer class="foot"><div class="wrap">Демо-версия сайта. Не официальный сайт «Драйв».</div></footer>
+
+<nav class="bar" aria-label="Связаться">
+  <a class="btn cut" href="tel:+79852206663"><svg class="ico" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M5.2 1.8l2.6-.5 1.9 4.4-2 1.6c.9 1.9 2.3 3.300 4.200 4.200l1.600-2 4.400 1.900-.5 2.600c-.2 1-1 1.700-2 1.700C8.900 15.700 3.500 10.300 3.500 3.800c0-1 .7-1.800 1.700-2z"/></svg>Позвонить</a>
+  <a class="btn btn-line cut" href="https://wa.me/79852206663?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F." target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 1.5a8.400 8.400 0 0 0-7.200 12.800L1.600 18.400l4.300-1.100A8.400 8.400 0 1 0 10 1.500zm0 1.700a6.700 6.700 0 1 1-3.500 12.400l-.300-.2-2.200.6.6-2.100-.2-.3A6.700 6.700 0 0 1 10 3.200zM7.300 5.900c-.2 0-.5 0-.7.300-.3.300-1 .9-1 2.300s1 2.700 1.100 2.800c.1.200 2 3.100 4.900 4.200 2.400.9 2.900.7 3.400.7.500-.1 1.600-.7 1.800-1.300.2-.6.2-1.200.2-1.300-.1-.1-.3-.2-.6-.3l-1.900-.9c-.3-.1-.4-.1-.6.100l-.800 1c-.1.200-.3.2-.6.100-.300-.1-1.100-.4-2.100-1.300-.8-.7-1.300-1.500-1.500-1.800-.100-.300 0-.4.100-.5l.4-.5c.1-.1.2-.3.3-.4.100-.2 0-.3 0-.5l-.800-2c-.2-.5-.4-.5-.6-.5z"/></svg>WhatsApp</a>
+</nav>
+
+<script>
+(function () {
+  var d = document.documentElement, started = false;
+  function go() { if (started) return; started = true; window.__goAt = Math.round(performance.now()); d.classList.remove('pre'); d.classList.add('go'); }
+  var need = [['700 60px Unbounded', "Драйв"], ['500 16px Unbounded', "автомойка и детейлинг"], ['400 16px Onest', "Мойка, химчистка салона, полировка, керамика, антигравийная плёнка и шиномонтаж. Красногорск, Центральный проезд, 20, подземная парковка. Ежедневно 8:00–22:00 WhatsApp"], ['600 16px Onest', 'Позвонить WhatsApp']]; 
+  var fonts = (document.fonts && document.fonts.load) ? Promise.all(need.map(function (n) { return document.fonts.load(n[0], n[1]); })) : Promise.resolve();
+  var img = document.querySelector('.hero-photo img');
+  var photo = new Promise(function (res) { if (!img || (img.complete && img.naturalWidth)) return res(); img.addEventListener('load', res); img.addEventListener('error', res); });
+  Promise.all([fonts, photo]).then(go, go);
+  setTimeout(go, 2400);
+})();
+</script>
+</body>
+</html>

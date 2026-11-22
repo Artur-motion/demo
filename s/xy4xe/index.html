@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Вагсервис — сервис Volkswagen, Audi, Skoda, Балашиха</title>
+<meta name="description" content="Вагсервис в Балашихе — ремонт Volkswagen, Audi, Škoda и SEAT: диагностика, двигатель, DSG и АКПП, ходовая, тормоза, чип-тюнинг. Вт–сб 9:00–20:00.">
+<meta name="theme-color" content="#17191C">
+<link rel="icon" href="data:,">
+<script>document.documentElement.className = 'js pre';</script>
+<link rel="preload" as="image" href="img/hero.jpg" fetchpriority="high">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/FiraSansExtraCondensed-italic-800-cyrillic-48e3f0.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/FiraSansExtraCondensed-italic-800-latin-1432e2.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/FiraSansExtraCondensed-italic-800-latin-ext-39753e.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/FiraSans-normal-400-cyrillic-8608f2.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/FiraSans-normal-600-cyrillic-04b530.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/FiraSans-normal-400-latin-c64959.woff2">
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+/* Вагсервис — копия автосервиса волны 2 по образцу Car-Car.
+   Автосервис волны 1 — на основе Лайфа 3 «Скорость»: асфальт и жёлтая разметка, узкий наклонный шрифт, все края с одним наклоном.
+   Под ремонт: первый экран — что ремонтируем (плашки работ) и две частые цены; дальше список работ, цены из карточки, как работаем, адрес. */
+:root{
+  --asphalt:#17191C;   /* асфальт — фон */
+  --wet:#24272C;       /* мокрый асфальт — плашки */
+  --seam:#3A3F46;      /* линии */
+  --concrete:#A9AFB7;  /* бетон — подписи */
+  --white:#FFFFFF;     /* белая разметка — текст */
+  --yellow:#FFD21F;    /* жёлтая разметка — акцент и цены (у Car-Car — как жёлтый фасад техцентра) */
+  --ink:#111315;       /* текст на жёлтом */
+  --fast:cubic-bezier(.16,1,.3,1);
+  --k:10px;            /* наклон краёв */
+  --bar:60px;
+  --disp:'Fira Sans Extra Condensed','Arial Narrow',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--asphalt);color:var(--white);font:400 16px/1.5 'Fira Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,p,dl,dd,dt,ul{margin:0}
+ul{padding:0;list-style:none}
+:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
+.slant:focus-visible,.bar a:focus-visible{outline-color:var(--ink);outline-offset:-5px}
+.btn-dark.slant:focus-visible,.bar a:last-child:focus-visible{outline-color:var(--yellow)}
+.wrap{max-width:1160px;margin:0 auto;padding:0 16px}
+.slant{clip-path:polygon(var(--k) 0,100% 0,calc(100% - var(--k)) 100%,0 100%)}
+
+.top{position:absolute;z-index:5;top:0;left:0;right:0;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 12px 0 16px}
+.brand{display:flex;align-items:baseline;gap:10px;font:italic 800 28px/1 var(--disp);letter-spacing:.01em;padding:10px 4px 10px 0}
+.brand small{font:400 13px/1 'Fira Sans',sans-serif;letter-spacing:0;color:#D9DCE0}
+.top-right{display:flex;align-items:center;gap:22px}
+.top-phone{display:none;font:italic 800 24px/1 var(--disp);letter-spacing:.01em}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 28px;font:italic 800 22px/1 var(--disp);letter-spacing:.015em;color:var(--ink);background:var(--yellow);transition:transform .1s var(--fast)}
+.btn:active{transform:scale(.97)}
+.btn-dark{color:var(--white);background:var(--wet)}
+.btn-sm{min-height:44px;padding:0 22px;font-size:20px}
+.top .btn{display:none} /* на телефоне звонок — в нижней полосе, в шапке не дублируем */
+.ico{width:20px;height:20px;flex:none}
+
+.hero{position:relative;height:100vh;height:100svh;min-height:640px;overflow:hidden}
+.hero-photo{position:absolute;top:0;left:0;width:100%;height:47%;clip-path:polygon(0 0,100% 0,100% 80%,0 100%);overflow:hidden;background:var(--wet)}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 70%}
+.hero-shade{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(23,25,28,.6) 0,rgba(23,25,28,0) 22%),linear-gradient(to bottom,rgba(23,25,28,0) 60%,rgba(23,25,28,.6) 100%)}
+.hero-body{position:absolute;left:16px;right:16px;bottom:calc(var(--bar) + env(safe-area-inset-bottom,0px) + 106px)}
+.name{display:block;margin-left:-.012em;font:italic 800 min(76px,19.6vw)/.8 var(--disp);letter-spacing:-.005em;text-transform:uppercase;white-space:nowrap}
+.name b{display:inline-block;font-weight:inherit}
+.role{display:inline-block;margin-top:14px;padding:5px 18px 6px 14px;font:italic 800 clamp(21px,6vw,25px)/1.1 var(--disp);letter-spacing:.01em;color:var(--ink);background:var(--yellow);transform-origin:0 50%}
+/* что ремонтируем — плашками, как разметка */
+.jobs{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;max-width:420px}
+.jobs li{padding:6px 14px 7px;font:600 14.5px/1.15 'Fira Sans',sans-serif;color:var(--white);background:var(--wet);--k:6px;clip-path:polygon(var(--k) 0,100% 0,calc(100% - var(--k)) 100%,0 100%)}
+.hero-cta{display:none}
+.band{position:absolute;left:0;right:0;bottom:calc(var(--bar) + env(safe-area-inset-bottom,0px));height:92px;display:grid;grid-template-columns:1fr 1fr;align-items:end;padding:0 16px 10px;background:var(--yellow);color:var(--ink);clip-path:polygon(0 16px,100% 0,100% 100%,0 100%)}
+.band div{overflow:hidden}
+.band div+div{padding-left:16px;border-left:2px solid var(--ink);transform:skewX(-10deg)}
+.band div+div>*{transform:skewX(10deg);transform-origin:0 100%}
+.band dt{font-size:13px;line-height:1.2;font-weight:400}
+.band dd{font:italic 800 34px/1 var(--disp);letter-spacing:.005em;white-space:nowrap}
+.band .only-desk{display:none}
+
+.h2{font:italic 800 clamp(40px,11vw,68px)/.95 var(--disp);letter-spacing:.005em;text-transform:uppercase}
+.works{padding:52px 0 12px}
+.wlist{margin-top:18px;border-top:2px solid var(--white)}
+.wlist li{position:relative;padding:12px 0 13px 26px;border-bottom:1px solid var(--seam);font-weight:600;font-size:17px;line-height:1.35}
+.wlist li::before{content:"";position:absolute;left:0;top:19px;width:14px;height:8px;background:var(--yellow);clip-path:polygon(4px 0,100% 0,calc(100% - 4px) 100%,0 100%)}
+.note{margin-top:12px;font-size:13.5px;line-height:1.45;color:var(--concrete);max-width:58ch}
+.works .note{font-size:15px;color:#D9DCE0}
+
+.prices{padding:44px 0 36px}
+.rows{margin-top:18px;border-top:2px solid var(--white)}
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:16px;align-items:baseline;padding:12px 0 14px;border-bottom:1px solid var(--seam)}
+.row dt{font-weight:600;font-size:17px}
+.row .sum{font:italic 800 30px/1 var(--disp);color:var(--yellow);white-space:nowrap}
+.prices .btn{margin-top:20px;width:100%}
+
+.how{padding:20px 0 30px}
+.facts{margin-top:18px;border-top:2px solid var(--white)}
+.facts li{padding:12px 0 13px;border-bottom:1px solid var(--seam);font-size:16.5px;line-height:1.4}
+.facts b{font-weight:600}
+
+.find{padding:20px 0 30px}
+.find .big{margin-top:16px;font:italic 800 32px/1.05 var(--disp);letter-spacing:.005em}
+.find .when{margin-top:6px;color:#D9DCE0}
+.tels{margin-top:16px;border-top:2px solid var(--white)}
+.tels li{display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding:12px 0 13px;border-bottom:1px solid var(--seam)}
+.tels span{color:var(--concrete);font-size:15px}
+.tels a{font:italic 800 24px/1 var(--disp);letter-spacing:.01em;white-space:nowrap}
+.foot{padding:26px 0 calc(var(--bar) + env(safe-area-inset-bottom,0px) + 26px);font-size:12px;color:var(--concrete)}
+
+.bar{position:fixed;z-index:20;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 1fr;height:calc(var(--bar) + env(safe-area-inset-bottom,0px));padding-bottom:env(safe-area-inset-bottom,0px);background:var(--wet)}
+.bar a{display:flex;align-items:center;justify-content:center;gap:10px;font:italic 800 23px/1 var(--disp);letter-spacing:.015em}
+.bar a:first-child{color:var(--ink);background:var(--yellow);margin-right:-9px;clip-path:polygon(0 0,100% 0,calc(100% - 18px) 100%,0 100%)}
+.bar a:last-child{color:var(--white);padding-left:9px}
+
+/* появление: скрыто до запуска, место занято сразу */
+.js.pre .a,.js.pre .name b,.js.pre .role,.js.pre .hero-photo img,.js.pre .band{visibility:hidden}
+.js.pre .a,.js.pre .name b,.js.pre .role,.js.pre .hero-photo img,.js.pre .band{animation:failsafe 0s linear 3s forwards}
+@keyframes failsafe{to{visibility:visible}}
+.go .hero-photo img{animation:photo .52s var(--fast) both}
+@keyframes photo{from{opacity:0;transform:translate3d(7%,0,0) scale(1.06)}to{opacity:1;transform:none}}
+.go .name b{animation:slam .26s var(--fast) both;animation-delay:calc(.12s + var(--i,0) * .035s)}
+@keyframes slam{from{opacity:0;transform:translate3d(-38px,0,0) skewX(-12deg)}to{opacity:1;transform:none}}
+.go .role{animation:wipe .2s var(--fast) .34s both}
+@keyframes wipe{from{opacity:0;transform:scaleX(.05)}to{opacity:1;transform:none}}
+.go .a{animation:slide .22s var(--fast) both;animation-delay:calc(.42s + var(--i,0) * .05s)}
+@keyframes slide{from{opacity:0;transform:translate3d(-18px,0,0)}to{opacity:1;transform:none}}
+.go .band{animation:band .32s var(--fast) .3s both}
+@keyframes band{from{transform:translate3d(0,100%,0)}to{transform:none}}
+.go .band dd{animation:rise .22s var(--fast) both;animation-delay:calc(.5s + var(--i,0) * .05s)}
+@keyframes rise{from{transform:translate3d(0,110%,0)}to{transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .go .hero-photo img,.go .name b,.go .role,.go .a,.go .band,.go .band dd{animation:none}
+}
+
+@media (min-width:900px){
+  .wrap{padding:0 48px}
+  .top{height:76px;padding:0 44px 0 48px}
+  .brand{font-size:34px}
+  .top-phone{display:block}
+  .top .btn{display:inline-flex}
+  .bar{display:none}
+  :root{--bar:0px}
+  .hero{min-height:680px}
+  .hero-photo{left:auto;right:0;width:60%;height:100%;clip-path:polygon(22% 0,100% 0,100% 100%,0 100%)}
+  .hero-photo img{object-position:50% 100%}
+  .hero-shade{background:linear-gradient(to bottom,rgba(23,25,28,.6) 0,rgba(23,25,28,0) 18%)}
+  .hero-body{left:48px;right:auto;width:min(50vw,640px);bottom:168px}
+  .name{font-size:min(121px,8.4vw)}
+  .role{font-size:34px;margin-top:22px;padding:7px 26px 8px 20px}
+  .jobs{margin-top:20px;max-width:560px;gap:8px}
+  .jobs li{font-size:16px;padding:8px 18px 9px}
+  .hero-cta{display:flex;gap:6px;margin-top:22px}
+  .band{height:118px;grid-template-columns:repeat(3,auto) 1fr;column-gap:40px;padding:0 48px 16px;clip-path:polygon(0 26px,100% 0,100% 100%,0 100%)}
+  .band .only-desk{display:block}
+  .band div+div{padding-left:28px}
+  .band dt{font-size:14px}
+  .band dd{font-size:52px}
+  .works{padding:104px 0 24px}
+  .works .wrap,.prices .wrap,.how .wrap,.find .wrap{max-width:1000px}
+  .wlist{display:grid;grid-template-columns:1fr 1fr;column-gap:48px}
+  .prices{padding:64px 0 48px}
+  .row .sum{font-size:44px}
+  .prices .btn{width:auto}
+  .how,.find{padding:40px 0 40px}
+  .foot{padding-bottom:36px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a class="brand a" href="#top" aria-label="Вагсервис, в начало страницы">ВАГСЕРВИС <small>Балашиха, вт–сб 9:00–20:00</small></a>
+  <div class="top-right">
+    <a class="top-phone a" href="tel:+79266443599">+7 (926) 644-35-99</a>
+    <a class="btn btn-sm slant" href="tel:+79266443599">Позвонить</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="hero-photo">
+    <img src="img/hero.jpg" width="1600" height="1200" alt="Audi на подъёмнике в цехе Вагсервиса — фото с Яндекс Карт" fetchpriority="high" decoding="async">
+    <div class="hero-shade"></div>
+  </div>
+  <div class="hero-body">
+    <h1><span class="name" aria-label="Вагсервис"><b style="--i:0">В</b><b style="--i:1">а</b><b style="--i:2">г</b><b style="--i:3">с</b><b style="--i:4">е</b><b style="--i:5">р</b><b style="--i:6">в</b><b style="--i:7">и</b><b style="--i:8">с</b></span><span class="role slant">сервис Volkswagen, Audi, Skoda</span></h1>
+    <ul class="jobs a" style="--i:0" aria-label="Что ремонтируем">
+      <li>Диагностика</li><li>Двигатель</li><li>DSG и АКПП</li><li>Ходовая</li><li>Тормоза</li><li>Чип-тюнинг</li>
+    </ul>
+    <div class="hero-cta a" style="--i:2">
+      <a class="btn slant" href="https://wa.me/79266443599?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D1%80%D0%B5%D0%BC%D0%BE%D0%BD%D1%82." target="_blank" rel="noopener">Записаться в WhatsApp</a>
+      <a class="btn btn-dark slant" href="#raboty">Что ремонтируем</a>
+    </div>
+  </div>
+  <dl class="band">
+    <div><dt>Компьютерная диагностика</dt><dd style="--i:0">1&nbsp;000&nbsp;₽</dd></div>
+    <div><dt>Замена масла АКПП</dt><dd style="--i:1">3&nbsp;500&nbsp;₽</dd></div>
+    <div class="only-desk"><dt>Ремонт DSG</dt><dd style="--i:2">7&nbsp;000&nbsp;₽</dd></div>
+  </dl>
+</section>
+
+<section class="works" id="raboty">
+  <div class="wrap">
+    <h2 class="h2">Что ремонтируем</h2>
+    <ul class="wlist">
+      <li>Компьютерная диагностика, осциллограф, эндоскопия</li>
+      <li>ТО и замена масла</li>
+      <li>Двигатель, ГБЦ, ГРМ, турбины</li>
+      <li>DSG, АКПП, МКПП и сцепление</li>
+      <li>Дизельные двигатели и мочевина</li>
+      <li>Ходовая и пневмоподвеска</li>
+      <li>Тормоза, проточка дисков</li>
+      <li>Рулевые рейки</li>
+      <li>Автоэлектрика, стартеры, генераторы</li>
+      <li>Система охлаждения и отопитель</li>
+      <li>Чип-тюнинг</li>
+      <li>Ремонт гибридных машин</li>
+    </ul>
+    <p class="note">Volkswagen, Audi, Škoda и SEAT — бензиновые, дизельные и гибридные.</p>
+  </div>
+</section>
+
+<section class="prices" id="ceny">
+  <div class="wrap">
+    <h2 class="h2">Цены</h2>
+    <dl class="rows">
+      <div class="row"><dt>Компьютерная диагностика</dt><dd class="sum">1&nbsp;000&nbsp;₽</dd></div>
+      <div class="row"><dt>Замена тормозных колодок</dt><dd class="sum">1&nbsp;000&nbsp;₽</dd></div>
+      <div class="row"><dt>Диагностика двигателя</dt><dd class="sum">3&nbsp;000&nbsp;₽</dd></div>
+      <div class="row"><dt>Замена масла АКПП</dt><dd class="sum">3&nbsp;500&nbsp;₽</dd></div>
+      <div class="row"><dt>Эндоскопия двигателя</dt><dd class="sum">5&nbsp;000&nbsp;₽</dd></div>
+      <div class="row"><dt>Ремонт DSG</dt><dd class="sum">7&nbsp;000&nbsp;₽</dd></div>
+      <div class="row"><dt>Замена ремня ГРМ</dt><dd class="sum">10&nbsp;000&nbsp;₽</dd></div>
+      <div class="row"><dt>Замена сцепления</dt><dd class="sum">17&nbsp;000&nbsp;₽</dd></div>
+    </dl>
+    <p class="note">Цены из карточки на Яндекс Картах на 22 ноября 2026 года. Нормочас — 3 000–5 500 ₽. Цену ремонта вашей машины уточните по телефону или в WhatsApp.</p>
+    <a class="btn slant" href="https://wa.me/79266443599?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D1%86%D0%B5%D0%BD%D1%83%20%D1%80%D0%B5%D0%BC%D0%BE%D0%BD%D1%82%D0%B0." target="_blank" rel="noopener">Спросить цену в WhatsApp</a>
+  </div>
+</section>
+
+<section class="how" id="kak">
+  <div class="wrap">
+    <h2 class="h2">Как работаем</h2>
+    <ul class="facts">
+      <li><b>Гарантия</b> на работы.</li>
+      <li><b>Вторник–суббота</b> с 9:00 до 20:00, по предварительной записи.</li>
+      <li><b>Запчасти</b> — под заказ, отдельный телефон.</li>
+      <li><b>Оплата</b> наличными или переводом.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="find" id="adres">
+  <div class="wrap">
+    <h2 class="h2">Адрес</h2>
+    <p class="big">Балашиха, мкр Гагарина, Проектная улица, 9А, стр. 3</p>
+    <p class="when">Вт–сб 9:00–20:00, есть парковка.</p>
+    <ul class="tels">
+      <li><span>Ремонт</span><a href="tel:+79266443599">+7 (926) 644-35-99</a></li>
+      <li><span>Запчасти</span><a href="tel:+79262064333">+7 (926) 206-43-33</a></li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer class="foot"><div class="wrap">Демо-версия сайта. Не официальный сайт «Вагсервис Балашиха».</div></footer>
+
+<nav class="bar" aria-label="Связаться">
+  <a href="tel:+79266443599"><svg class="ico" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M5.2 1.8l2.6-.5 1.9 4.4-2 1.6c.9 1.9 2.3 3.3 4.2 4.2l1.6-2 4.4 1.9-.5 2.6c-.2 1-1 1.7-2 1.7C8.9 15.7 3.5 10.3 3.5 3.8c0-1 .7-1.8 1.7-2z"/></svg>Позвонить</a>
+  <a href="https://wa.me/79266443599?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D1%80%D0%B5%D0%BC%D0%BE%D0%BD%D1%82." target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 20 20" aria-hidden="true"><path fill="currentColor" d="M10 1.5a8.4 8.4 0 0 0-7.2 12.8L1.6 18.4l4.3-1.1A8.4 8.4 0 1 0 10 1.5zm0 1.7a6.7 6.7 0 1 1-3.5 12.4l-.3-.2-2.2.6.6-2.1-.2-.3A6.7 6.7 0 0 1 10 3.2zM7.3 5.9c-.2 0-.5 0-.7.3-.3.3-1 .9-1 2.3s1 2.7 1.1 2.8c.1.2 2 3.1 4.9 4.2 2.4.9 2.9.7 3.4.7.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3l-1.9-.9c-.3-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.6.1-.3-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.5-1.5-1.8-.1-.3 0-.4.1-.5l.4-.5c.1-.1.2-.3.3-.4.1-.2 0-.3 0-.5l-.8-2c-.2-.5-.4-.5-.6-.5z"/></svg>WhatsApp</a>
+</nav>
+
+<script>
+(function () {
+  var d = document.documentElement, started = false;
+  function go() { if (started) return; started = true; window.__goAt = Math.round(performance.now()); d.classList.remove('pre'); d.classList.add('go'); }
+  var need = [["italic 800 60px \"Fira Sans Extra Condensed\"", "Вагсервис сервис Volkswagen, Audi, Skoda"], ["italic 800 30px \"Fira Sans Extra Condensed\"", "1 000 ₽ 3 500 ₽ 7 000 ₽ WhatsApp"], ["600 15px \"Fira Sans\"", "Диагностика Двигатель DSG и АКПП Ходовая Тормоза Чип-тюнинг"], ["400 16px \"Fira Sans\"", "Балашиха, вт–сб 9:00–20:00 Компьютерная диагностика"]];
+  var fonts = (document.fonts && document.fonts.load) ? Promise.all(need.map(function (n) { return document.fonts.load(n[0], n[1]); })) : Promise.resolve();
+  var img = document.querySelector('.hero-photo img');
+  var photo = new Promise(function (res) { if (!img || (img.complete && img.naturalWidth)) return res(); img.addEventListener('load', res); img.addEventListener('error', res); });
+  Promise.all([fonts, photo]).then(go, go);
+  setTimeout(go, 2400);
+})();
+</script>
+</body>
+</html>
