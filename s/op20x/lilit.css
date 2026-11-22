@@ -1,0 +1,115 @@
+/* Lilit, лист направлений: общее для обеих страниц.
+   Цвета из их зала: белые стены и дневной свет, графит стойки, синий их кресел и вывески.
+   Prata для названия и заголовков, Golos Text для текста. Движение спокойное, без пружин. */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth}
+:root{
+  --bg:#F4F5F7; --ink:#22262C; --mute:#5C6471; --accent:#2460B4; --line:#DADEE5; --soft:#E7EAEE;
+  --e:cubic-bezier(.4,0,.2,1); --out:cubic-bezier(.22,.7,.2,1);
+  --pad:16px; --bar:72px;
+}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 'Golos Text',system-ui,-apple-system,'Segoe UI',sans-serif;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;overflow-x:clip;padding-bottom:calc(var(--bar) + env(safe-area-inset-bottom,0px))}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+h1,h2,p,ul{margin:0;padding:0}
+ul{list-style:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.stage:focus-visible,.strip:focus-visible{outline-offset:-2px}
+@media (max-width:899px){.wide{display:none!important}}
+.cta{display:none}
+
+/* шапка: название слева, разделы и телефон справа */
+.mast{position:relative;padding:12px var(--pad) 0}
+.h1{font:inherit}
+.name{display:block;font:400 58px/1 'Prata',Georgia,serif;letter-spacing:-.01em;margin-left:-2px}
+.kind{display:block;margin-top:6px;font:400 19px/1.3 'Prata',Georgia,serif}
+.nav{position:absolute;top:25px;right:var(--pad);display:flex;align-items:center;gap:20px;font-weight:500;font-size:16px;white-space:nowrap}
+.nav a{display:inline-flex;align-items:center;min-height:44px}
+.lead{padding:8px var(--pad) 0;color:var(--mute);font-size:16px;line-height:1.4}
+
+.facts{padding:14px var(--pad) 0;font-size:15px;line-height:1.45;color:var(--mute)}
+.facts p+p{margin-top:5px}
+.facts .rate{color:var(--ink);font-weight:500}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 28px;border-radius:999px;
+  background:var(--accent);color:#fff;font-weight:600;font-size:17px;transition:background-color .18s var(--e)}
+.btn svg{width:22px;height:22px;fill:currentColor;flex:none}
+.btn:hover{background:#1D4F97}
+.pill{padding:0 20px;border:1px solid var(--ink);border-radius:999px;transition:background-color .18s var(--e),color .18s var(--e)}
+.pill:hover{background:var(--ink);color:#fff}
+.go-round{width:48px;height:48px;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;background:#fff;
+  transition:border-color .18s var(--e),opacity .18s var(--e)}
+.go-round:hover{border-color:var(--ink)}
+.go-round[aria-disabled=true]{opacity:.35;cursor:default}
+.go-round svg{width:18px;height:18px;fill:none;stroke:var(--ink);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* разделы ниже первого экрана */
+.sec{padding:44px var(--pad) 0;max-width:760px}
+.sec h2{font:400 34px/1.15 'Prata',Georgia,serif}
+.prices{margin-top:16px;border-top:1px solid var(--line)}
+.prices li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);font-size:17px;line-height:1.35}
+.prices b{font-weight:500;white-space:nowrap}
+.small{margin-top:12px;color:var(--mute);font-size:14px;line-height:1.45}
+.sec .btn{display:none;margin-top:22px}
+.addr{margin-top:14px;font-size:17px;line-height:1.5}
+.addr a{color:var(--accent);border-bottom:1px solid currentColor}
+.addr p+p{margin-top:4px}
+.addr .more{margin-top:14px}
+.foot{padding:48px var(--pad) 28px;color:var(--mute);font-size:13px}
+
+/* нижняя полоса на телефоне */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:grid;grid-template-columns:1fr 1.7fr;gap:8px;
+  padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line)}
+.bar a{display:flex;align-items:center;justify-content:center;gap:8px;min-height:52px;border-radius:999px;font-weight:600;font-size:15.5px;white-space:nowrap}
+.bar svg{width:20px;height:20px;flex:none}
+.bar .call{border:1px solid var(--ink)}
+.bar .call svg{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.bar .wa{background:var(--accent);color:#fff}
+.bar .wa svg{fill:currentColor}
+
+@media (max-width:379px){
+  .bar{grid-template-columns:1fr 1.8fr;gap:6px;padding-left:8px;padding-right:8px}
+  .bar a{font-size:14.5px;gap:6px}
+  .bar svg{width:18px;height:18px}
+  .name{font-size:52px}
+  .kind{font-size:17.5px}
+}
+
+@media (max-width:339px){
+  .bar a{font-size:13.5px}
+  .bar .call svg{display:none}
+}
+
+/* первая секунда: первый экран скрыт, место занято; запуск после шрифтов и первого фото */
+.pre .in{opacity:0}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.go .name{animation:rise .8s var(--e) both}
+.go .kind{animation:rise .8s var(--e) .08s both}
+.go .lead{animation:rise .8s var(--e) .16s both}
+.go .nav,.go .facts,.go .cta,.go .ctl{animation:fade .8s var(--e) .4s both}
+
+@media (min-width:900px){
+  :root{--pad:56px}
+  body{padding-bottom:0}
+  .bar{display:none}
+  .mast{padding-top:30px}
+  .name{font-size:clamp(104px,9.4vw,150px);margin-left:-6px}
+  .kind{font-size:27px;margin-top:12px}
+  .nav{top:56px;gap:30px;font-size:17px}
+  .nav .pill{min-height:46px}
+  .lead{font-size:20px;padding-top:0}
+  .facts{font-size:16px;padding-top:0}
+  .cta{display:flex;align-items:center;gap:24px}
+  .sec{padding-top:72px}
+  .sec .btn{display:inline-flex}
+  .sec h2{font-size:44px}
+  .prices li{font-size:18px}
+  .foot{padding-top:72px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .go .in,.go .name,.go .kind,.go .lead,.go .nav,.go .facts,.go .cta,.go .ctl{animation:fade .3s linear both}
+}
