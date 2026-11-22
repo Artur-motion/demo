@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>«Никольское» — кафе и банкетный зал в Балашихе</title>
+<meta name="description" content="«Никольское» в Балашихе: кафе, банкеты и поминальные обеды. Три зала — на 130, 50 и 40 гостей. Носовихинское шоссе, 14. Демо-версия сайта.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:title" content="«Никольское» — кафе и банкетный зал в Балашихе">
+<meta property="og:description" content="Кафе, банкеты и поминальные обеды. Три зала: на 130, 50 и 40 гостей. Носовихинское шоссе, 14.">
+<meta property="og:url" content="https://artur-motion.github.io/demo/p/nkf3c8.html">
+<meta property="og:image" content="https://artur-motion.github.io/demo/p/img/nk6v3r/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="../lib/fonts.css">
+<link rel="preload" as="font" type="font/woff2" href="../lib/fonts/CormorantGaramond-normal-500-cyrillic-dc67de.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../lib/fonts/GolosText-normal-400-cyrillic-465785.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../lib/fonts/CormorantGaramond-normal-500-latin-abcaa8.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="../lib/fonts/GolosText-normal-400-latin-83cb19.woff2" crossorigin>
+<link rel="preload" as="image" href="img/nk6v3r/hall-white-1.jpg" fetchpriority="high">
+<link rel="stylesheet" href="../vhnzzk/style.css">
+<link rel="stylesheet" href="../vhnzzk/light.css">
+<style>
+.js-anim:not(.no-motion) .cine .l1 { opacity: 0; }
+.js-anim:not(.no-motion) .cine .l2 { clip-path: inset(0 100% 0 0); }
+
+/* Цвет — тёмно-зелёный, как стулья в их залах (тот же, что в разделе поминок) */
+:root {
+  --gold: #35503F;
+  --gold-ink: #35503F;
+  --ink-on-gold: #FFFFFF;
+  --blank: rgba(53, 80, 63, .16);
+}
+.btn-gold:hover { background: #2A4133; }
+.brand-name { font-family: var(--serif); font-weight: 600; font-size: 34px; letter-spacing: .01em; }
+@media (max-width: 760px) { .brand-name { font-size: 30px; } }
+
+.map-slot.map-live { padding: 0; overflow: hidden; }
+.map-slot.map-live iframe { display: block; width: 100%; height: 100%; min-height: inherit; border: 0; }
+
+.photo-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 24px; }
+.photo-grid img { display: block; width: 100%; aspect-ratio: 1.4; object-fit: cover; border-radius: 13px; background: var(--wood); }
+.photo-note { margin-top: 16px; color: var(--smoke); font-size: 15px; }
+@media (max-width: 760px) { .photo-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; } }
+
+/* Меню: блюдо — цена в строку */
+.menu-base { margin-bottom: 28px; }
+.menu-base h3 { font-family: var(--serif); font-weight: 600; font-size: 28px; line-height: 1.2; margin: 0 0 4px; }
+.menu-group { margin: 18px 0 4px; font-weight: 600; }
+.menu-base ul { list-style: none; margin: 0; padding: 0; }
+.menu-base li { padding: 3px 0; font-size: 18px; line-height: 1.45; }
+.menu-note { display: block; font-size: 14px; line-height: 1.4; color: var(--smoke); }
+.menu-prices .price-row { flex-wrap: wrap; padding: 18px 0; }
+.menu-prices .price-row dt { font-size: 28px; font-variant-numeric: lining-nums; }
+.menu-prices .menu-add { order: 3; flex-basis: 100%; margin: 6px 0 0; font-size: 16px; font-weight: 400; line-height: 1.45; white-space: normal; color: var(--smoke); }
+.dish-list .price-row dt { font-family: var(--sans, inherit); font-size: 19px; font-weight: 500; }
+.dish-list .menu-add { order: 3; flex-basis: 100%; margin: 2px 0 0; font-size: 15px; color: var(--smoke); }
+@media (max-width: 760px) { .menu-prices .price-row dt { font-size: 24px; } .menu-base li { font-size: 17px; } .dish-list .price-row dt { font-size: 18px; } }
+
+/* Раздел поминок — отдельная спокойная полоса внутри сайта кафе */
+.pominki-sec { background: rgba(53, 80, 63, .06); }
+.pominki-lead { font-size: 19px; line-height: 1.5; max-width: 40em; }
+
+/* ЧЕРНОВИК: места под материалы Элины. Перед показом клиенту — заменить на настоящее и убрать класс */
+.todo { margin-top: 20px; padding: 16px 18px; border: 2px dashed #B4411F; border-radius: 12px; color: #8a3418; background: rgba(180, 65, 31, .05); font-size: 16px; line-height: 1.45; }
+.todo b { display: block; margin-bottom: 2px; }
+.video-slot { aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; text-align: center; }
+
+@media (max-width: 760px) { .cine-photo { object-position: 45% 60% !important; height: 140%; top: -40%; bottom: auto; } }
+</style>
+<script>
+(function () {
+  var r = document.documentElement;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  r.classList.add('js-anim');
+  setTimeout(function () { if (!r.classList.contains('cine-live')) r.classList.add('no-motion'); }, 3000);
+})();
+</script>
+<script src="../lib/gsap.min.js" defer></script>
+<script src="../lib/ScrollTrigger.min.js" defer></script>
+<script src="../vhnzzk/script.js" defer></script>
+</head>
+<body>
+
+<header class="top wrap">
+  <a class="brand" href="#top" id="top">
+    <span class="brand-name">Никольское</span>
+    <span class="brand-note">кафе и банкетный зал в Балашихе</span>
+  </a>
+  <nav class="nav" aria-label="Разделы">
+    <a href="#menu">Меню</a>
+    <a href="#bankety">Банкеты</a>
+    <a href="#zaly">Залы</a>
+    <a href="#pominki">Поминальные обеды</a>
+    <a href="#kontakty">Контакты</a>
+  </nav>
+  <a class="top-phone" href="tel:+79037236826"><span class="top-phone-num">+7 (903) 723-68-26</span><span class="top-phone-short">Позвонить</span></a>
+</header>
+
+<main>
+
+<section class="cine" aria-labelledby="hero-title">
+  <div class="cine-title">
+    <h1 id="hero-title" style="font-size:min(8.6vw,48px)"><span class="l1">Никольское</span> <span class="l2">кафе и банкетный зал</span></h1>
+    <div class="actions hero-actions">
+      <a class="btn btn-gold" href="tel:+79037236826">Позвонить</a>
+      <a class="btn btn-line" href="https://wa.me/79154824399"><span class="wide-only">Написать в&nbsp;</span>WhatsApp</a>
+    </div>
+  </div>
+
+  <div class="cine-card">
+    <img fetchpriority="high" class="cine-photo" src="img/nk6v3r/hall-white-1.jpg" alt="Большой зал «Никольского» с деревянной галереей и колоннами">
+    <div class="cine-shade" aria-hidden="true"></div>
+    <div class="cine-card-text">
+      <h2>Отдельный зал для вашего праздника</h2>
+      <p>Три зала — на&nbsp;130, 50 и&nbsp;40 гостей. Банкеты, дни рождения, юбилеи и&nbsp;поминальные обеды.</p>
+    </div>
+  </div>
+
+  <div class="cine-cta">
+    <div class="cta-inner">
+      <div class="cta-text">
+        <h2>Нужен зал на&nbsp;вашу дату?</h2>
+        <p>Позвоните или напишите в&nbsp;WhatsApp: назовите дату и&nbsp;число гостей&nbsp;— администратор подберёт зал и&nbsp;пришлёт банкетное меню.</p>
+        <div class="actions cta-actions">
+          <a class="btn btn-gold" href="tel:+79037236826">Позвонить</a>
+          <a class="btn btn-line" href="https://wa.me/79154824399"><span class="wide-only">Написать в&nbsp;</span>WhatsApp</a>
+        </div>
+      </div>
+      <img class="cta-photo" src="img/nk6v3r/hall-white-2.jpg" alt="Накрытый длинный стол в большом зале">
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="menu" aria-labelledby="menu-title">
+  <div class="wrap split">
+    <div class="sec-head">
+      <h2 id="menu-title">Меню кафе</h2>
+      <p>Обеды, ужины и&nbsp;блюда на&nbsp;углях.</p>
+    </div>
+    <div class="cta-cell"><a class="btn btn-line" href="tel:+79037236826">Заказать столик</a></div>
+    <div class="menu">
+      <dl class="prices menu-prices dish-list">
+        <div class="price-row"><dt>Лобио по-грузински</dt><dd>675&nbsp;₽</dd><dd class="menu-add">150&nbsp;г</dd></div>
+        <div class="price-row"><dt>Суп куриный</dt><dd>540&nbsp;₽</dd><dd class="menu-add">350&nbsp;г</dd></div>
+        <div class="price-row"><dt>Люля-кебаб из&nbsp;телятины</dt><dd>719&nbsp;₽</dd><dd class="menu-add">180&nbsp;г</dd></div>
+      </dl>
+      <div class="todo"><b>Черновик</b>Три блюда выше — из&nbsp;меню на&nbsp;вашей карточке в&nbsp;Яндекс Картах (обновлено 6&nbsp;октября). Сюда встанет полное меню кафе с&nbsp;ценами — по&nbsp;меню, которое пришлёт Элина.</div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-line" id="bankety" aria-labelledby="bankety-title">
+  <div class="wrap split">
+    <div class="sec-head">
+      <h2 id="bankety-title">Банкеты и праздники</h2>
+      <p>Юбилеи, дни рождения и&nbsp;семейные праздники&nbsp;— в&nbsp;отдельном зале, без посторонних за&nbsp;соседними столами. Назовите дату и&nbsp;число гостей&nbsp;— администратор подберёт зал.</p>
+    </div>
+    <div class="cta-cell"><a class="btn btn-line" href="https://wa.me/79154824399">Спросить о банкете в WhatsApp</a></div>
+    <div class="menu">
+      <div class="todo"><b>Черновик</b>Сюда встанет банкетное меню: цена на&nbsp;человека и&nbsp;что входит&nbsp;— по&nbsp;меню, которое пришлёт Элина.</div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-line halls-sec" id="zaly" aria-labelledby="zaly-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="zaly-title">Залы</h2>
+      <p>Администратор подберёт зал по&nbsp;числу гостей.</p>
+    </div>
+    <div class="halls">
+      <article class="hall">
+        <div class="hall-photos">
+          <img class="hall-main" src="img/nk6v3r/hall-white-1.jpg" alt="Большой белый зал «Никольского» с галереей" loading="lazy">
+          <img class="hall-extra" src="img/nk6v3r/hall-white-2.jpg" alt="Длинный накрытый стол в большом зале" loading="lazy">
+        </div>
+        <div class="hall-text">
+          <h3>Большой белый зал</h3>
+          <p class="cap">до&nbsp;130 гостей</p>
+          <p>Светлый зал с&nbsp;галереей. Столы ставят длинными рядами или отдельно&nbsp;— как удобнее для вашего праздника.</p>
+        </div>
+      </article>
+      <article class="hall">
+        <div class="hall-photos">
+          <img class="hall-main" src="img/nk6v3r/hall-wood-1.jpg" alt="Деревянный зал «Никольского»" loading="lazy">
+          <img class="hall-extra" src="img/nk6v3r/81c78c6c2f-1200.jpg" alt="Зал с деревянными стенами, другой ракурс" loading="lazy">
+        </div>
+        <div class="hall-text">
+          <h3>Деревянный зал</h3>
+          <p class="cap">до&nbsp;40 гостей</p>
+          <p>Для небольшой компании: день рождения, ужин с&nbsp;родными или коллегами.</p>
+        </div>
+      </article>
+      <article class="hall">
+        <div class="hall-photos">
+          <img class="hall-main" src="img/nk6v3r/hall-grey-2.jpg" alt="Серый зал «Никольского»: длинный накрытый стол" loading="lazy">
+        </div>
+        <div class="hall-text">
+          <h3>Серый зал</h3>
+          <p class="cap">до&nbsp;50 гостей</p>
+          <p>Для семейного праздника или обеда в&nbsp;кругу близких.</p>
+        </div>
+      </article>
+    </div>
+    <div class="todo"><b>Черновик</b>Летняя веранда (есть в&nbsp;вашей карточке на&nbsp;Картах)&nbsp;— добавим, если пришлёте её фото. Фото серого зала тоже ждём.</div>
+  </div>
+</section>
+
+<section class="sec sec-line pominki-sec" id="pominki" aria-labelledby="pominki-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="pominki-title">Поминальные обеды</h2>
+      <p class="pominki-lead">Пару минут пешком от&nbsp;крематория. Обед можно заказать меньше чем за&nbsp;сутки&nbsp;— каждой семье отдельный зал.</p>
+    </div>
+    <ol class="steps">
+      <li>
+        <h3>Позвоните или напишите</h3>
+        <p>Назовите дату, время и&nbsp;сколько будет гостей.</p>
+      </li>
+      <li>
+        <h3>Выберите трапезу</h3>
+        <p>Шесть вариантов, от&nbsp;1&nbsp;800 до&nbsp;4&nbsp;000&nbsp;₽ на&nbsp;человека. Состав&nbsp;— ниже.</p>
+      </li>
+      <li>
+        <h3>Приходите к&nbsp;назначенному времени</h3>
+        <p>Стол будет накрыт к&nbsp;вашему приходу.</p>
+      </li>
+    </ol>
+  </div>
+  <div class="wrap split" id="pominki-menu">
+    <div class="sec-head">
+      <h3 class="gallery-title" style="margin-top:8px">Поминальное меню</h3>
+      <p>Цена указана на&nbsp;человека, обслуживание&nbsp;— 10&nbsp;%.</p>
+    </div>
+    <div class="cta-cell"><a class="btn btn-gold" href="https://wa.me/79154824399">Заказать обед в WhatsApp</a></div>
+    <div class="menu">
+      <div class="menu-base">
+        <h3>В каждой трапезе</h3>
+        <p class="menu-group">Закуски</p>
+        <ul>
+          <li>Кутья поминальная, хлебная корзина</li>
+          <li>Домашние блины с&nbsp;мёдом</li>
+          <li>Нарезка из&nbsp;сезонных овощей</li>
+          <li>Мясное ассорти</li>
+          <li>Салат «Оливье»</li>
+          <li>Салат «Фирменный консенсус» <span class="menu-note">филе отварного цыплёнка, свежие огурцы, зёрна граната, чернослив, грецкие орехи, сметана, майонез</span></li>
+        </ul>
+        <p class="menu-group">Горячее</p>
+        <ul>
+          <li>Куриное филе, приготовленное на&nbsp;углях</li>
+          <li>Люля-кебаб из&nbsp;телятины на&nbsp;углях</li>
+          <li>Картофель по-деревенски</li>
+          <li>Красный соус собственного приготовления</li>
+        </ul>
+        <p class="menu-group">Напитки</p>
+        <ul>
+          <li>Домашний компот из&nbsp;сухофруктов</li>
+          <li>Минеральная вода с&nbsp;газом и&nbsp;без газа</li>
+        </ul>
+      </div>
+      <dl class="prices menu-prices">
+        <div class="price-row"><dt>Трапеза 1</dt><dd>1&nbsp;800&nbsp;₽</dd><dd class="menu-add">Всё из&nbsp;списка «В&nbsp;каждой трапезе»</dd></div>
+        <div class="price-row"><dt>Трапеза 2</dt><dd>2&nbsp;100&nbsp;₽</dd><dd class="menu-add">+ нарезка из&nbsp;слабосолёной сёмги</dd></div>
+        <div class="price-row"><dt>Трапеза 3</dt><dd>2&nbsp;500&nbsp;₽</dd><dd class="menu-add">+ нарезка из&nbsp;сёмги, салат «Языковый» (говяжий язык, солёные огурцы, яйца, соус)</dd></div>
+        <div class="price-row"><dt>Трапеза 4</dt><dd>3&nbsp;000&nbsp;₽</dd><dd class="menu-add">+ нарезка из&nbsp;сёмги, салат «Языковый», шашлык из&nbsp;свинины (шейка)</dd></div>
+        <div class="price-row"><dt>Трапеза 5</dt><dd>3&nbsp;500&nbsp;₽</dd><dd class="menu-add">+ нарезка из&nbsp;сёмги, салат «Языковый», шашлык из&nbsp;свинины, хачапури по-мегрельски</dd></div>
+        <div class="price-row"><dt>Трапеза 6</dt><dd>4&nbsp;000&nbsp;₽</dd><dd class="menu-add">+ нарезка из&nbsp;сёмги, салат «Языковый», шашлык из&nbsp;свинины, сёмга на&nbsp;углях</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-line" id="foto" aria-labelledby="foto-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="foto-title">Фото и видео</h2>
+    </div>
+    <div class="photo-grid">
+      <img src="img/nk6v3r/table-1.jpg" alt="Накрытый стол: блины, нарезка, салаты" loading="lazy">
+      <img src="img/nk6v3r/0baf36b58e-1200.jpg" alt="Накрытый длинный стол в зале" loading="lazy">
+      <img src="img/nk6v3r/c51b8e85a1-1024.jpg" alt="Салат" loading="lazy">
+      <img src="img/nk6v3r/d32f6aebd6-1024.jpg" alt="Сырная тарелка" loading="lazy">
+      <img src="img/nk6v3r/7485b1fa27-1024.jpg" alt="Камин в зале" loading="lazy">
+      <img src="img/nk6v3r/39bd6a0ae8-1024.jpg" alt="Кафе на первом этаже" loading="lazy">
+    </div>
+    <div class="todo video-slot"><div><b>Черновик</b>Сюда встанет видео залов и&nbsp;кафе&nbsp;— из&nbsp;того, что пришлёт Элина. Лучшие новые фото заменят часть сетки выше.</div></div>
+  </div>
+</section>
+
+<section class="sec sec-line" id="voprosy" aria-labelledby="voprosy-title">
+  <div class="wrap split">
+    <div class="sec-head">
+      <h2 id="voprosy-title">Частые вопросы</h2>
+      <p>Если вашего вопроса здесь нет, задайте его администратору по&nbsp;телефону.</p>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Как забронировать зал на банкет?</summary>
+        <p>Позвоните или напишите в&nbsp;WhatsApp: дата, время и&nbsp;число гостей. Администратор подберёт зал и&nbsp;пришлёт банкетное меню.</p>
+      </details>
+      <details>
+        <summary>Как быстро можно заказать поминальный обед?</summary>
+        <p>Обед часто заказывают меньше чем за&nbsp;сутки. Позвоните&nbsp;— администратор скажет, успеют ли накрыть к&nbsp;вашему времени.</p>
+      </details>
+      <details>
+        <summary>Как можно оплатить?</summary>
+        <p>Наличными, картой, переводом или по&nbsp;СБП.</p>
+      </details>
+      <details>
+        <summary>Можно принести свой алкоголь?</summary>
+        <p>Уточните у&nbsp;администратора условия для вашей даты.</p>
+      </details>
+      <details>
+        <summary>Удобно ли пожилым гостям?</summary>
+        <p>Вход и&nbsp;залы доступны на&nbsp;коляске, есть парковка для людей с&nbsp;инвалидностью.</p>
+      </details>
+      <details>
+        <summary>Есть подарочный сертификат?</summary>
+        <p>Да, спросите у&nbsp;администратора.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-line" id="kontakty" aria-labelledby="kontakty-title">
+  <div class="wrap split">
+    <div class="sec-head">
+      <h2 id="kontakty-title">Адрес и телефон</h2>
+      <dl class="contacts">
+        <div><dt>Адрес</dt><dd>Балашиха, микрорайон Салтыковка, Носовихинское шоссе, 14</dd></div>
+        <div><dt>Часы работы</dt><dd>ежедневно с&nbsp;10:00 до&nbsp;23:00</dd></div>
+        <div><dt>Кафе и банкеты</dt><dd><a href="tel:+79037236826">+7 (903) 723-68-26</a></dd></div>
+        <div><dt>Поминальные обеды, WhatsApp</dt><dd><a href="tel:+79154824399">+7 (915) 482-43-99</a></dd></div>
+      </dl>
+      <div class="buttons">
+        <a class="btn btn-gold" href="tel:+79037236826">Позвонить</a>
+        <a class="btn btn-line" href="https://wa.me/79154824399">WhatsApp</a>
+      </div>
+    </div>
+    <div class="map-slot map-live"><iframe src="https://yandex.ru/map-widget/v1/?ll=37.888518%2C55.751277&amp;z=16&amp;pt=37.888518%2C55.751277%2Cpm2gnm" title="«Никольское» на Яндекс Картах: Носовихинское шоссе, 14" loading="lazy" allowfullscreen></iframe></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot wrap">
+  <p>«Никольское», Балашиха</p>
+  <p>Демо-версия сайта для «Никольского». Не официальный сайт.</p>
+</footer>
+
+<div class="callbar">
+  <a class="btn btn-gold" href="tel:+79037236826">Позвонить</a>
+  <a class="btn btn-line" href="https://wa.me/79154824399">WhatsApp</a>
+</div>
+
+</body>
+</html>
