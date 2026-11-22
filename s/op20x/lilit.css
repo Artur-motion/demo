@@ -113,3 +113,10 @@ ul{list-style:none}
   html{scroll-behavior:auto}
   .go .in,.go .name,.go .kind,.go .lead,.go .nav,.go .facts,.go .cta,.go .ctl{animation:fade .3s linear both}
 }
+
+/* 22.11, правка по замечанию Артура: «Цены / Адрес» — шрифтом названия и своей строкой над названием (на телефоне липли к подписи, на компьютере длинное название наезжало на разделы) */
+.nav a:not(.pill){font-family:'Prata',Georgia,serif;font-weight:400;font-size:17px}
+.mast{display:flex;flex-direction:column}
+.nav{position:static;order:-1;align-self:flex-end;gap:26px;margin-bottom:2px}
+@media (max-width:899px){.mast{padding-top:2px}.nav a{min-height:40px}}
+@media (min-width:900px){.mast{padding-top:18px}.nav{gap:30px;margin-bottom:6px}}
