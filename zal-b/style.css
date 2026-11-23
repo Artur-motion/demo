@@ -1,0 +1,705 @@
+/* Шаблон «банкетный зал», вариант Б (23.11.2026): общий стиль всех страниц, собранных hall_page.py.
+   Основа — vhnzzk/style.css + light.css (их не трогаем: на них живые сайты). Что изменено — в конце файла программы и в отчёте.
+   Тема (светлая / тёмная) — data-theme на <html>; цвет кнопок — переменные --accent* в <style> страницы (из фото зала). */
+
+:root {
+  /* Светлая тема — для залов с белыми стенами и дневным светом */
+  --bg: #FCFAF7;       /* фон */
+  --surface: #F2EDE6;  /* вторая поверхность */
+  --ink: #2A2320;      /* текст */
+  --muted: #655A52;    /* второстепенный текст */
+  --line: #E1D9CF;     /* линии */
+  --dot: #B3A595;      /* отточие в ценах */
+  --btn-line: rgba(42, 35, 32, .48);
+  --btn-line-bg: rgba(42, 35, 32, .05);
+  --bar-bg: rgba(252, 250, 247, .97);
+
+  --accent: #AE8A45;      /* главная кнопка — из интерьера зала (страница переопределяет) */
+  --accent-hover: #BC9A57;
+  --on-accent: #231B17;
+  --accent-ink: #86672C;  /* акцент текстом на фоне (цифры шагов, вместимость) */
+
+  /* Островки поверх затемнённых фото — всегда светлый текст */
+  --on-photo: #F7F2EB;
+  --on-photo-soft: #E4DBD0;
+  --shade: 30, 23, 20;
+
+  --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --script: "Great Vibes", "Cormorant Garamond", Georgia, serif; /* только название зала */
+  --sans: "Golos Text", "Segoe UI", Arial, sans-serif;
+
+  --gutter: 24px;
+  --sec-pad: 128px;
+  --ease: cubic-bezier(.4, 0, .2, 1);
+}
+:root[data-theme="dark"] {
+  --bg: #211815;
+  --surface: #2C211C;
+  --ink: #F4EEE6;
+  --muted: #BFB2A6;
+  --line: #4A3B33;
+  --dot: #6B5A4F;
+  --btn-line: rgba(244, 238, 230, .55);
+  --btn-line-bg: rgba(244, 238, 230, .08);
+  --bar-bg: rgba(33, 24, 21, .96);
+  --shade: 22, 15, 12;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 18px;
+  line-height: 1.55;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+h1, h2, h3 { font-family: var(--serif); font-weight: 600; font-variant-numeric: lining-nums; margin: 0; text-wrap: balance; }
+p { margin: 0; text-wrap: pretty; }
+a { color: inherit; }
+dl, dd { margin: 0; }
+img { display: block; max-width: 100%; height: auto; }
+figure { margin: 0; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+.wrap { width: 100%; max-width: 1248px; margin: 0 auto; padding: 0 var(--gutter); }
+
+/* Тёмная тема: дневное фото не «выпрыгивает» из вечернего сайта (как photo-tone.css) */
+:root[data-tone] .cine-photo,
+:root[data-tone] .cta-photo,
+:root[data-tone] .hall img,
+:root[data-tone] .menu-photo img,
+:root[data-tone] .film img,
+:root[data-tone] .contact-photo { filter: brightness(.88) contrast(1.05) saturate(.9) sepia(.1); }
+
+/* ---------- Шапка ---------- */
+.top {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  transition: opacity .5s ease;
+}
+.brand { display: flex; align-items: baseline; gap: 12px; text-decoration: none; }
+.brand-name { font-family: var(--script); font-size: 44px; line-height: 1; padding: 0 4px 0 2px; }
+.brand-name.plain { font-family: var(--serif); font-weight: 600; font-size: 30px; padding: 0; }
+.brand-note { font-size: 15px; color: var(--muted); }
+.nav { display: flex; gap: 28px; margin-left: auto; }
+.nav a, .top-phone { text-decoration: none; font-size: 16px; padding: 10px 0; }
+.nav a:hover, .top-phone:hover { text-decoration: underline; text-underline-offset: 4px; }
+.top-phone { font-weight: 500; white-space: nowrap; font-variant-numeric: lining-nums; }
+
+/* ---------- Кнопки ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5em;
+  min-height: 54px;
+  padding: 0 30px;
+  border: 0;
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 17px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color .18s var(--ease), color .18s var(--ease), border-color .18s var(--ease), transform .15s var(--ease);
+}
+.btn svg { width: 1.1em; height: 1.1em; flex: none; fill: currentColor; }
+.btn:active { transform: scale(.98); }
+.btn-accent { background: var(--accent); color: var(--on-accent); }
+.btn-accent:hover { background: var(--accent-hover); }
+.btn-line { box-shadow: inset 0 0 0 1.5px var(--btn-line); color: var(--ink); }
+.btn-line:hover { box-shadow: inset 0 0 0 1.5px var(--ink); background: var(--btn-line-bg); }
+.actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 32px; }
+
+/* ---------- Первый экран (без анимации — обычная колонка) ---------- */
+.cine { position: relative; padding: 40px 0 0; }
+.cine-title { text-align: center; padding: 0 var(--gutter); }
+.cine h1 { font-weight: 500; }
+.cine h1 > span { display: block; }
+/* Название — главный размер страницы; подгоняется под число букв (--n ставит программа) */
+.cine .l1 {
+  font-size: clamp(72px, calc(min(100vw - 160px, 1180px) / (var(--n, 8) * .56)), min(208px, 25vh));
+  line-height: .92;
+  letter-spacing: -0.015em;
+  /* «окошко» для выезда строки: запас сверху и снизу, чтобы не резались выносные элементы букв */
+  overflow: hidden;
+  padding: .06em .04em .1em;
+  margin: -.06em 0 -.1em;
+}
+.cine .l-in { display: block; }
+/* Мелкая строка разрядкой над названием — род занятий и город (приём образца Alder & Vale) */
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.cine-eyebrow { margin-bottom: 20px; }
+/* Одна строка под названием — курсив антиквы, как в исходном шаблоне */
+.cine-sub {
+  margin: 22px auto 0;
+  max-width: 19em;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(25px, 2.3vw, 31px);
+  line-height: 1.22;
+  font-variant-numeric: lining-nums;
+  text-wrap: balance;
+}
+.hero-actions { margin-top: 30px; }
+
+.cine-card {
+  position: relative;
+  width: calc(100% - 2 * var(--gutter));
+  max-width: 1392px;
+  aspect-ratio: 16 / 9;
+  margin: 56px auto 0;
+  border-radius: 36px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.cine-zoom { position: absolute; inset: 0; }
+.cine-photo { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; }
+.cine-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(60% 85% at 0% 100%, rgba(var(--shade), .88) 0%, rgba(var(--shade), .8) 50%, rgba(var(--shade), .45) 76%, rgba(var(--shade), 0) 100%),
+    linear-gradient(0deg, rgba(var(--shade), .4) 0%, rgba(var(--shade), 0) 28%);
+}
+/* Тень собрана в левый нижний угол под текст: верх и правая часть фото остаются светлыми. (max() в размере radial-gradient
+   браузер не принимает — из-за этого в vhnzzk/light.css такая тень не применялась; здесь ширина задана через @media.) */
+@media (max-width: 1300px) {
+  .cine-shade {
+    background:
+      radial-gradient(780px 85% at 0% 100%, rgba(var(--shade), .88) 0%, rgba(var(--shade), .8) 50%, rgba(var(--shade), .45) 76%, rgba(var(--shade), 0) 100%),
+      linear-gradient(0deg, rgba(var(--shade), .4) 0%, rgba(var(--shade), 0) 28%);
+  }
+}
+.cine-card-text {
+  position: absolute;
+  left: clamp(24px, 5vw, 80px);
+  bottom: clamp(28px, 7vh, 88px);
+  max-width: 560px;
+  color: var(--on-photo);
+  text-shadow: 0 1px 18px rgba(var(--shade), .55);
+}
+.cine-card-text h2 { font-size: clamp(38px, 4.6vw, 68px); line-height: 1.04; }
+.cine-card-text p { margin-top: 18px; color: var(--on-photo-soft); font-size: 18px; max-width: 30em; }
+.cine-card-brand {
+  position: absolute;
+  right: clamp(24px, 5vw, 80px);
+  bottom: clamp(20px, 6vh, 72px);
+  font-family: var(--script);
+  font-size: clamp(72px, 10vw, 168px);
+  line-height: 1;
+  padding: 0 .08em;
+  color: rgba(250, 246, 240, .95);
+  text-shadow: 0 2px 28px rgba(var(--shade), .55), 0 1px 3px rgba(var(--shade), .35);
+}
+
+/* Блок «Свободна ли ваша дата?» */
+.cine-cta { padding: 96px var(--gutter) 0; }
+.cta-inner {
+  display: grid;
+  grid-template-columns: 5fr 6fr;
+  gap: 64px;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.cta-inner.solo { grid-template-columns: 1fr; max-width: 640px; text-align: center; }
+.cta-inner.solo .ask { margin-left: auto; margin-right: auto; }
+.cine-cta h2 { font-size: clamp(42px, 5vw, 72px); font-weight: 500; line-height: 1.02; letter-spacing: -0.014em; }
+.cine-cta .cta-lead { margin-top: 18px; max-width: 25em; color: var(--muted); }
+.cta-inner.solo .cta-lead { margin-left: auto; margin-right: auto; }
+.cta-photo {
+  width: 100%;
+  aspect-ratio: 5 / 4;
+  object-fit: cover;
+  border-radius: 28px;
+  background: var(--surface);
+}
+/* Дата + кнопка: одна «строка заказа». Формы нет — кнопка открывает WhatsApp с готовым вопросом */
+.ask { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; max-width: 480px; }
+.ask-date {
+  position: relative;
+  flex: 1 1 190px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 60px;
+  padding: 7px 18px 6px;
+  border-radius: 18px;
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1.5px var(--line);
+  text-align: left;
+  cursor: pointer;
+}
+.ask-date:focus-within { box-shadow: inset 0 0 0 1.5px var(--accent); }
+.ask-cap { font-size: 13px; line-height: 1.2; color: var(--muted); }
+.ask-val { font-weight: 500; font-size: 17px; line-height: 1.35; font-variant-numeric: lining-nums; }
+.ask:not(.has-date) .ask-val { color: var(--muted); font-weight: 400; }
+/* Само поле даты прозрачное и лежит поверх всей плашки: нажатие в любом месте открывает календарь телефона,
+   а дату показываем своим текстом — одинаково на iPhone, Android и компьютере */
+.ask-date input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  opacity: 0;
+  cursor: pointer;
+  font-size: 16px;
+}
+.ask:not(.ask-on) .ask-date { display: none; } /* без скрипта остаётся одна кнопка с общим вопросом */
+.ask .btn { flex: 1 1 220px; min-height: 60px; }
+.ask-alt { margin-top: 16px; font-size: 16px; color: var(--muted); }
+.ask-alt a { color: var(--ink); font-weight: 500; white-space: nowrap; text-underline-offset: 4px; font-variant-numeric: lining-nums; }
+
+/* ---------- Первый экран с анимацией (класс cine-live ставит script.js) ---------- */
+/* Пока анимация не запустилась, первый экран не показываем, но его место (высота экрана + длина прокрутки) уже занято:
+   иначе текст, кнопки и фото успевают появиться в обычной вёрстке и прыгают, а фото ниже грузятся наперегонки с первым.
+   Через 3 с без анимации — no-motion: обычная колонка, всё видно.
+   margin-bottom = длина прокрутки первого экрана (scrollLen в script.js: 1571 / на телефоне 1143). */
+.js-anim:not(.no-motion):not(.cine-live) .cine { height: 100vh; height: 100svh; padding: 0; margin-bottom: var(--pin-d, 1571px); overflow: hidden; visibility: hidden; }
+.js-anim:not(.no-motion):not(.cine-live) .top { opacity: 0; }
+.cine-live .cine { height: 100vh; height: 100svh; padding: 0; overflow: hidden; }
+.cine-pin { height: calc(100vh + var(--pin-len, 0px)); height: calc(100svh + var(--pin-len, 0px)); }
+.cine-pin > .cine { position: sticky; top: 0; }
+.cine-live .cine-title {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.cine-live .cine-card {
+  position: absolute;
+  will-change: transform; /* свой слой на всё время: не пересоздаётся между этапами прокрутки */
+  left: 50%;
+  top: 50%;
+  width: 85vw;
+  height: 85vh;
+  max-width: none;
+  aspect-ratio: auto;
+  margin: 0;
+  z-index: 2;
+}
+.cine-live .cine-zoom { will-change: transform; }
+.cine-live .cine-cta {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--gutter);
+  z-index: 1;
+}
+.cine-live .cta-photo { aspect-ratio: auto; height: min(76vh, 680px); }
+
+/* «Живое» фото: камера медленно идёт по залу. Только transform — работа видеокарты, без перерисовки.
+   Узкий экран (фото шире окна) — проезд вдоль зала; широкий — медленный наезд. Края проезда ставит script.js. */
+/* Отрицательная задержка: движение стартует не с нуля скорости, а уже «на ходу» — в первые же секунды видно, что фото живое */
+.cine-live .cine-photo { animation: cine-zoom 26s cubic-bezier(.45, .05, .55, .95) -4s infinite alternate; will-change: transform; }
+.cine-live.cine-pan .cine-photo {
+  inset: 0 auto 0 0;
+  width: auto;
+  height: 100%;
+  object-fit: fill;
+  animation: cine-pan var(--pan-time, 30s) cubic-bezier(.45, .05, .55, .95) calc(var(--pan-time, 30s) * -.16) infinite alternate;
+}
+@keyframes cine-zoom { from { transform: scale(1); } to { transform: scale(1.07) translate3d(-1%, -.6%, 0); } }
+@keyframes cine-pan { from { transform: translate3d(var(--pan-a, 0%), 0, 0); } to { transform: translate3d(var(--pan-b, 0%), 0, 0); } }
+
+/* Строки заголовка спрятаны до запуска анимации (сам первый экран до этого и так скрыт) */
+.js-anim:not(.no-motion) .cine .l-in { transform: translateY(112%); }
+
+/* ---------- Секции ---------- */
+.sec { position: relative; padding: var(--sec-pad) 0; }
+.sec-line { border-top: 1px solid var(--line); }
+.sec h2 { font-size: clamp(40px, 4.6vw, 66px); font-weight: 500; line-height: 1.04; letter-spacing: -0.014em; }
+.sec-head p { margin-top: 20px; max-width: 30em; color: var(--muted); }
+
+.split {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: 32px 72px;
+  align-items: start;
+}
+
+/* ---------- Залы: фото целиком (в своих пропорциях, без обрезки) и подпись-строка под ним ---------- */
+.halls-sec { padding-bottom: var(--sec-pad); }
+.halls-sec .sec-head h2 { font-family: var(--sans); font-size: 13px; line-height: 1.4; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.halls-sec .sec-head p { margin-top: 14px; font-size: 20px; line-height: 1.5; color: var(--ink); max-width: 31em; }
+/* с первой отрисовки, а не после запуска скрипта: иначе всё ниже первого экрана сдвигалось бы на 32–80 px */
+.js-anim:not(.no-motion) .halls-sec { padding-top: 48px; }
+/* Каждый зал — отдельное место: своя строка во всю ширину, сверху линия, название и вместимость стоят ПЕРЕД фото
+   (Артур 23.11: два зала рядом читались как один блок; «сначала фото, потом надпись — непонятно»).
+   На компьютере фото и текст стоят рядом и меняются сторонами от зала к залу — пустого места сбоку нет. Фото — целиком. */
+.halls { margin-top: 56px; }
+.hall {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: 1fr auto 1fr;
+  column-gap: 40px;
+  padding: 72px 0;
+  border-top: 1px solid var(--line);
+}
+.hall:last-child { padding-bottom: 0; }
+.hall figure { grid-column: 1 / span 7; grid-row: 1 / -1; align-self: center; }
+.hall-cap { grid-column: 8 / -1; grid-row: 2; padding-left: 16px; }
+.hall-desc { grid-column: 8 / -1; grid-row: 3; padding-left: 16px; }
+.hall:nth-child(even) figure { grid-column: 6 / -1; }
+.hall:nth-child(even) .hall-cap, .hall:nth-child(even) .hall-desc { grid-column: 1 / span 5; padding: 0 16px 0 0; }
+.hall figure img { width: 100%; height: auto; border-radius: 24px; background: var(--surface); }
+.hall h3 { font-size: clamp(46px, 4.6vw, 68px); font-weight: 500; line-height: 1.02; letter-spacing: -0.014em; }
+.hall .cap {
+  margin-top: 8px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(26px, 2.4vw, 34px);
+  line-height: 1.2;
+  font-variant-numeric: lining-nums;
+  color: var(--accent-ink);
+}
+.hall-cap .ask-link { margin-top: 6px; }
+.hall-desc { margin-top: 18px; max-width: 26em; color: var(--muted); }
+/* Нет цифры в данных — не «___», а короткая ссылка: вопрос уходит в WhatsApp */
+.ask-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 16px; font-weight: 500; color: var(--accent-ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.ask-link svg { flex: none; width: 18px; height: 18px; fill: currentColor; }
+.ask-link:hover { color: var(--ink); }
+
+/* ---------- Поводы: тёмный остров. Фото под текст ставится, только если оно само тёмное (вечерний кадр); иначе — ровный цвет ---------- */
+.sec-photo { overflow: hidden; background: rgb(var(--shade)); color: var(--on-photo); --ink: var(--on-photo); --muted: var(--on-photo-soft); --btn-line: rgba(247, 242, 235, .5); --btn-line-bg: rgba(247, 242, 235, .08); }
+.sec-photo-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.sec-photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(90deg, rgba(var(--shade), .78) 0%, rgba(var(--shade), .86) 42%, rgba(var(--shade), .92) 100%);
+}
+.sec-photo .wrap { position: relative; z-index: 2; }
+.sec-photo .cta-cell { margin-top: 32px; }
+.occ { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgba(247, 242, 235, .38); }
+.occ li { border-bottom: 1px solid rgba(247, 242, 235, .18); }
+.occ-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 4px 24px;
+  padding: 26px 0;
+  text-decoration: none;
+}
+.occ-name { font-family: var(--serif); font-weight: 500; letter-spacing: -0.01em; font-size: clamp(34px, 3.4vw, 50px); line-height: 1.08; font-variant-numeric: lining-nums; }
+.occ-note { grid-column: 1; font-size: 16px; color: var(--on-photo-soft); }
+.occ-ask {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  color: var(--on-photo-soft);
+  white-space: nowrap;
+  transition: color .18s var(--ease);
+}
+.occ-ask svg { width: 44px; height: 44px; padding: 12px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px rgba(247, 242, 235, .45); fill: currentColor; transition: background-color .18s var(--ease), color .18s var(--ease); }
+a.occ-row:hover .occ-ask { color: var(--on-photo); }
+a.occ-row:hover .occ-ask svg { background: var(--on-photo); color: rgb(var(--shade)); }
+
+/* ---------- Лента фото: один ряд в настоящих пропорциях кадра (без обрезки) ---------- */
+.film-sec { padding: var(--sec-pad) 0 0; }
+.film-head { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; } /* лента идёт после блока меню: отступ сверху даёт он */
+.film-head h2 { font-size: clamp(34px, 3.6vw, 52px); font-weight: 500; letter-spacing: -0.012em; }
+.film {
+  --gap: 14px;
+  display: flex;
+  height: clamp(320px, 62vh, 560px);
+  margin-top: 36px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overflow-anchor: none;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+.film::-webkit-scrollbar { display: none; }
+.film-group { display: flex; flex: none; gap: var(--gap); padding-right: var(--gap); height: 100%; }
+.film img { flex: none; height: 100%; width: auto; max-width: none; border-radius: 16px; background: var(--surface); }
+.film-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 14px; color: var(--muted); font-size: 15px; }
+.motion-toggle {
+  min-height: 44px;
+  min-width: 64px;
+  margin-left: auto;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.motion-toggle:hover { color: var(--ink); }
+.no-motion .motion-toggle { display: none; }
+
+/* ---------- Меню: спокойная середина страницы — всё по центру: заголовок, строки, кнопка, ниже фото стола целиком ---------- */
+.menu-sec .wrap { max-width: 1128px; }
+.menu-head { max-width: 680px; margin: 0 auto; text-align: center; }
+.menu-head p { margin: 20px auto 0; max-width: 30em; color: var(--muted); }
+.rows { max-width: 680px; margin: 44px auto 0; border-top: 1px solid var(--ink); }
+.row { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 24px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+.row dt { font-family: var(--serif); font-weight: 600; font-size: 28px; line-height: 1.15; font-variant-numeric: lining-nums; }
+.row dd { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: flex-end; gap: 0 18px; font-size: 18px; font-weight: 500; font-variant-numeric: lining-nums; text-align: right; }
+.row dd .soft { font-weight: 400; color: var(--muted); }
+.menu-cta { display: flex; justify-content: center; margin-top: 40px; }
+.menu-photo { margin-top: 72px; }
+.menu-photo img { width: 100%; height: auto; border-radius: 28px; background: var(--surface); }
+
+/* ---------- Шаги — настоящая последовательность. Свой вид: тонированная полоса, шаги — карточки с крупной цифрой
+   (чтобы «Как забронировать» и «Частые вопросы» не читались одним текстом; между ними ещё и лента фото) ---------- */
+.steps-sec { background: var(--surface); }
+.steps {
+  list-style: none;
+  margin: 56px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  counter-reset: step;
+}
+.steps li { counter-increment: step; padding: 28px 26px 30px; border-radius: 22px; background: var(--bg); }
+.steps li::before {
+  content: counter(step);
+  display: block;
+  margin-bottom: 26px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-variant-numeric: lining-nums;
+  font-size: 64px;
+  line-height: .8;
+  color: var(--accent-ink);
+}
+.steps h3 { font-size: 28px; line-height: 1.12; }
+.steps p { margin-top: 10px; color: var(--muted); font-size: 16px; line-height: 1.5; }
+
+/* ---------- Вопросы: с ответом — раскрываются; без ответа — уходят администратору в WhatsApp ---------- */
+.faq { border-top: 1px solid var(--ink); }
+.faq > * { border-bottom: 1px solid var(--line); }
+.faq summary, .faq-ask {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 0;
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 1.2;
+  text-decoration: none;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "";
+  flex: none;
+  width: 14px;
+  height: 14px;
+  background:
+    linear-gradient(var(--ink), var(--ink)) center / 14px 1.5px no-repeat,
+    linear-gradient(var(--ink), var(--ink)) center / 1.5px 14px no-repeat;
+  transition: transform .25s var(--ease);
+}
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { padding: 0 40px 26px 0; color: var(--muted); max-width: 36em; }
+.faq-ask svg { flex: none; width: 44px; height: 44px; padding: 12px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--line); fill: var(--ink); transition: background-color .18s var(--ease), fill .18s var(--ease); }
+.faq-ask:hover svg { background: var(--accent); fill: var(--on-accent); box-shadow: none; }
+
+/* ---------- Контакты ---------- */
+.contacts { margin-top: 32px; display: grid; gap: 20px; }
+.contacts dt { font-size: 15px; color: var(--muted); }
+.contacts dd { font-size: 22px; font-variant-numeric: lining-nums; }
+.contacts a { text-decoration: none; }
+.contacts a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.contacts .route { display: inline-block; margin-top: 4px; font-size: 16px; color: var(--muted); text-decoration: underline; text-underline-offset: 4px; }
+.buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+.contact-photo { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 28px; background: var(--surface); }
+/* Короткая подпись под фото рядом с текстом: что на снимке (у каждого фото должен быть смысл) */
+.cta-fig figcaption, .contact-fig figcaption { margin-top: 10px; font-size: 14px; line-height: 1.4; color: var(--muted); }
+
+.contacts .ask-link { font-size: 17px; }
+.foot { background: rgb(var(--shade)); color: var(--on-photo-soft); text-align: center; padding: 88px 0 44px; font-size: 15px; }
+.foot-brand { font-family: var(--script); font-size: 84px; line-height: 1; color: var(--on-photo); padding: 0 .08em; }
+.foot-brand.plain { font-family: var(--serif); font-weight: 500; font-size: 60px; letter-spacing: -0.012em; }
+.foot-note { margin-top: 14px; }
+.foot-phone { display: inline-block; margin-top: 26px; font-family: var(--serif); font-weight: 500; font-size: 32px; line-height: 1.2; font-variant-numeric: lining-nums; color: var(--on-photo); text-decoration: none; }
+.foot-phone:hover { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+.foot-addr { margin-top: 6px; }
+.foot-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 28px; margin-top: 36px; }
+.foot-nav a { padding: 10px 0; text-decoration: none; color: var(--on-photo); }
+.foot-nav a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.foot-demo { margin-top: 44px; padding-top: 22px; border-top: 1px solid rgba(247, 242, 235, .16); font-size: 14px; color: rgba(228, 219, 208, .8); }
+
+/* Полоса связи на телефоне (на компьютере её нет: телефон в шапке) */
+.callbar { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn, .faq summary::after, .callbar { transition: none; }
+}
+
+/* ---------- Планшет ---------- */
+@media (max-width: 1080px) {
+  .nav { display: none; }
+  .top-phone { margin-left: auto; }
+  .steps { grid-template-columns: repeat(2, 1fr); }
+  .hall { column-gap: 28px; padding: 56px 0; }
+}
+
+/* ---------- Телефон ---------- */
+@media (max-width: 760px) {
+  :root { --gutter: 16px; --sec-pad: 80px; }
+  body { font-size: 17px; }
+  .top { padding-top: 12px; padding-bottom: 10px; gap: 16px; }
+  .brand { flex-direction: column; gap: 2px; }
+  .brand-name { font-size: 38px; }
+  .brand-name.plain { font-size: 27px; }
+  .brand-note { font-size: 13px; }
+  /* «Позвонить» в шапке на телефоне дублирует кнопки первого экрана и нижнюю полосу — не показываем (Артур 20.11) */
+  .top-phone { display: none; }
+
+  .callbar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 20;
+    display: flex;
+    gap: 10px;
+    padding: 10px var(--gutter) calc(10px + env(safe-area-inset-bottom, 0px));
+    background: var(--bar-bg);
+    border-top: 1px solid var(--line);
+    transform: translateY(100%);
+    visibility: hidden;
+    transition: transform .28s cubic-bezier(.2, .7, .2, 1), visibility 0s .28s;
+  }
+  .callbar.on { transform: none; visibility: visible; transition-delay: 0s; }
+  .callbar .btn { flex: 1 1 0; min-height: 50px; padding: 0 12px; }
+  .foot { padding: 64px 0 96px; }
+  .foot-brand { font-size: 68px; }
+  .foot-brand.plain { font-size: 46px; }
+  .foot-phone { font-size: 28px; }
+  .foot-nav { gap: 0 22px; margin: 28px auto 0; max-width: 290px; }
+  .foot-demo { margin-top: 32px; }
+
+  .cine { padding-top: 24px; }
+  .cine .l1 { font-size: clamp(46px, calc((100vw - 36px) / (var(--n, 8) * .56)), min(108px, 17vh)); }
+  .eyebrow { font-size: 12px; letter-spacing: .15em; }
+  .cine-eyebrow { margin-bottom: 14px; }
+  .cine-sub { font-size: 23px; margin-top: 14px; max-width: 14.5em; }
+  .js-anim:not(.no-motion):not(.cine-live) .cine { margin-bottom: var(--pin-m, 1143px); }
+  .actions { flex-direction: column; align-items: stretch; max-width: 360px; margin-left: auto; margin-right: auto; }
+  .actions.hero-actions { flex-direction: row; flex-wrap: nowrap; justify-content: center; margin-top: 22px; gap: 10px; width: 100%; max-width: 348px; }
+  .hero-actions .btn { flex: 1 1 0; min-height: 52px; padding: 0 12px; }
+  .cine-card { aspect-ratio: 4 / 5; border-radius: 28px; margin-top: 32px; }
+  .cine-live .cine-card { width: 92vw; height: 92vh; height: 92svh; }
+  .cine-card-text { left: 20px; right: 20px; bottom: 30px; }
+  .cine-card-text h2 { font-size: 40px; }
+  .cine-card-text p { font-size: 16px; margin-top: 12px; }
+  .cine-card-brand { display: none; }
+  .cine-shade {
+    background: linear-gradient(0deg, rgba(var(--shade), .9) 0%, rgba(var(--shade), .8) 20%, rgba(var(--shade), .4) 40%, rgba(var(--shade), 0) 60%);
+  }
+
+  .cine-cta { padding-top: 64px; }
+  .cta-inner { grid-template-columns: 1fr; gap: 22px; }
+  .cta-photo, .cta-fig { order: -1; }
+  .cta-photo { aspect-ratio: 16 / 10; border-radius: 22px; }
+  .cta-fig figcaption { margin-top: 8px; font-size: 13px; }
+  .cine-live .cta-photo { height: min(28vh, 240px); }
+  .cine-cta h2 { font-size: clamp(36px, 10.6vw, 44px); }
+  .cine-cta .cta-lead { margin-top: 10px; font-size: 16px; line-height: 1.45; }
+  .ask { margin-top: 18px; gap: 10px; max-width: none; }
+  .ask-date, .ask .btn { flex: 1 1 100%; min-height: 54px; }
+  .ask-alt { margin-top: 12px; font-size: 15px; }
+
+  .split { grid-template-columns: 1fr; gap: 32px; }
+
+  /* Зал на телефоне: линия, название и вместимость, под ними фото целиком от края до края, потом строка текста */
+  .halls-sec .sec-head h2 { font-size: 12px; letter-spacing: .15em; }
+  .halls-sec .sec-head p { font-size: 18px; margin-top: 12px; }
+  .halls { margin-top: 32px; }
+  .hall { display: block; padding: 30px 0 44px; }
+  .hall:last-child { padding-bottom: 0; }
+  .hall-cap, .hall:nth-child(even) .hall-cap { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 20px; padding: 0; }
+  .hall h3 { font-size: 44px; }
+  .hall .cap { margin-top: 0; font-size: 25px; }
+  .hall-cap .ask-link { margin-top: 0; }
+  .hall figure { margin: 18px calc(-1 * var(--gutter)) 0; }
+  .hall figure img { border-radius: 0; }
+  .hall-desc, .hall:nth-child(even) .hall-desc { margin-top: 16px; padding: 0; }
+
+  .sec-photo::before { background: rgba(var(--shade), .84); }
+  .occ-row { padding: 20px 0; gap: 2px 14px; }
+  .occ-name { font-size: 32px; }
+  .occ-note { font-size: 15px; }
+  .occ-ask span { display: none; }
+
+  .film-head { display: block; }
+  .film { --gap: 10px; height: clamp(280px, 46vh, 360px); margin-top: 24px; }
+  .film img { border-radius: 14px; }
+  .film-foot { font-size: 14px; align-items: flex-start; }
+
+  .menu-head p { margin-top: 14px; }
+  .rows { margin-top: 30px; }
+  .row { padding: 16px 0; }
+  .row dt { font-size: 26px; flex-basis: 100%; }
+  .row dd { justify-content: flex-start; text-align: left; font-size: 17px; }
+  .menu-cta { margin-top: 30px; }
+  .menu-cta .btn { width: 100%; max-width: 420px; padding: 0 16px; }
+  .menu-photo { margin: 48px calc(-1 * var(--gutter)) 0; }
+  .menu-photo img { border-radius: 0; }
+
+  .steps { grid-template-columns: 1fr; gap: 10px; margin-top: 30px; }
+  .steps li { display: grid; grid-template-columns: 46px minmax(0, 1fr); column-gap: 6px; padding: 20px 20px 22px; border-radius: 18px; }
+  .steps li::before { grid-row: 1 / span 2; margin: 2px 0 0; font-size: 46px; line-height: .9; }
+  .steps h3 { font-size: 25px; }
+  .steps p { grid-column: 2; margin-top: 6px; }
+
+  .faq summary, .faq-ask { font-size: 24px; padding: 18px 0; gap: 16px; }
+  .faq details p { padding-right: 0; }
+
+  .contacts dd { font-size: 20px; }
+  .buttons .btn { flex: 1 1 0; padding: 0 12px; }
+  .contact-photo { aspect-ratio: 5 / 4; border-radius: 22px; }
+}
+
+/* Низкий экран телефона: блок «Свободна ли ваша дата?» закреплён на высоту экрана и должен помещаться в неё целиком */
+@media (max-width: 760px) and (max-height: 700px) {
+  .cine-live .cta-photo { height: 23vh; }
+  .cta-inner { gap: 16px; }
+  .cine-cta h2 { font-size: clamp(32px, 9.6vw, 40px); }
+  .ask { margin-top: 14px; }
+}
