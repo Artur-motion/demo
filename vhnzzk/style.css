@@ -190,6 +190,10 @@ img { display: block; max-width: 100%; }
    до запуска скрипта страница была короткой, залы и лента оказывались «рядом с экраном», и все их фото (2–4 МБ)
    начинали грузиться сразу, наперегонки с первым фото. */
 .js-anim:not(.no-motion):not(.cine-live) .cine { height: 100vh; height: 100svh; padding: 0; margin-bottom: 1571px; overflow: hidden; visibility: hidden; }
+/* Шапка (название слева сверху) появляется вместе с первым экраном, а не раньше него (Артур 23.11: на Tavaaduree
+   надпись показывалась первой, потом всё остальное). opacity, а не display: место шапки занято сразу — ничего не прыгает. */
+.js-anim:not(.no-motion):not(.cine-live) .top { opacity: 0; }
+.top { transition: opacity .5s ease; }
 .cine-live .cine { height: 100vh; height: 100svh; padding: 0; overflow: hidden; }
 /* Закрепление при прокрутке: обёртку ставит script.js, длина прокрутки — в --pin-len */
 .cine-pin { height: calc(100vh + var(--pin-len, 0px)); height: calc(100svh + var(--pin-len, 0px)); }

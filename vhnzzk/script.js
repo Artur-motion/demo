@@ -224,6 +224,9 @@
       var cs = window.getComputedStyle(el);
       jobs.push(document.fonts.load(cs.fontStyle + ' ' + cs.fontWeight + ' ' + cs.fontSize + ' ' + cs.fontFamily, el.textContent));
     });
+    // И первое фото: иначе заголовок и шапка уже видны, а фото появляется позже (Артур 23.11). Не дольше тех же 2,4 с.
+    var img = document.querySelector('.cine-photo');
+    if (img && img.decode) jobs.push(img.decode().catch(function () {}));
     return Promise.all(jobs);
   }
   var started = false;
