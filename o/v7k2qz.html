@@ -20,7 +20,7 @@ h1{font-size:20px;margin:4px 0 6px}.hint{color:var(--mute);font-size:14px;margin
 .state{font-size:13px;color:var(--mute);margin-top:6px;min-height:1em}
 </style></head><body>
 <h1>Видео к звонкам 25.11</h1>
-<p class="hint">Сначала откройте их чат («Чат WhatsApp» или «Чат Telegram»), потом «Отправить видео» → выберите WhatsApp, Telegram или Max → их чат сверху. Первое нажатие загружает видео (2–5 с), второе — открывает «Поделиться». Видео приходит с подписью.</p>
+<p class="hint">«Скачать видео» → «Чат WhatsApp» или «Чат Telegram» → скрепка → Галерея → видео сверху → отправить. Текст к видео — кнопка «Скопировать текст».</p>
 <div class="bar"><button id="showOne" onclick="location.hash='';">Показать все</button><button id="showAll">Показать скрытых</button></div>
 <div id="list"></div>
 <script>
@@ -40,7 +40,7 @@ function render(){
     if(!only&&h[it.code]&&!showAll)return;
     var c=document.createElement('div'); c.className='card'+(s[it.code]?' done':''); c.id='c-'+it.code;
     c.innerHTML='<div class="top"><span class="name"></span><span class="meta"></span></div><div class="meta city"></div><div class="text"></div>'+
-      '<div class="row"><button class="send">Отправить видео</button><a class="chat" target="_blank">Чат WhatsApp</a><a class="tg" target="_blank">Чат Telegram</a><button class="copy">Текст</button><a class="see" target="_blank">Видео</a><button class="hide"></button></div><div class="state"></div>';
+      '<div class="row"><a class="dl send">Скачать видео</a><a class="chat" target="_blank">Чат WhatsApp</a><a class="tg" target="_blank">Чат Telegram</a><button class="copy">Скопировать текст</button><a class="see" target="_blank">Посмотреть</a><button class="share">Поделиться…</button><button class="hide"></button></div><div class="state"></div>';
     c.querySelector('.name').textContent=it.name;
     c.querySelector('.top .meta').textContent=(it.w?'волна '+it.w:'пачка 1')+(s[it.code]?' · отправлено':'');
     c.querySelector('.city').textContent=it.city;
@@ -50,7 +50,9 @@ function render(){
     c.querySelector('.see').href='../v/'+it.code+'.mp4';
     var hb=c.querySelector('.hide'); hb.textContent=h[it.code]?'Вернуть':'Убрать (ответил)';
     hb.onclick=function(){var x=hid(); if(x[it.code])delete x[it.code]; else x[it.code]=1; setHid(x); render();};
-    var st=c.querySelector('.state'), b=c.querySelector('.send'), file=null;
+    var st=c.querySelector('.state'), b=c.querySelector('.share'), file=null;
+    var dl=c.querySelector('.dl'); dl.href='../v/'+it.code+'.mp4'; dl.setAttribute('download',it.name.replace(/[^\wА-Яа-яЁё ]+/g,'').trim()+'.mp4');
+    dl.onclick=function(){st.textContent='Скачивается… Потом «Чат WhatsApp» или «Чат Telegram» → скрепка → Галерея → видео сверху. Для Макса — найдите чат сами.';var x=sent();x[it.code]=1;setSent(x);};
     c.querySelector('.copy').onclick=function(){navigator.clipboard&&navigator.clipboard.writeText(msg(it)).then(function(){st.textContent='Текст скопирован'},function(){st.textContent='Не скопировалось — выделите текст выше'})};
     b.onclick=function(){
       if(!file){
