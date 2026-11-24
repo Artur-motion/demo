@@ -68,6 +68,25 @@
 .todo { margin-top: 20px; padding: 16px 18px; border: 2px dashed #B4411F; border-radius: 12px; color: #8a3418; background: rgba(180, 65, 31, .05); font-size: 16px; line-height: 1.45; }
 .todo b { display: block; margin-bottom: 2px; }
 .video-slot { aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; text-align: center; }
+/* Меню кафе: разделы раскрываются по нажатию, чтобы на телефоне не листать 100 строк */
+.menu-acc { border-top: 1px solid var(--line, rgba(0,0,0,.12)); }
+.menu-sec { border-bottom: 1px solid var(--line, rgba(0,0,0,.12)); }
+.menu-sec summary { list-style: none; cursor: pointer; display: flex; align-items: baseline; gap: 10px; padding: 16px 0; font-family: var(--serif); font-weight: 600; font-size: 26px; line-height: 1.2; }
+.menu-sec summary::-webkit-details-marker { display: none; }
+.menu-sec summary::after { content: '+'; margin-left: auto; font-family: var(--sans, inherit); font-weight: 400; font-size: 26px; color: var(--gold); transition: transform .2s; }
+.menu-sec[open] summary::after { transform: rotate(45deg); }
+.menu-count { font-family: var(--sans, inherit); font-size: 15px; font-weight: 400; color: var(--smoke); }
+.menu-sec .dish-list { margin: 0 0 12px; }
+.menu-sec .dish-list .price-row { padding: 10px 0; }
+.menu-sec summary:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+@media (max-width: 760px) { .menu-sec summary { font-size: 22px; padding: 14px 0; } }
+@media (prefers-reduced-motion: reduce) { .menu-sec summary::after { transition: none; } }
+/* Видео зала от Элины: два вертикальных ролика рядом, без звука, играют только на экране */
+.video-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; max-width: 640px; }
+.video-pair figure { margin: 0; }
+.video-pair video { display: block; width: 100%; aspect-ratio: 464 / 832; object-fit: cover; border-radius: 13px; background: var(--wood, #e9e4da); }
+.video-pair figcaption { margin-top: 8px; font-size: 15px; color: var(--smoke); }
+@media (max-width: 760px) { .video-pair { gap: 8px; } .video-pair figcaption { font-size: 14px; } }
 
 /* Телефон: зал с колонной и диванами внизу кадра, а не потолок */
 @media (max-width: 760px) { .cine-photo { object-position: 62% 92% !important; } }
@@ -140,16 +159,170 @@
   <div class="wrap split">
     <div class="sec-head">
       <h2 id="menu-title">Меню кафе</h2>
-      <p>Обеды, ужины и&nbsp;блюда на&nbsp;углях.</p>
+      <p>Обеды, ужины и&nbsp;блюда на&nbsp;углях. Цены&nbsp;— по&nbsp;меню кафе. Вино, пиво и&nbsp;крепкие напитки&nbsp;— в&nbsp;меню на&nbsp;месте.</p>
     </div>
     <div class="cta-cell"><a class="btn btn-line" href="tel:+79037236826">Заказать столик</a></div>
     <div class="menu">
-      <dl class="prices menu-prices dish-list">
-        <div class="price-row"><dt>Лобио по-грузински</dt><dd>675&nbsp;₽</dd><dd class="menu-add">150&nbsp;г</dd></div>
-        <div class="price-row"><dt>Суп куриный</dt><dd>540&nbsp;₽</dd><dd class="menu-add">350&nbsp;г</dd></div>
-        <div class="price-row"><dt>Люля-кебаб из&nbsp;телятины</dt><dd>719&nbsp;₽</dd><dd class="menu-add">180&nbsp;г</dd></div>
-      </dl>
-      <div class="todo"><b>Черновик</b>Три блюда выше — из&nbsp;меню на&nbsp;вашей карточке в&nbsp;Яндекс Картах (обновлено 6&nbsp;октября). Сюда встанет полное меню кафе с&nbsp;ценами — по&nbsp;меню, которое пришлёт Элина.</div>
+      <div class="menu-acc">
+        <details class="menu-sec">
+          <summary>Холодные закуски <span class="menu-count">23</span></summary>
+          <dl class="prices menu-prices dish-list">
+            <div class="price-row"><dt>Мясное ассорти</dt><dd>1&nbsp;200&nbsp;₽</dd><dd class="menu-add">350&nbsp;г · карбонад, язык, ломтики говядины и курицы, грудинка</dd></div>
+            <div class="price-row"><dt>Сырное ассорти</dt><dd>1&nbsp;200&nbsp;₽</dd><dd class="menu-add">350&nbsp;г · чанах, лори, брынза, копчёный чечил, российский</dd></div>
+            <div class="price-row"><dt>Овощной букет</dt><dd>700&nbsp;₽</dd><dd class="menu-add">200&nbsp;г · помидоры, огурцы, зелень</dd></div>
+            <div class="price-row"><dt>Соления ассорти</dt><dd>700&nbsp;₽</dd><dd class="menu-add">250&nbsp;г · огурцы, красная капуста, перец, помидоры</dd></div>
+            <div class="price-row"><dt>Баклажаны с орехами</dt><dd>700&nbsp;₽</dd><dd class="menu-add">100&nbsp;г · грецкий орех, чеснок, сметана, специи</dd></div>
+            <div class="price-row"><dt>Закуска «Надежда»</dt><dd>700&nbsp;₽</dd><dd class="menu-add">150&nbsp;г · сёмга, плавленый сыр, лаваш</dd></div>
+            <div class="price-row"><dt>Рулет из лаваша</dt><dd>600&nbsp;₽</dd><dd class="menu-add">лаваш, зелень, сыр, морковь по-корейски, майонез</dd></div>
+            <div class="price-row"><dt>Селёдка по-русски с картошкой</dt><dd>500&nbsp;₽</dd><dd class="menu-add">150&nbsp;г</dd></div>
+            <div class="price-row"><dt>Язык отварной</dt><dd>500&nbsp;₽</dd><dd class="menu-add">50&nbsp;г</dd></div>
+            <div class="price-row"><dt>Бастурма</dt><dd>500&nbsp;₽</dd><dd class="menu-add">50&nbsp;г</dd></div>
+            <div class="price-row"><dt>Суджук</dt><dd>500&nbsp;₽</dd><dd class="menu-add">50&nbsp;г</dd></div>
+            <div class="price-row"><dt>Колбаса копчёная</dt><dd>250&nbsp;₽</dd><dd class="menu-add">50&nbsp;г</dd></div>
+            <div class="price-row"><dt>Карбонад копчёный</dt><dd>250&nbsp;₽</dd><dd class="menu-add">50&nbsp;г</dd></div>
+            <div class="price-row"><dt>Сыр российский, чанах, чечил или брынза</dt><dd>250&nbsp;₽</dd><dd class="menu-add">50&nbsp;г</dd></div>
+            <div class="price-row"><dt>Маслины, оливки</dt><dd>400&nbsp;₽</dd><dd class="menu-add">25/25&nbsp;г</dd></div>
+            <div class="price-row"><dt>Грибочки</dt><dd>350&nbsp;₽</dd><dd class="menu-add">100&nbsp;г</dd></div>
+            <div class="price-row"><dt>Соления</dt><dd>300&nbsp;₽</dd><dd class="menu-add">100&nbsp;г</dd></div>
+            <div class="price-row"><dt>Шушан-бутень</dt><dd>300&nbsp;₽</dd><dd class="menu-add">100&nbsp;г · маринованная горная трава</dd></div>
+            <div class="price-row"><dt>Свежая зелень</dt><dd>300&nbsp;₽</dd><dd class="menu-add">50&nbsp;г</dd></div>
+            <div class="price-row"><dt>Редька белая</dt><dd>200&nbsp;₽</dd><dd class="menu-add">100&nbsp;г</dd></div>
+            <div class="price-row"><dt>Лимон</dt><dd>100&nbsp;₽</dd><dd class="menu-add">50&nbsp;г</dd></div>
+            <div class="price-row"><dt>Лаваш армянский</dt><dd>50&nbsp;₽</dd><dd class="menu-add">100&nbsp;г</dd></div>
+            <div class="price-row"><dt>Хлеб-лепёшка</dt><dd>50&nbsp;₽</dd><dd class="menu-add">100&nbsp;г</dd></div>
+          </dl>
+        </details>
+        <details class="menu-sec">
+          <summary>Салаты <span class="menu-count">18</span></summary>
+          <dl class="prices menu-prices dish-list">
+            <div class="price-row"><dt>Тёплый салат с говядиной</dt><dd>800&nbsp;₽</dd><dd class="menu-add">250&nbsp;г · говядина, болгарский перец, помидоры, огурцы, кунжут</dd></div>
+            <div class="price-row"><dt>Цезарь с креветками</dt><dd>800&nbsp;₽</dd><dd class="menu-add">150&nbsp;г · креветки, сыр, соус, чеснок, лимон, листья салата</dd></div>
+            <div class="price-row"><dt>Цезарь</dt><dd>700&nbsp;₽</dd><dd class="menu-add">200&nbsp;г · куриное филе, сыр, соус, лимон, листья салата, чеснок</dd></div>
+            <div class="price-row"><dt>Салат микс с сёмгой</dt><dd>700&nbsp;₽</dd><dd class="menu-add">150&nbsp;г · листья салата, слабосолёная сёмга, черри, соус</dd></div>
+            <div class="price-row"><dt>«Языковый»</dt><dd>700&nbsp;₽</dd><dd class="menu-add">150&nbsp;г · говяжий язык, маринованные огурцы, яйца, орехи, майонез</dd></div>
+            <div class="price-row"><dt>Шор-шора по-еврейски</dt><dd>700&nbsp;₽</dd><dd class="menu-add">150&nbsp;г · шпинат, кинза, зелень, сливки, орехи</dd></div>
+            <div class="price-row"><dt>Капрезе</dt><dd>600&nbsp;₽</dd><dd class="menu-add">150&nbsp;г · листья салата, моцарелла, черри, песто</dd></div>
+            <div class="price-row"><dt>«Нежность»</dt><dd>600&nbsp;₽</dd><dd class="menu-add">150&nbsp;г · авокадо, помидоры, огурцы, лук-порей, зелень, оливковое масло</dd></div>
+            <div class="price-row"><dt>«От шеф-повара»</dt><dd>600&nbsp;₽</dd><dd class="menu-add">150&nbsp;г · маринованные опята, лимон, зелень, кедровые орешки, гранат</dd></div>
+            <div class="price-row"><dt>«Восточный»</dt><dd>600&nbsp;₽</dd><dd class="menu-add">150&nbsp;г · баклажаны, болгарский перец, помидоры, лук, обжаренные в масле</dd></div>
+            <div class="price-row"><dt>«Английский»</dt><dd>600&nbsp;₽</dd><dd class="menu-add">150&nbsp;г · куриное филе, грибы, солёные огурцы, яйца, майонез</dd></div>
+            <div class="price-row"><dt>«Графский»</dt><dd>600&nbsp;₽</dd><dd class="menu-add">150&nbsp;г · морковь по-корейски, говядина, куриное филе, яйца, яблоко, майонез</dd></div>
+            <div class="price-row"><dt>Фирменный салат «Консенсус»</dt><dd>600&nbsp;₽</dd><dd class="menu-add">150&nbsp;г · куриное филе, грецкий орех, гранат, чернослив, свежий огурец, зелень</dd></div>
+            <div class="price-row"><dt>Оливье</dt><dd>500&nbsp;₽</dd><dd class="menu-add">150&nbsp;г · горошек, морковь, маринованные огурцы, картофель, филе цыплёнка, яйцо, майонез</dd></div>
+            <div class="price-row"><dt>Греческий</dt><dd>500&nbsp;₽</dd><dd class="menu-add">200&nbsp;г · помидоры, огурцы, болгарский перец, салат, оливки, фета</dd></div>
+            <div class="price-row"><dt>Салат из свежих овощей</dt><dd>500&nbsp;₽</dd><dd class="menu-add">200&nbsp;г · помидоры, огурцы, зелень</dd></div>
+            <div class="price-row"><dt>Авелук</dt><dd>500&nbsp;₽</dd><dd class="menu-add">150&nbsp;г · армянская горная трава, обжаренная с луком</dd></div>
+            <div class="price-row"><dt>Лобио по-грузински</dt><dd>500&nbsp;₽</dd><dd class="menu-add">150&nbsp;г · фасоль, орехи, лук, зелень</dd></div>
+          </dl>
+        </details>
+        <details class="menu-sec">
+          <summary>Первые блюда <span class="menu-count">8</span></summary>
+          <dl class="prices menu-prices dish-list">
+            <div class="price-row"><dt>Хаш</dt><dd>700&nbsp;₽</dd><dd class="menu-add">500&nbsp;г</dd></div>
+            <div class="price-row"><dt>Окрошка по-армянски</dt><dd>500&nbsp;₽</dd><dd class="menu-add">1&nbsp;л</dd></div>
+            <div class="price-row"><dt>Суп куриный</dt><dd>400&nbsp;₽</dd><dd class="menu-add">350&nbsp;г</dd></div>
+            <div class="price-row"><dt>Грибной крем-суп</dt><dd>400&nbsp;₽</dd><dd class="menu-add">350&nbsp;г</dd></div>
+            <div class="price-row"><dt>Суп харчо</dt><dd>400&nbsp;₽</dd><dd class="menu-add">350&nbsp;г</dd></div>
+            <div class="price-row"><dt>Борщ с мясом</dt><dd>400&nbsp;₽</dd><dd class="menu-add">350&nbsp;г</dd></div>
+            <div class="price-row"><dt>Солянка сборная</dt><dd>400&nbsp;₽</dd><dd class="menu-add">350&nbsp;г</dd></div>
+            <div class="price-row"><dt>Требуха отварная</dt><dd>400&nbsp;₽</dd><dd class="menu-add">100&nbsp;г</dd></div>
+          </dl>
+        </details>
+        <details class="menu-sec">
+          <summary>Горячие блюда <span class="menu-count">10</span></summary>
+          <dl class="prices menu-prices dish-list">
+            <div class="price-row"><dt>Садж-кебаб</dt><dd>1&nbsp;200&nbsp;₽</dd><dd class="menu-add">300&nbsp;г · телячья вырезка, помидоры, картофель, лук, перец, баклажаны</dd></div>
+            <div class="price-row"><dt>Жаркое</dt><dd>1&nbsp;200&nbsp;₽</dd><dd class="menu-add">300&nbsp;г · баранина, чернослив, картофель, помидоры, лук, зелень</dd></div>
+            <div class="price-row"><dt>Вырезка по-французски</dt><dd>1&nbsp;000&nbsp;₽</dd><dd class="menu-add">300&nbsp;г · свиная корейка, сыр, грибы, помидоры</dd></div>
+            <div class="price-row"><dt>Хашлама</dt><dd>900&nbsp;₽</dd><dd class="menu-add">400&nbsp;г · баранина, картофель, помидоры, перец, зелень</dd></div>
+            <div class="price-row"><dt>Цыплёнок табака</dt><dd>800&nbsp;₽</dd></div>
+            <div class="price-row"><dt>Долма в виноградных листьях</dt><dd>800&nbsp;₽</dd><dd class="menu-add">200&nbsp;г</dd></div>
+            <div class="price-row"><dt>Жульен грибной</dt><dd>600&nbsp;₽</dd><dd class="menu-add">200&nbsp;г</dd></div>
+            <div class="price-row"><dt>Яичница с помидорами</dt><dd>500&nbsp;₽</dd><dd class="menu-add">250&nbsp;г</dd></div>
+            <div class="price-row"><dt>Сулугуни жареный</dt><dd>400&nbsp;₽</dd><dd class="menu-add">150&nbsp;г</dd></div>
+            <div class="price-row"><dt>Блинчики</dt><dd>300&nbsp;₽</dd><dd class="menu-add">1&nbsp;шт. · с мясом и рисом или с грибами и картофелем</dd></div>
+          </dl>
+        </details>
+        <details class="menu-sec">
+          <summary>Блюда на углях <span class="menu-count">13</span></summary>
+          <dl class="prices menu-prices dish-list">
+            <div class="price-row"><dt>Шашлык из сёмги</dt><dd>1&nbsp;100&nbsp;₽</dd><dd class="menu-add">200&nbsp;г</dd></div>
+            <div class="price-row"><dt>Чалагач-антрекот из баранины</dt><dd>1&nbsp;050&nbsp;₽</dd><dd class="menu-add">200&nbsp;г</dd></div>
+            <div class="price-row"><dt>Шашлык из свиной вырезки</dt><dd>800&nbsp;₽</dd><dd class="menu-add">200&nbsp;г</dd></div>
+            <div class="price-row"><dt>Чалагач-антрекот из свинины</dt><dd>800&nbsp;₽</dd><dd class="menu-add">200&nbsp;г</dd></div>
+            <div class="price-row"><dt>Шашлык из свинины (мякоть)</dt><dd>700&nbsp;₽</dd><dd class="menu-add">200&nbsp;г</dd></div>
+            <div class="price-row"><dt>Шашлык из свинины (рёбра)</dt><dd>700&nbsp;₽</dd><dd class="menu-add">200&nbsp;г</dd></div>
+            <div class="price-row"><dt>Шашлык из баранины</dt><dd>700&nbsp;₽</dd><dd class="menu-add">200&nbsp;г</dd></div>
+            <div class="price-row"><dt>Люля-кебаб из баранины</dt><dd>700&nbsp;₽</dd><dd class="menu-add">200&nbsp;г</dd></div>
+            <div class="price-row"><dt>Шашлык из курицы</dt><dd>600&nbsp;₽</dd><dd class="menu-add">200&nbsp;г</dd></div>
+            <div class="price-row"><dt>Овощи на углях</dt><dd>600&nbsp;₽</dd><dd class="menu-add">3&nbsp;шт. · помидоры, баклажаны, перец</dd></div>
+            <div class="price-row"><dt>Люля-кебаб из телятины</dt><dd>500&nbsp;₽</dd><dd class="menu-add">200&nbsp;г</dd></div>
+            <div class="price-row"><dt>Люля из картофеля</dt><dd>300&nbsp;₽</dd><dd class="menu-add">200&nbsp;г</dd></div>
+            <div class="price-row"><dt>Картофель, печённый на углях</dt><dd>300&nbsp;₽</dd><dd class="menu-add">200&nbsp;г</dd></div>
+          </dl>
+        </details>
+        <details class="menu-sec">
+          <summary>Рыба <span class="menu-count">9</span></summary>
+          <dl class="prices menu-prices dish-list">
+            <div class="price-row"><dt>Сёмга по-монастырски</dt><dd>1&nbsp;500&nbsp;₽</dd><dd class="menu-add">300&nbsp;г · запечённая сёмга, грибы, сыр</dd></div>
+            <div class="price-row"><dt>Осетрина холодного копчения</dt><dd>1&nbsp;200&nbsp;₽</dd><dd class="menu-add">50&nbsp;г</dd></div>
+            <div class="price-row"><dt>Балык</dt><dd>1&nbsp;200&nbsp;₽</dd><dd class="menu-add">50&nbsp;г</dd></div>
+            <div class="price-row"><dt>Дорадо</dt><dd>700&nbsp;₽</dd></div>
+            <div class="price-row"><dt>Сёмга холодного копчения</dt><dd>700&nbsp;₽</dd><dd class="menu-add">50&nbsp;г</dd></div>
+            <div class="price-row"><dt>Икра красная с маслом</dt><dd>700&nbsp;₽</dd><dd class="menu-add">50&nbsp;г</dd></div>
+            <div class="price-row"><dt>Янтарная форель</dt><dd>700&nbsp;₽</dd><dd class="menu-add">100&nbsp;г</dd></div>
+            <div class="price-row"><dt>Форель отварная</dt><dd>700&nbsp;₽</dd><dd class="menu-add">100&nbsp;г</dd></div>
+            <div class="price-row"><dt>Форель, запечённая в духовке</dt><dd>700&nbsp;₽</dd><dd class="menu-add">100&nbsp;г</dd></div>
+          </dl>
+        </details>
+        <details class="menu-sec">
+          <summary>Выпечка и пицца <span class="menu-count">4</span></summary>
+          <dl class="prices menu-prices dish-list">
+            <div class="price-row"><dt>Хачапури по-мегрельски</dt><dd>1&nbsp;000&nbsp;₽</dd><dd class="menu-add">500&nbsp;г</dd></div>
+            <div class="price-row"><dt>Хачапури по-аджарски</dt><dd>800&nbsp;₽</dd><dd class="menu-add">450&nbsp;г</dd></div>
+            <div class="price-row"><dt>Кутаб с зеленью, мясом или сыром</dt><dd>300&nbsp;₽</dd><dd class="menu-add">200&nbsp;г</dd></div>
+            <div class="price-row"><dt>Пицца 32 см</dt><dd>1&nbsp;000&nbsp;₽</dd><dd class="menu-add">куриная, курица с грибами, курица с помидорами, пепперони, сырная, сырная с грибами, «Мясной пир»</dd></div>
+          </dl>
+        </details>
+        <details class="menu-sec">
+          <summary>Гарниры и соусы <span class="menu-count">6</span></summary>
+          <dl class="prices menu-prices dish-list">
+            <div class="price-row"><dt>Картофель по-деревенски</dt><dd>250&nbsp;₽</dd><dd class="menu-add">150&nbsp;г</dd></div>
+            <div class="price-row"><dt>Картофель фри</dt><dd>250&nbsp;₽</dd><dd class="menu-add">150&nbsp;г</dd></div>
+            <div class="price-row"><dt>Рис отварной</dt><dd>200&nbsp;₽</dd><dd class="menu-add">150&nbsp;г</dd></div>
+            <div class="price-row"><dt>Горошек зелёный</dt><dd>200&nbsp;₽</dd><dd class="menu-add">150&nbsp;г</dd></div>
+            <div class="price-row"><dt>Мацони</dt><dd>200&nbsp;₽</dd><dd class="menu-add">200&nbsp;г</dd></div>
+            <div class="price-row"><dt>Соус на выбор</dt><dd>150&nbsp;₽</dd><dd class="menu-add">50&nbsp;г · фирменный, аджика, тартар, мацони с чесноком, сметана, ткемали, наршараб</dd></div>
+          </dl>
+        </details>
+        <details class="menu-sec">
+          <summary>Десерты <span class="menu-count">6</span></summary>
+          <dl class="prices menu-prices dish-list">
+            <div class="price-row"><dt>Фруктовое ассорти</dt><dd>2&nbsp;000&nbsp;₽</dd><dd class="menu-add">1&nbsp;кг</dd></div>
+            <div class="price-row"><dt>Фруктовая нарезка</dt><dd>1&nbsp;500&nbsp;₽</dd><dd class="menu-add">500&nbsp;г</dd></div>
+            <div class="price-row"><dt>Штрудель с яблоком и корицей</dt><dd>400&nbsp;₽</dd></div>
+            <div class="price-row"><dt>Мороженое «Экзотика»</dt><dd>400&nbsp;₽</dd><dd class="menu-add">150&nbsp;г</dd></div>
+            <div class="price-row"><dt>Мороженое с грецким орехом, шоколадом или карамелью</dt><dd>350&nbsp;₽</dd><dd class="menu-add">150&nbsp;г</dd></div>
+            <div class="price-row"><dt>Варенье в ассортименте</dt><dd>300&nbsp;₽</dd><dd class="menu-add">150&nbsp;г</dd></div>
+          </dl>
+        </details>
+        <details class="menu-sec">
+          <summary>Чай, кофе, напитки <span class="menu-count">11</span></summary>
+          <dl class="prices menu-prices dish-list">
+            <div class="price-row"><dt>Соки «Ноян»</dt><dd>400&nbsp;₽</dd><dd class="menu-add">0,5&nbsp;л</dd></div>
+            <div class="price-row"><dt>Сок</dt><dd>400&nbsp;₽</dd><dd class="menu-add">1&nbsp;л</dd></div>
+            <div class="price-row"><dt>Чайник чая с чабрецом и мятой</dt><dd>350&nbsp;₽</dd><dd class="menu-add">0,5&nbsp;л</dd></div>
+            <div class="price-row"><dt>Чайник чая, чёрный или зелёный</dt><dd>300&nbsp;₽</dd><dd class="menu-add">0,5&nbsp;л</dd></div>
+            <div class="price-row"><dt>Кофе: капучино, по-восточному, со сливками, растворимый</dt><dd>200&nbsp;₽</dd><dd class="menu-add">1&nbsp;чашка</dd></div>
+            <div class="price-row"><dt>Чай с лимоном</dt><dd>150&nbsp;₽</dd><dd class="menu-add">1&nbsp;чашка</dd></div>
+            <div class="price-row"><dt>Тан</dt><dd>200&nbsp;₽</dd><dd class="menu-add">0,5&nbsp;л</dd></div>
+            <div class="price-row"><dt>Лимонад</dt><dd>200&nbsp;₽</dd><dd class="menu-add">0,5&nbsp;л</dd></div>
+            <div class="price-row"><dt>Кока-кола, фанта, спрайт</dt><dd>200&nbsp;₽</dd><dd class="menu-add">0,5&nbsp;л</dd></div>
+            <div class="price-row"><dt>Минеральная вода или вода без газа</dt><dd>200&nbsp;₽</dd><dd class="menu-add">0,5&nbsp;л</dd></div>
+            <div class="price-row"><dt>Сок</dt><dd>200&nbsp;₽</dd><dd class="menu-add">200&nbsp;мл</dd></div>
+          </dl>
+        </details>
+      </div>
     </div>
   </div>
 </section>
@@ -162,7 +335,17 @@
     </div>
     <div class="cta-cell"><a class="btn btn-line" href="https://wa.me/79154824399">Спросить о банкете в WhatsApp</a></div>
     <div class="menu">
-      <div class="todo"><b>Черновик</b>Сюда встанет банкетное меню: цена на&nbsp;человека и&nbsp;что входит&nbsp;— по&nbsp;меню, которое пришлёт Элина.</div>
+      <div class="video-pair">
+        <figure>
+          <video class="lazy-video" muted loop playsinline preload="none" poster="img/nkf3c8/zal-svadba.jpg" aria-label="Большой зал, украшенный к свадьбе: арка, цветы, столы под белыми скатертями"><source data-src="img/nkf3c8/zal-svadba.mp4" type="video/mp4"></video>
+          <figcaption>Большой зал перед свадьбой</figcaption>
+        </figure>
+        <figure>
+          <video class="lazy-video" muted loop playsinline preload="none" poster="img/nkf3c8/zal-stol.jpg" aria-label="Длинный банкетный стол накрыт к празднику, под потолком шары"><source data-src="img/nkf3c8/zal-stol.mp4" type="video/mp4"></video>
+          <figcaption>Стол накрыт к&nbsp;приходу гостей</figcaption>
+        </figure>
+      </div>
+      <p class="photo-note">Банкетное меню и&nbsp;цену на&nbsp;человека администратор пришлёт под вашу дату и&nbsp;число гостей.</p>
     </div>
   </div>
 </section>
@@ -207,7 +390,6 @@
         </div>
       </article>
     </div>
-    <div class="todo"><b>Черновик</b>Летняя веранда (есть в&nbsp;вашей карточке на&nbsp;Картах)&nbsp;— добавим, если пришлёте её фото. Фото серого зала тоже ждём.</div>
   </div>
 </section>
 
@@ -278,17 +460,16 @@
 <section class="sec sec-line" id="foto" aria-labelledby="foto-title">
   <div class="wrap">
     <div class="sec-head">
-      <h2 id="foto-title">Фото и видео</h2>
+      <h2 id="foto-title">Фото</h2>
     </div>
     <div class="photo-grid">
+      <img src="img/nkf3c8/stol-banket.jpg" alt="Праздничный стол в большом зале: салаты, нарезки, фрукты" loading="lazy">
       <img src="img/nk6v3r/table-1.jpg" alt="Накрытый стол: блины, нарезка, салаты" loading="lazy">
       <img src="img/nk6v3r/0baf36b58e-1200.jpg" alt="Накрытый длинный стол в зале" loading="lazy">
-      <img src="img/nk6v3r/c51b8e85a1-1024.jpg" alt="Салат" loading="lazy">
       <img src="img/nk6v3r/d32f6aebd6-1024.jpg" alt="Сырная тарелка" loading="lazy">
       <img src="img/nk6v3r/7485b1fa27-1024.jpg" alt="Камин в зале" loading="lazy">
       <img src="img/nk6v3r/39bd6a0ae8-1024.jpg" alt="Кафе на первом этаже" loading="lazy">
     </div>
-    <div class="todo video-slot"><div><b>Черновик</b>Сюда встанет видео залов и&nbsp;кафе&nbsp;— из&nbsp;того, что пришлёт Элина. Лучшие новые фото заменят часть сетки выше.</div></div>
   </div>
 </section>
 
@@ -358,5 +539,28 @@
   <a class="btn btn-line" href="https://wa.me/79154824399">WhatsApp</a>
 </div>
 
+<script>
+/* Видео грузятся и играют, только когда видны на экране (экономит трафик на телефоне) */
+(function () {
+  var vids = document.querySelectorAll('video.lazy-video');
+  if (!vids.length) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function load(v) {
+    if (v.dataset.loaded) return;
+    v.querySelectorAll('source[data-src]').forEach(function (s) { s.src = s.dataset.src; });
+    v.load(); v.dataset.loaded = '1';
+  }
+  if (!('IntersectionObserver' in window)) { vids.forEach(function (v) { load(v); v.controls = true; }); return; }
+  if (reduce) { vids.forEach(function (v) { v.controls = true; load(v); }); return; }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      var v = e.target;
+      if (e.isIntersecting) { load(v); var p = v.play(); if (p && p.catch) p.catch(function () { v.controls = true; }); }
+      else if (!v.paused) v.pause();
+    });
+  }, { rootMargin: '200px 0px', threshold: 0.25 });
+  vids.forEach(function (v) { io.observe(v); });
+})();
+</script>
 </body>
 </html>
