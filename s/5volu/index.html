@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Олимп — банкетный зал в Краснодаре</title>
+<meta name="description" content="«Олимп» в Краснодаре: банкетный зал от 20 до 300 гостей с барельефами и мраморным полом. Свадьбы, выпускные, корпоративы, юбилеи.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Олимп — банкетный зал в Краснодаре">
+<meta property="og:description" content="«Олимп» в Краснодаре: банкетный зал от 20 до 300 гостей с барельефами и мраморным полом. Свадьбы, выпускные, корпоративы, юбилеи.">
+<meta property="og:image" content="https://artur-motion.github.io/demo/s/5volu/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://artur-motion.github.io/demo/s/5volu/">
+<link rel="icon" href="data:,">
+<script>
+/* Первый экран скрыт до запуска анимации (место занято сразу). Через 3 с без запуска — показать как есть. */
+(function(){var d=document.documentElement;d.classList.add('pre');
+window.__plain=setTimeout(function(){if(!d.classList.contains('go')){d.classList.remove('pre');d.classList.add('plain');}},3000);})();
+</script>
+<link rel="preload" as="script" href="car.js">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/Prata-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/Montserrat-500-900-ru.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/PTSerif-700-ru.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/PTSerif-700-italic-ru.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/PTSerif-400-italic-ru.woff2">
+<link rel="preload" as="image" href="img/sq-066-800.jpg" imagesrcset="img/sq-066-800.jpg 800w, img/sq-066-1200.jpg 1200w" imagesizes="(min-width:1024px) 60vw, 118vw" fetchpriority="high">
+<link rel="stylesheet" href="fonts/ru.css">
+<style>
+/* Шаблон кафе волны 1 — скелет «Якоря» 1 «Синяя доска» без подписей блюд на фото
+   (фото с Карт к блюдам меню не привязаны — названия и цены на фото не ставим).
+   Своё у каждого кафе — только переменные ниже: тема (тёмная / светлая), цвета с их меню и вывески, шрифт названия. */
+/* «Олимп» (Краснодар) — светлая тёплая основа: стены под янтарный оникс и белые барельефы; акцент — винно-красный их бархатных занавесов у сцены (фото 145, 12, 129); название — Prata (классическая антиква, как барельефы зала). */
+:root{
+  --bg:#f6f2ea;  --bg-rgb:246,242,234;
+  --line:#e4dccd;
+  --ink:#251d18; --ink-rgb:37,29,24;
+  --soft:#4e443b;
+  --muted:#7e7468;
+  --accent:#7E1F2A;
+  --on-accent:#ffffff;
+  --sans:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --serif:'PT Serif',Georgia,'Times New Roman',serif;
+  --nm-font:'Prata',Georgia,serif; --nm-w:400; --nm-tt:none; --nm-ls:.01em;
+  --nm-m:62px;
+  --nm-d:clamp(104px,9.5vw,138px);
+  --nm-lh:1.05;
+  --band-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font:500 15.5px/1.5 var(--sans);overflow-x:hidden;overflow-x:clip;padding-bottom:72px}
+a{color:inherit}
+img{display:block;max-width:100%}
+.wrap{max-width:1280px;margin:0 auto;padding:0 16px}
+
+/* шапка: название слева, «Позвонить» справа */
+.top{position:fixed;inset:0 0 auto 0;z-index:20;height:60px;transition:background-color .3s cubic-bezier(.4,0,.2,1),box-shadow .3s cubic-bezier(.4,0,.2,1)}
+.top.scrolled{background:var(--bg);box-shadow:0 1px 0 var(--line)}
+.top .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-family:var(--nm-font);font-weight:var(--nm-w);text-transform:var(--nm-tt);font-size:22px;line-height:1;text-decoration:none;white-space:nowrap}
+.nav{display:none;gap:36px;font-weight:600;font-size:15px}
+.nav a{text-decoration:none}
+.call{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px;border-radius:8px;border:1.5px solid var(--accent);
+  color:var(--ink);font-weight:700;font-size:14.5px;text-decoration:none;white-space:nowrap;background:rgba(var(--bg-rgb),.55)}
+.call svg{width:16px;height:16px;fill:var(--accent)}
+.call .num{display:none}
+@media (max-width:1023px){.top .call{display:none}} /* на телефоне звонок — в нижней полосе, в шапке не дублируем (правило 20.11) */
+
+/* первый экран: фото на всю ширину, края растворяются в фоне */
+.hero{position:relative;overflow:hidden;padding-bottom:28px}
+.stage{position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:grab}
+.stage.drag{cursor:grabbing}
+.stage .it{position:absolute;inset:0;opacity:0}
+.stage .it img{width:100%;height:100%;object-fit:cover;pointer-events:none;transform:scale(1);transition:transform 0s 1.4s}
+.stage .it.on img{transform:scale(1.07);transition:transform 7s cubic-bezier(.2,.5,.4,1)}
+.stage::before,.stage::after{content:"";position:absolute;left:0;right:0;z-index:3;pointer-events:none}
+.stage::before{top:0;height:30%;background:linear-gradient(to bottom,rgba(var(--bg-rgb),.92),rgba(var(--bg-rgb),.55) 38%,rgba(var(--bg-rgb),0))}
+.stage::after{bottom:0;height:30%;background:linear-gradient(to top,var(--bg) 6%,rgba(var(--bg-rgb),.7) 45%,rgba(var(--bg-rgb),0))}
+.stage:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+
+.txt{position:relative;z-index:4;margin-top:-54px;display:flex;flex-direction:column;gap:12px}
+h1{margin:0}
+h1 .nm{display:block;font-family:var(--nm-font);font-weight:var(--nm-w);text-transform:var(--nm-tt);letter-spacing:var(--nm-ls);font-size:var(--nm-m);line-height:.95;margin-left:-.04em;overflow-wrap:normal}
+h1 .kind{display:block;margin-top:8px;font:italic 700 21px/1.2 var(--serif)}
+.lead{margin:0;max-width:24em;color:var(--soft)}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.btn{display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 20px;border-radius:8px;font-weight:700;font-size:15.5px;text-decoration:none;white-space:nowrap}
+.btn:active{transform:translateY(1px)}
+.btn.main{background:var(--accent);color:var(--on-accent)}
+.btn.line{border:1.5px solid rgba(var(--ink-rgb),.4);color:var(--ink)}
+
+/* точки листания (телефон) и лента миниатюр (компьютер) — без подписей */
+.now{margin-top:30px}
+.car{position:relative;overflow:hidden;touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:grab}
+.car.drag{cursor:grabbing}
+.car .it{position:absolute;top:0;will-change:transform}
+.thumbs{position:relative;margin:0 -16px}
+.thumbs::after{content:"";position:absolute;top:0;bottom:0;right:0;width:56px;z-index:2;pointer-events:none;background:linear-gradient(to left,var(--bg),rgba(var(--bg-rgb),0))}
+.thumbs::before{content:"";position:absolute;top:0;bottom:0;left:0;width:56px;z-index:2;pointer-events:none;background:linear-gradient(to right,var(--bg),rgba(var(--bg-rgb),0))}
+.thumb-car{height:78px;--b:27%}
+.thumb-car .it{left:50%;width:var(--b);margin-left:calc(var(--b) / -2);height:78px;padding:3px 5px;background:none;border:0;cursor:pointer}
+.thumb-car .it img{width:100%;height:100%;object-fit:cover;border-radius:6px;opacity:.5;pointer-events:none;transition:opacity .4s}
+.thumb-car .it::after{content:"";position:absolute;inset:3px 5px;border-radius:6px;border:2px solid var(--accent);opacity:0;transition:opacity .4s}
+.thumb-car .it.on img{opacity:1}
+.thumb-car .it.on::after{opacity:1}
+.thumb-car .it:focus-visible{outline:2px solid var(--ink);outline-offset:-1px;border-radius:8px}
+.meta{margin:18px 0 0;display:flex;flex-direction:column;gap:4px;font-size:13.5px;color:var(--soft)}
+.meta p{margin:0}
+
+/* вход: всё скрыто до запуска, место занято */
+html.pre .in,html.pre .top .wrap,html.pre .bar a{visibility:hidden}
+html.go .top .wrap,html.go .bar a{animation:lights .7s cubic-bezier(.4,0,.2,1) both}
+html.go .in{animation:rise .9s cubic-bezier(.22,1,.36,1) both;animation-delay:calc(.25s + var(--i,0) * 90ms)}
+html.go .stage.in{animation:lights 1.6s cubic-bezier(.4,0,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes lights{from{opacity:0}to{opacity:1}}
+
+/* меню — списком из карточки: название, вес, цена */
+.menu{padding:48px 0 20px}
+.menu h2,.find h2{margin:0 0 14px;font:italic 700 38px/1 var(--serif)}
+.menu h3{margin:26px 0 2px;font:800 13px/1.3 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.list{list-style:none;margin:0;padding:0;max-width:680px}
+.list li{display:flex;align-items:baseline;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+.list .n{flex:1;font:700 17px/1.3 var(--serif)}
+.list .w{font:italic 400 15px/1.3 var(--serif);color:var(--soft);white-space:nowrap}
+.list .p{font:italic 700 19px/1.2 var(--serif);white-space:nowrap;min-width:4.4em;text-align:right}
+.note{margin:12px 0 0;font:italic 400 13.5px/1.4 var(--serif);color:var(--muted)}
+
+/* адрес, часы и что есть — фактами из карточки */
+.find{padding:36px 0 4px}
+.find .big{font:800 21px/1.25 var(--sans);margin:0 0 6px}
+.find .small{margin:0;color:var(--soft);font-size:14.5px;max-width:31em}
+.hours,.facts{list-style:none;margin:16px 0 0;padding:0;max-width:680px}
+.hours li{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid var(--line);font-size:15px}
+.hours li span:last-child{font-weight:700;white-space:nowrap}
+.facts{margin-top:22px}
+.facts li{padding:9px 0 9px 18px;border-bottom:1px solid var(--line);font-size:15px;position:relative}
+.facts li::before{content:"";position:absolute;left:0;top:18px;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+footer{padding:28px 0 20px;font-size:12px;color:var(--muted)}
+
+/* нижняя полоса на телефоне */
+.bar{position:fixed;inset:auto 0 0 0;z-index:30;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px 12px calc(8px + env(safe-area-inset-bottom));
+  background:var(--bg);border-top:1px solid var(--line)}
+.bar a{display:flex;align-items:center;justify-content:center;gap:8px;height:48px;border-radius:8px;font-weight:700;text-decoration:none}
+.bar a svg{width:18px;height:18px;fill:currentColor}
+.bar .b1{background:var(--accent);color:var(--on-accent)}
+.bar .b2{border:1.5px solid rgba(var(--ink-rgb),.4);color:var(--ink)}
+
+/* телефон: фото — галерея, точки лежат на самом фото; видимая высота iPhone с панелями ≈ 664 px —
+   фото, название и кнопки над нижней полосой. Миниатюры — только на компьютере. */
+.dots{display:none;gap:7px;height:6px}
+.dots i{width:6px;height:6px;border-radius:50%;background:rgba(var(--ink-rgb),.34);transition:background-color .4s,width .4s}
+.dots i.on{width:18px;border-radius:3px;background:var(--ink)}
+@media (max-width:1023px){
+  .stage{aspect-ratio:6/5}
+  .hero > .wrap{display:flex;flex-direction:column}
+  .now{order:-1;position:relative;z-index:5;margin-top:-26px}
+  .txt{margin-top:22px}
+  .thumbs{display:none}
+  .dots{display:flex}
+}
+@media (min-width:640px) and (max-width:1023px){
+  .stage{aspect-ratio:16/11}
+}
+@media (min-width:1024px){
+  body{padding-bottom:0;font-size:16px}
+  .bar{display:none}
+  .wrap{padding:0 32px}
+  .top{height:70px}
+  .logo{font-size:24px}
+  .nav{display:flex}
+  .call .num{display:inline}
+  .call .word{display:none}
+  .hero{--x0:max(32px, calc(50vw - 608px));min-height:min(100vh,900px);padding:0 0 48px;display:flex;align-items:flex-end}
+  /* у фото своя зона: начинается там, где кончается колонка текста, и до правого края окна */
+  .stage{position:absolute;top:0;right:0;bottom:0;left:calc(var(--x0) + 488px);width:auto;height:100%;aspect-ratio:auto}
+  .stage::before{height:22%}
+  .stage::after{top:0;bottom:0;height:auto;background:
+    linear-gradient(to right,var(--bg) 0,var(--bg) 32px,rgba(var(--bg-rgb),.72) 20%,rgba(var(--bg-rgb),0) 44%),
+    linear-gradient(to top,var(--bg) 2%,rgba(var(--bg-rgb),0) 24%)}
+  /* колонка текста лежит поверх фото, но сама мышь не ловит — фото справа можно тянуть */
+  .hero > .wrap{width:100%;position:relative;z-index:4;pointer-events:none}
+  .hero > .wrap > *{pointer-events:auto}
+  .txt{margin-top:0;gap:16px;max-width:520px;padding-top:118px}
+  h1 .nm{font-size:var(--nm-d)}
+  h1 .kind{font-size:30px;margin-top:12px}
+  .lead{font-size:17px}
+  .now{max-width:520px;margin-top:34px}
+  .meta{max-width:520px}
+  .thumbs{margin:0}
+  .thumb-car{height:92px;--b:25%}
+  .thumb-car .it{height:92px}
+  .menu{padding:80px 0 28px}
+  .menu h2,.find h2{font-size:56px;margin-bottom:20px}
+  .find{padding:56px 0 8px}
+  footer{padding:36px 0}
+}
+@media (hover:hover){
+  .nav a:hover{color:var(--accent)}
+  .btn.main:hover{filter:brightness(1.08)}
+  .btn.line:hover{border-color:var(--ink)}
+  .thumb-car .it:hover img{opacity:.85}
+}
+@media (prefers-reduced-motion:reduce){
+  html.go .in,html.go .stage.in,html.go .top .wrap,html.go .bar a{animation:none}
+  .stage .it.on img{transform:none;transition:none}
+}
+
+/* ===== РЕЖИМ ЗАЛА (cafe_page-v3.py, "mode": "zal") — добавка к стилю шаблона кафе. =====
+   Скелет ресторана тот же: шапка, первый экран с листаемым фото, строки «название … цена», нижняя полоса.
+   Своё у зала: фото первого экрана выше и раскрывается «дверями», блоки зала идут первыми
+   (залы крупными фото с подписью поверх → цена на человека → «Свободна ли дата?» → поводы), меню и адрес — после.
+   Приём с образца Avenhall Estate: название и вместимость зала лежат поверх фото, фото — во всю ширину. */
+html{scroll-behavior:smooth}
+.zal section[id]{scroll-margin-top:64px}
+.zal h1 .nm{line-height:var(--nm-lh,.95);margin-left:var(--nm-ml,-.04em)}
+.zal .logo{font-size:var(--logo-m,22px);letter-spacing:var(--nm-ls)}
+.zal h1 .kind{margin-top:var(--kind-mt,8px)}
+.zal .zaly h2,.zal .date h2,.zal .povody h2,.zal .cena h2{margin:0 0 16px;font:italic 700 38px/1.05 var(--serif)}
+
+/* первый экран: фото раскрывается от середины к краям — как двери в зал; дальше — медленный наезд из шаблона */
+html.go .zal .stage.in{animation:doors 1.5s cubic-bezier(.22,1,.36,1) both}
+@keyframes doors{from{clip-path:inset(0 50% 0 50%);opacity:.35}45%{opacity:1}to{clip-path:inset(0 0 0 0);opacity:1}}
+/* потолок и люстры — то, чем зал гордится: верх фото почти не забеливаем (у ресторана забелена треть) */
+.zal .stage::before{height:20%;background:linear-gradient(to bottom,rgba(var(--bg-rgb),.8),rgba(var(--bg-rgb),.32) 55%,rgba(var(--bg-rgb),0))}
+.zal .btn:focus-visible,.zal .occ a:focus-visible,.zal .find a:focus-visible,.zal a.goto:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+html.go .zal .in{animation-delay:calc(.55s + var(--i,0) * 90ms)}
+html.go .zal .stage.in{animation-delay:0s}
+
+/* залы: фото в край экрана, название и вместимость — поверх фото, в его нижнем углу; остальные фото зала листаются под подписью.
+   Под подписью фото уходит в цвет фона страницы (как на первом экране): тёмный текст ложится на светлое, светлый — на тёмное. */
+.zaly{padding:34px 0 0}
+.halls{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:46px 0}
+.hall{grid-column:1 / -1;min-width:0;margin:0}
+.shots{position:relative}
+.rail{display:flex;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.rail::-webkit-scrollbar{display:none}
+.shot{position:relative;margin:0;flex:0 0 100%;aspect-ratio:4/5;overflow:hidden;scroll-snap-align:start;background:var(--line)}
+.shot img{width:100%;height:100%;object-fit:cover;user-select:none;-webkit-user-select:none;-webkit-user-drag:none}
+.shots.live .shot img{transform:scale(1.07);transition:transform 1.8s cubic-bezier(.22,1,.36,1)}
+.shots.live.seen .shot img{transform:none}
+.hall .shots::after{content:"";position:absolute;left:0;right:0;bottom:0;height:48%;z-index:1;pointer-events:none;
+  background:linear-gradient(to top,rgba(var(--bg-rgb),.84) 0,rgba(var(--bg-rgb),.7) 32%,rgba(var(--bg-rgb),.3) 66%,rgba(var(--bg-rgb),0))}
+.cap{position:absolute;left:16px;right:16px;bottom:20px;z-index:2;pointer-events:none}
+.cap .tag{margin:0 0 7px;font:800 11.5px/1.4 var(--sans);letter-spacing:.11em;text-transform:uppercase}
+.cap h3{margin:0;font:700 34px/1.05 var(--serif)}
+.cap .hall-text{margin:9px 0 0;max-width:27em;font-size:14.5px;color:var(--soft)}
+.pips{display:flex;gap:7px;height:6px;margin:0 0 15px}
+.pips i{width:6px;height:6px;border-radius:50%;background:rgba(var(--ink-rgb),.34);transition:background-color .35s,width .35s cubic-bezier(.4,0,.2,1)}
+.pips i.on{width:18px;border-radius:3px;background:var(--ink)}
+.arr{display:none}
+
+/* цена банкета: цифра из карточки; нет цифры — строка с кнопкой «Уточнить в WhatsApp», не пропуск */
+.cena{padding:44px 0 46px}
+.rows{list-style:none;margin:0;padding:0;max-width:680px}
+.rows li{display:flex;align-items:center;gap:14px;padding:17px 0;border-bottom:1px solid var(--line)}
+.rows li:first-child{border-top:1px solid var(--line)}
+.rows .n{flex:1;font:700 21px/1.2 var(--serif)}
+.rows .w{display:block;margin-top:5px;font:italic 400 14.5px/1.35 var(--serif);color:var(--soft)}
+.rows .p{font:italic 700 21px/1.2 var(--serif);white-space:nowrap}
+.cena .note{margin-top:12px}
+.goto{display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:13.5px;white-space:nowrap}
+.goto svg{width:17px;height:17px;fill:var(--accent);flex:none}
+a.goto{padding:10px 0;text-decoration:none}
+.zal .hours li{align-items:center}
+.zal .find .maps{display:block;width:max-content;margin:2px 0 0;padding:8px 0;color:var(--accent);font-weight:700;font-size:15px}
+
+/* «Свободна ли дата?» — полоса наоборот (фон цвета текста): дата и число гостей сами складываются в сообщение WhatsApp */
+.date{padding:50px 0 54px;background:var(--ink);color:var(--bg);color-scheme:var(--band-scheme,dark)}
+.zal .date h2{margin-bottom:12px}
+.date-lead{margin:0 0 22px;max-width:27em;color:rgba(var(--bg-rgb),.84)}
+.ask{display:grid;grid-template-columns:1.4fr 1fr;gap:10px;max-width:520px}
+.ask label{display:flex;flex-direction:column;gap:7px;min-width:0;font-size:13.5px;font-weight:600;color:rgba(var(--bg-rgb),.84)}
+.ask input{display:block;width:100%;min-width:0;height:52px;margin:0;padding:0 14px;border-radius:8px;border:1.5px solid rgba(var(--bg-rgb),.36);
+  background:transparent;color:var(--bg);font:600 17px/1 var(--sans);-webkit-appearance:none;appearance:none;text-align:left}
+.ask input::-webkit-date-and-time-value{text-align:left}
+.ask input::placeholder{color:rgba(var(--bg-rgb),.45)}
+.ask input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.say{grid-column:1/-1;margin:6px 0 2px;padding:14px 16px 15px;border-radius:16px 16px 16px 4px;background:rgba(var(--bg-rgb),.1);font:italic 400 16.5px/1.45 var(--serif)}
+.ask .btn{grid-column:1/-1;height:54px;font-size:16.5px}
+.date-or{margin:8px 0 -10px;font-size:14.5px;color:rgba(var(--bg-rgb),.84)}
+.date-or a{display:inline-block;padding:11px 0;font-weight:700;white-space:nowrap}
+.date .btn.solo{height:54px;font-size:16.5px}
+
+/* поводы — те же строки, что у меню ресторана: повод слева, «спросить дату» справа */
+.povody{padding:50px 0 14px}
+.occ{list-style:none;margin:0;padding:0;max-width:680px}
+.occ li{border-bottom:1px solid var(--line)}
+.occ li:first-child{border-top:1px solid var(--line)}
+.occ a{display:flex;align-items:center;gap:14px;padding:17px 0;text-decoration:none}
+.occ .n{flex:1;font:700 21px/1.2 var(--serif)}
+.occ .w{display:block;margin-top:5px;font:italic 400 14.5px/1.35 var(--serif);color:var(--soft)}
+
+/* лента остальных фото: листается вбок, соседнее фото выглядывает */
+/* фото в блоке поводов: на телефоне — в край экрана над заголовком, заголовок ложится на его нижний край */
+.occ-photo{margin:0;overflow:hidden;background:var(--line)}
+.occ-photo img{width:100%;height:100%;object-fit:cover}
+.povody.with-photo{padding-top:0}
+.povody.with-photo .wrap{display:flex;flex-direction:column}
+.povody.with-photo .occ-photo{order:-1;position:relative;margin:0 -16px;aspect-ratio:4/3}
+.povody.with-photo .occ-photo::after{content:"";position:absolute;left:0;right:0;bottom:0;height:46%;background:linear-gradient(to top,var(--bg) 4%,rgba(var(--bg-rgb),.72) 40%,rgba(var(--bg-rgb),0))}
+.zal .povody.with-photo h2{position:relative;z-index:1;margin-top:-44px}
+.foto{padding:34px 0 6px}
+.strip .shot figcaption{position:absolute;left:0;right:0;bottom:0;padding:34px 14px 12px;font:800 11.5px/1.4 var(--sans);letter-spacing:.11em;text-transform:uppercase;
+  background:linear-gradient(to top,rgba(var(--bg-rgb),.9) 0,rgba(var(--bg-rgb),.72) 45%,rgba(var(--bg-rgb),0))}
+.strip .rail{gap:6px;padding:0;scroll-snap-type:x proximity}
+.strip .shot{flex:0 0 auto;height:340px;aspect-ratio:var(--ar);max-width:86vw;scroll-snap-align:start}
+
+.zal .find .tel{display:block;width:max-content;margin:2px 0 0;padding:8px 0;font:800 21px/1.25 var(--sans);text-decoration:none;white-space:nowrap}
+.zal .find .wa{display:flex;align-items:center;gap:9px;width:max-content;margin:0;padding:10px 0;font:700 16px/1.25 var(--sans);text-decoration:none;white-space:nowrap}
+.zal .find .wa svg{width:19px;height:19px;fill:var(--accent);flex:none}
+.zal .menu{padding-top:40px}
+
+@media (max-width:1023px){
+  /* телефон: фото почти на весь экран, название ложится на его нижний край; при видимой высоте 664 px кнопки — над нижней полосой */
+  .zal .stage{aspect-ratio:auto;height:min(112vw,59vh);height:min(112vw,59svh)}
+  .zal .stage::after{height:36%}
+  .zal .now{margin-top:calc(-1 * var(--nm-up,84px))}
+  .zal .txt{margin-top:calc(var(--nm-up,84px) - 62px);gap:10px}
+  .zal .lead{max-width:25em}
+}
+@media (min-width:640px) and (max-width:1023px){
+  .zal .stage{height:min(70vw,62vh);height:min(70vw,62svh)}
+  .shot{aspect-ratio:3/2}
+  .cap h3{font-size:44px}
+  .strip .shot{aspect-ratio:var(--ar)}
+}
+@media (min-width:1024px){
+  .zal{--x0:max(32px, calc(50vw - 608px))}
+  .zal .stage::before{height:16%}
+  .zal section[id]{scroll-margin-top:76px}
+  .zal .logo{font-size:var(--logo-d,24px)}
+  .zal h1 .kind{margin-top:var(--kind-mt-d,12px)}
+  .zal .zaly h2,.zal .date h2,.zal .povody h2,.zal .cena h2{font-size:56px;margin-bottom:26px}
+  .zaly{padding:92px 0 0}
+  /* компьютер: фото залов — от края до края окна, без пустых полей; два зала стоят рядом (7 и 5 колонок из 12) */
+  .halls{gap:28px}
+  .hall.c7{grid-column:span 7}
+  .hall.c6{grid-column:span 6}
+  .hall.c5{grid-column:span 5}
+  .rail{cursor:grab}
+  .rail.drag{cursor:grabbing;scroll-behavior:auto;scroll-snap-type:none}
+  .hall .shot{height:min(72vh,640px);aspect-ratio:auto}
+  .hall .shots::after{height:42%}
+  /* у широкого фото подпись занимает левую половину — правую почти не трогаем */
+  .hall.c7 .shots::after,.hall.c12 .shots::after{-webkit-mask-image:linear-gradient(to right,#000 42%,rgba(0,0,0,.4));mask-image:linear-gradient(to right,#000 42%,rgba(0,0,0,.4))}
+  .cap{left:32px;right:32px;bottom:34px}
+  .hall.edge .cap{left:var(--x0)}
+  .cap .tag{font-size:12.5px;margin-bottom:9px}
+  .cap h3{font-size:54px}
+  .cap .hall-text{font-size:16px}
+  .arr{position:absolute;top:50%;z-index:3;width:52px;height:52px;margin-top:-26px;border-radius:50%;border:0;padding:0;cursor:pointer;
+    background:var(--bg);color:var(--ink);box-shadow:0 2px 14px rgba(0,0,0,.16);align-items:center;justify-content:center;
+    transition:opacity .25s cubic-bezier(.4,0,.2,1),transform .25s cubic-bezier(.4,0,.2,1)}
+  .shots.scrolls .arr{display:flex}
+  .arr svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+  .arr.prev{left:20px}
+  .arr.next{right:20px}
+  .arr:disabled{opacity:0;pointer-events:none}
+  .arr:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .cena{padding:92px 0 96px}
+  .rows{max-width:none}
+  .rows .n,.rows .p{font-size:26px}
+  .rows li{padding:21px 0}
+  .goto{font-size:14.5px}
+  .date{padding:88px 0 92px}
+  /* компьютер: у текстовых блоков одна сетка — заголовок слева, содержимое справа */
+  .date .wrap,.zal .povody .wrap,.zal .find .wrap,.zal .menu .wrap,.zal .cena .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,600px);column-gap:64px;align-items:start}
+  .zal .povody h2,.zal .find h2,.zal .menu h2,.zal .cena h2{grid-column:1;margin-bottom:0}
+  .zal .occ,.zal .col{grid-column:2;max-width:none}
+  .zal .col{padding-top:8px}
+  .zal .col > :first-child{margin-top:0}
+  .ask{max-width:none}
+  .date h2,.date-lead{grid-column:1}
+  .date-lead{font-size:17px}
+  .ask,.date .btn.solo{grid-column:2;grid-row:1 / span 3;align-self:center}
+  .date-or{grid-column:1;margin-top:0}
+  .povody{padding:92px 0 20px}
+  .povody.with-photo{padding-top:92px}
+  .zal .povody.with-photo .wrap{display:grid;grid-template-rows:auto 1fr}
+  .zal .povody.with-photo h2{grid-row:1;margin-top:0}
+  .povody.with-photo .occ-photo{order:0;grid-column:1;grid-row:2;margin:30px 0 0;aspect-ratio:4/3;max-width:540px}
+  .povody.with-photo .occ-photo::after{display:none}
+  .zal .povody.with-photo .occ{grid-row:1 / span 2}
+  .strip .shot figcaption{padding:44px 20px 16px;font-size:12.5px}
+  .occ .n{font-size:26px}
+  .occ a{padding:21px 0}
+  .foto{padding:56px 0 10px}
+  .strip .rail{gap:6px;padding:0;scroll-snap-type:none}
+  .strip .shot{height:min(480px,58vh);max-width:none}
+  .zal .find .tel{font-size:24px}
+  .zal .find .big{font-size:24px}
+  .zal .find{padding:92px 0 40px}
+  .zal .menu{padding-top:72px}
+}
+@media (hover:hover){
+  .occ a:hover .n{color:var(--accent)}
+  .arr:hover{transform:scale(1.06)}
+  .date-or a:hover,.zal .find .tel:hover,.zal .find .wa:hover,a.goto:hover{color:var(--accent)}
+  .zal .find .maps:hover{color:var(--ink)}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  html.go .zal .stage.in{animation:none}
+  .shots.live .shot img{transform:none;transition:none}
+}
+
+.shots.live .shot img{transform:none!important;transition:none!important}
+</style>
+<script src="../../lib/m.js" async></script>
+</head>
+<body class="zal">
+
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="logo" href="#">Олимп</a>
+    <nav class="nav" aria-label="Разделы"><a href="#zaly">Зал</a><a href="#cena">Цена</a><a href="#data">Свободная дата</a><a href="#adres">Адрес</a></nav>
+    <a class="call" href="tel:+79154226028"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg><span class="word">Позвонить</span><span class="num">+7 (915) 422-60-28</span></a>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="hero">
+  <div class="stage in" id="mainCar" tabindex="0" role="group" aria-roledescription="карусель" aria-label="Фото «Олимп»">
+    <div class="it"><img src="img/sq-066-800.jpg" srcset="img/sq-066-800.jpg 800w, img/sq-066-1200.jpg 1200w" sizes="(min-width:1024px) 60vw, 118vw" width="1200" height="1200" alt="Фото «Олимп» с Яндекс Карт" fetchpriority="high" decoding="async" draggable="false"></div>
+    <div class="it"><img data-src="img/sq-131-800.jpg" data-srcset="img/sq-131-800.jpg 800w, img/sq-131-1200.jpg 1200w" sizes="(min-width:1024px) 60vw, 118vw" width="1200" height="1200" alt="Фото «Олимп» с Яндекс Карт" decoding="async" draggable="false"></div>
+    <div class="it"><img data-src="img/sq-075-800.jpg" data-srcset="img/sq-075-800.jpg 800w" sizes="(min-width:1024px) 60vw, 118vw" width="800" height="800" alt="Фото «Олимп» с Яндекс Карт" decoding="async" draggable="false"></div>
+    <div class="it"><img data-src="img/sq-008-800.jpg" data-srcset="img/sq-008-800.jpg 800w, img/sq-008-1200.jpg 1200w" sizes="(min-width:1024px) 60vw, 118vw" width="1200" height="1200" alt="Фото «Олимп» с Яндекс Карт" decoding="async" draggable="false"></div>
+  </div>
+
+  <div class="wrap">
+    <div class="txt">
+      <h1 class="in" style="--i:0"><span class="nm">Олимп</span> <span class="kind">банкетный зал до 300 гостей</span></h1>
+      <p class="lead in" style="--i:1">Свадьбы, выпускные, корпоративы и юбилеи.</p>
+      <div class="btns in" style="--i:2">
+        <a class="btn main" href="https://wa.me/79154226028?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%2C%20%D1%81%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%BD%D0%B0%20%D0%BB%D0%B8%20%D0%B4%D0%B0%D1%82%D0%B0%20%D0%B4%D0%BB%D1%8F%20%D0%B1%D0%B0%D0%BD%D0%BA%D0%B5%D1%82%D0%B0%20%D0%B2%20%C2%AB%D0%9E%D0%BB%D0%B8%D0%BC%D0%BF%D0%B5%C2%BB."><svg class="wa-ico" viewBox="0 0 24 24" aria-hidden="true" style="width:1.1em;height:1.1em;flex:none;fill:currentColor;display:inline-block;vertical-align:-.2em;margin-right:.45em"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Свободна ли дата?</a>
+        <a class="btn line" href="#zaly">Зал</a>
+      </div>
+    </div>
+
+    <div class="now in" style="--i:3">
+      <div class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+      <div class="thumbs">
+        <div class="car thumb-car" id="thumbCar">
+          <button class="it" type="button" aria-label="Фото 1"><img src="img/sq-066-t.jpg" width="220" height="220" alt="" draggable="false"></button>
+          <button class="it" type="button" aria-label="Фото 2"><img src="img/sq-131-t.jpg" width="220" height="220" alt="" draggable="false"></button>
+          <button class="it" type="button" aria-label="Фото 3"><img src="img/sq-075-t.jpg" width="220" height="220" alt="" draggable="false"></button>
+          <button class="it" type="button" aria-label="Фото 4"><img src="img/sq-008-t.jpg" width="220" height="220" alt="" draggable="false"></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="meta in" style="--i:4">
+      <p>Краснодар, улица Вишняковой, 1/5</p>
+    </div>
+  </div>
+</section>
+
+<section class="zaly" id="zaly">
+  <div class="wrap"><h2>Зал</h2></div>
+  <div class="halls">
+  <article class="hall c12 edge">
+    <div class="shots" data-shots>
+      <div class="rail" tabindex="0" role="group" aria-label="Фото: Банкетный зал">
+        <figure class="shot" style="--ar:1.3333"><img src="img/f-074-800.jpg" srcset="img/f-074-800.jpg 800w, img/f-074-1600.jpg 1600w" sizes="(min-width:1024px) max(100vw, 853px), 167vw" width="1600" height="1200" alt="Фото «Олимп» с Яндекс Карт" loading="lazy" decoding="async" draggable="false" style="object-position:50% 50%"></figure>
+        <figure class="shot" style="--ar:1.7775"><img src="img/f-145-800.jpg" srcset="img/f-145-800.jpg 800w, img/f-145-1600.jpg 1600w" sizes="(min-width:1024px) max(100vw, 1138px), 222vw" width="1600" height="900" alt="Фото «Олимп» с Яндекс Карт" loading="lazy" decoding="async" draggable="false" style="object-position:40% 50%"></figure>
+      </div>
+      <div class="cap"><div class="pips" aria-hidden="true"><i class="on"></i><i></i></div><p class="tag">Барельефы и мраморный пол · от 20 до 300 гостей</p><h3>Банкетный зал</h3></div>
+      <button class="arr prev" type="button" aria-label="Предыдущее фото" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button class="arr next" type="button" aria-label="Следующее фото"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+  </article>
+  </div>
+</section>
+<section class="cena" id="cena">
+  <div class="wrap">
+    <h2>Цена банкета</h2>
+    <div class="col">
+    <ul class="rows">
+      <li><span class="n">Свадьба</span><span class="p">3&nbsp;500&nbsp;₽</span></li>
+    </ul>
+    <p class="note">Цена — из карточки на Яндекс Картах на 24 ноября 2026 года. Что в неё входит и сколько выйдет на ваше число гостей, уточните в WhatsApp.</p>
+    </div>
+  </div>
+</section>
+<section class="date" id="data">
+  <div class="wrap">
+    <h2>Свободна ли ваша дата?</h2>
+    <p class="date-lead">Выберите дату и число гостей и отправьте готовое сообщение в WhatsApp. Администратор проверит дату и ответит.</p>
+    <div class="ask">
+      <label>Дата<input type="date" id="askDate" autocomplete="off"></label>
+      <label>Гостей<input type="number" id="askN" inputmode="numeric" min="1" max="9999" autocomplete="off"></label>
+      <p class="say" id="askSay" aria-live="polite">Здравствуйте! Хочу узнать, свободна ли дата для банкета в «Олимпе».</p>
+      <a class="btn main" id="askGo" data-wa="79154226028" data-text="Здравствуйте! Хочу узнать, свободна ли дата для банкета в «Олимпе»." href="https://wa.me/79154226028?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%2C%20%D1%81%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%BD%D0%B0%20%D0%BB%D0%B8%20%D0%B4%D0%B0%D1%82%D0%B0%20%D0%B4%D0%BB%D1%8F%20%D0%B1%D0%B0%D0%BD%D0%BA%D0%B5%D1%82%D0%B0%20%D0%B2%20%C2%AB%D0%9E%D0%BB%D0%B8%D0%BC%D0%BF%D0%B5%C2%BB."><svg class="wa-ico" viewBox="0 0 24 24" aria-hidden="true" style="width:1.1em;height:1.1em;flex:none;fill:currentColor;display:inline-block;vertical-align:-.2em;margin-right:.45em"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Написать в WhatsApp</a>
+    </div>
+    <p class="date-or">Или позвоните: <a href="tel:+79154226028">+7&nbsp;(915)&nbsp;422-60-28</a></p>
+  </div>
+</section>
+<section class="povody" id="povody">
+  <div class="wrap">
+    <h2>Здесь проводят</h2>
+    <ul class="occ">
+      <li><a href="https://wa.me/79154226028?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%81%D1%82%D0%B8%20%D1%83%20%D0%B2%D0%B0%D1%81%20%D1%81%D0%B2%D0%B0%D0%B4%D1%8C%D0%B1%D1%83.%20%D0%9A%D0%B0%D0%BA%D0%B8%D0%B5%20%D0%B4%D0%B0%D1%82%D1%8B%20%D1%81%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%BD%D1%8B%3F"><span class="n">Свадьбы</span><span class="goto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Спросить дату</span></a></li>
+      <li><a href="https://wa.me/79154226028?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%81%D1%82%D0%B8%20%D1%83%20%D0%B2%D0%B0%D1%81%20%D0%B2%D1%8B%D0%BF%D1%83%D1%81%D0%BA%D0%BD%D0%BE%D0%B9.%20%D0%9A%D0%B0%D0%BA%D0%B8%D0%B5%20%D0%B4%D0%B0%D1%82%D1%8B%20%D1%81%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%BD%D1%8B%3F"><span class="n">Выпускные</span><span class="goto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Спросить дату</span></a></li>
+      <li><a href="https://wa.me/79154226028?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%81%D1%82%D0%B8%20%D1%83%20%D0%B2%D0%B0%D1%81%20%D0%BA%D0%BE%D1%80%D0%BF%D0%BE%D1%80%D0%B0%D1%82%D0%B8%D0%B2.%20%D0%9A%D0%B0%D0%BA%D0%B8%D0%B5%20%D0%B4%D0%B0%D1%82%D1%8B%20%D1%81%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%BD%D1%8B%3F"><span class="n">Корпоративы</span><span class="goto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Спросить дату</span></a></li>
+      <li><a href="https://wa.me/79154226028?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BF%D1%80%D0%BE%D0%B2%D0%B5%D1%81%D1%82%D0%B8%20%D1%83%20%D0%B2%D0%B0%D1%81%20%D1%8E%D0%B1%D0%B8%D0%BB%D0%B5%D0%B9.%20%D0%9A%D0%B0%D0%BA%D0%B8%D0%B5%20%D0%B4%D0%B0%D1%82%D1%8B%20%D1%81%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%BD%D1%8B%3F"><span class="n">Юбилеи</span><span class="goto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Спросить дату</span></a></li>
+    </ul>
+  </div>
+</section>
+<section class="find" id="adres">
+  <div class="wrap">
+    <h2>Адрес и часы</h2>
+    <div class="col">
+    <p class="big">Краснодар, микрорайон Черёмушки, улица Вишняковой, 1/5</p>
+    <a class="maps" href="https://yandex.ru/maps/org/226630438373/" target="_blank" rel="noopener">Показать на Яндекс Картах</a>
+    <a class="tel" href="tel:+79154226028">+7 (915) 422-60-28</a>
+    <ul class="hours">
+      <li><span>Ежедневно</span><span>12:00–24:00</span></li>
+    </ul>
+    <ul class="facts">
+      <li>Кухня: европейская, кавказская</li>
+    </ul>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">Демо-версия сайта. Не официальный сайт «Олимпа».</div></footer>
+
+<div class="bar">
+  <a class="b1" href="tel:+79154226028"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>Позвонить</a>
+  <a class="b2" href="https://wa.me/79154226028?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%2C%20%D1%81%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%BD%D0%B0%20%D0%BB%D0%B8%20%D0%B4%D0%B0%D1%82%D0%B0%20%D0%B4%D0%BB%D1%8F%20%D0%B1%D0%B0%D0%BD%D0%BA%D0%B5%D1%82%D0%B0%20%D0%B2%20%C2%AB%D0%9E%D0%BB%D0%B8%D0%BC%D0%BF%D0%B5%C2%BB."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp</a>
+</div>
+
+<script src="car.js"></script>
+<script>
+(function(){
+  var $=function(s){return [].slice.call(document.querySelectorAll(s));};
+  var mainCar=document.getElementById('mainCar'), thumbCar=document.getElementById('thumbCar');
+  var mains=$('#mainCar .it'), thumbs=$('#thumbCar .it'), dots=$('.dots i');
+  var rThumb=Car.slide(thumbs,0,3.4);
+  /* фото: следующее проявляется поверх текущего, поэтому у края нечему торчать */
+  function rMain(rel){
+    for(var i=0;i<mains.length;i++){
+      var d=rel(i), el=mains[i], op=d>=0?(d<1?1-d:0):(d>-1?1:0);
+      if(op<=0){ if(!el._h){el.style.visibility='hidden';el.style.opacity=0;el._h=1;} continue; }
+      if(el._h){el.style.visibility='';el._h=0;}
+      el.style.opacity=op.toFixed(3); el.style.zIndex=d>=0?2:1;
+    }
+  }
+  var car=Car({
+    n:mains.length, delay:3400, dur:1300, ease:function(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;},
+    watch:document.getElementById('hero'),
+    render:function(rel){rMain(rel);rThumb(rel);},
+    ready:function(i){var im=mains[i].querySelector('img');return im.complete&&im.naturalWidth>0;},
+    onActive:function(a){
+      thumbs.forEach(function(t,i){t.classList.toggle('on',i===a);});
+      dots.forEach(function(t,i){t.classList.toggle('on',i===a);});
+      mains.forEach(function(m,i){m.classList.toggle('on',i===a);});
+    }
+  });
+  car.bind(mainCar,function(){return Math.min(mainCar.offsetWidth,520)*.7;});
+  car.bind(thumbCar,function(){return thumbs[0].offsetWidth;});
+  thumbs.forEach(function(t,i){t.addEventListener('click',function(){car.goIndex(i);});});
+
+  var first=mains[0].querySelector('img');
+  Car.intro([["400 62px Prata", "Олимп"], ["500 16px Montserrat", "Свадьбы, выпускные, корпоративы и юбилеи WhatsApp"], ["700 16px Montserrat", "Свободна ли дата? Зал"], ["italic 700 21px \"PT Serif\"", "банкетный зал до 300 гостей"]],first,function(){
+    Car.loadRest($('#mainCar img'));
+    setTimeout(car.start,2200);
+  });
+
+  var top=document.getElementById('top');
+  function onScroll(){top.classList.toggle('scrolled',window.scrollY>8);}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+})();
+</script>
+<script src="zal.js"></script>
+</body>
+</html>
